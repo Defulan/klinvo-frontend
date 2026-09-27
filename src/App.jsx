@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar';
 function App() {
     return <>
         <Navbar/>
-        <main>
+        <main className="container-sm mt-5 text-center">
             <Outlet/>
         </main>
     </>
