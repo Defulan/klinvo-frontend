@@ -4,11 +4,11 @@ import './index.css'
 import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-import { CreateBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from '../pages/Home.jsx';
 import NotFoundPage from '../pages/NotFoundPage.jsx';
 
-const router = CreateBrowserRouter([
+const router = createBrowserRouter([
     {path: "/", element: <App/>, children: [
         {index: true, element: <Home/>},
         {path: "*", element: <NotFoundPage/>}
