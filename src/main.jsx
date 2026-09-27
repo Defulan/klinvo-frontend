@@ -5,8 +5,8 @@ import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import { CreateBrowserRouter, RouterProvider } from 'react-router-dom';
-import Home from "./Home.jsx";
-import NotFoundPage from "./NotFoundPage.jsx";
+import Home from '../pages/Home.jsx';
+import NotFoundPage from '../pages/NotFoundPage.jsx';
 
 const router = CreateBrowserRouter([
     {path: "/", element: <App/>, children: [
