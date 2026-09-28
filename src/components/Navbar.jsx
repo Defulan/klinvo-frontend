@@ -28,7 +28,7 @@ function Navbar() {
                         </ul>
                     </li>
                     <li className="nav-item">
-                        {isLoading && (
+                        {!isLoading && (
                             isAuth ? (
                                 <a className="nav-link" href="/account">Аккаунт</a>
                             ) : <a className="nav-link" href="/login">Вход</a>
