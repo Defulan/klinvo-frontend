@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createContext, useEffect } from "react";
 import api from "../lib/api";
 
-export const AuthContext = createContext();
+export const authContext = createContext();
 
 export function AuthContextProvider({ children }) {
     const [isAuth, setIsAuth] = useState(false);
@@ -25,7 +25,7 @@ export function AuthContextProvider({ children }) {
         fetchOperations();
     }, []);
 
-    return <AuthContext.Provider value={{isAuth, userId, isLoading, fetchOperations}}>
+    return <authContext.Provider value={{isAuth, userId, isLoading, fetchOperations}}>
         {children}
-    </AuthContext.Provider>
+    </authContext.Provider>
 }
