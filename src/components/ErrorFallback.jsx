@@ -1,5 +1,4 @@
-export function ErrorFallback({ error, resetErrorBoundary }) 
-{
+export function ErrorFallback({ error, resetErrorBoundary }) {
     return <div>
         <h1>Произошла ошибка</h1>
         <p>{error.message}</p>
