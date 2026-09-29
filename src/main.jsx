@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AuthContextProvider } from './context/AuthContext.jsx'
+import { ErrorFallback } from './components/ErrorFallback.jsx'
+import { ErrorBoundary } from 'react-error-boundary'
 
 import Home from './pages/Home.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
@@ -15,7 +17,7 @@ const Login = lazy(() => import("./pages/account/Login.jsx"));
 
 
 const router = createBrowserRouter([
-    {path: "/", element: <App/>, children: [
+    {path: "/", element: <App/>, errorElement: <ErrorFallback/>, children: [
         {index: true, element: <Home/>},
         {path: "account", element: <AccountPage/>},
         {path: "registration", element: <Registration/>},
@@ -27,8 +29,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
-        <AuthContextProvider>
-            <RouterProvider router={router}/>
-        </AuthContextProvider>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <AuthContextProvider>
+                <RouterProvider router={router}/>
+            </AuthContextProvider>
+        </ErrorBoundary>
     </StrictMode>
 )
