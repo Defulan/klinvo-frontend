@@ -3,7 +3,7 @@ import api from "../../lib/api";
 import { authContext } from "../../context/AuthContext";
 
 function AccountPage() {
-    const { isAuth, userId } = useContext(authContext);
+    const { isAuth, userId, isContextLoading } = useContext(authContext);
     const [user, setUser] = useState({
         id: null,
         name: null
@@ -22,8 +22,19 @@ function AccountPage() {
     }
 
     useEffect(() => {
-        fetchOperations();
-    }, []);
+        if (isContextLoading) return;
+        
+        switch (isAuth) {
+            case null:
+                return;
+            case false:
+                window.location.href = "/login"
+                break;
+            case true:
+                fetchOperations();
+                break;
+        }
+    }, [isContextLoading, userId, isAuth]);
 
     const logout = async (event) => {
         event.preventDefault();
