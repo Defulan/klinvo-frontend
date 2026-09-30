@@ -6,7 +6,8 @@ function AccountPage() {
     const { isAuth, userId, isContextLoading } = useContext(authContext);
     const [user, setUser] = useState({
         id: null,
-        name: null
+        name: null,
+        bio: null
     })
     const [isLoading, setIsLoading] = useState(true);
 
@@ -44,7 +45,10 @@ function AccountPage() {
 
     return <>
         {!isLoading && <>
-            <h1>You're {user.name} with {user.id}</h1>
+            <h1>Страница пользователя {user.name}</h1>
+            <p>ID: {user.id}</p>
+            {user.bio && <p>{user.bio}</p>}
+            <hr/>
             <button onClick={logout}>Выйти</button>
         </>}
     </>;
