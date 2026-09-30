@@ -5,6 +5,7 @@ const ERROR_MAP = {
     "AUTHORIZED": "Вы уже авторизированы",
     "USER_DOESNT_EXIST": "Такого пользователя нет",
     "INVALID_COOKIE_VALUE": "Неправильное значение в cookie",
+    "LANGUAGE_DOESNT_EXIST": "Такого языка не найдено",
     "VALIDATION_ERROR": "В одном из полей неправильно введены данные",
     "UNEXCEPTED": "Неизвестная ошибка ._."
 }
