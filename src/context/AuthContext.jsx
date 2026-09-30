@@ -5,7 +5,7 @@ import api from "../lib/api";
 export const authContext = createContext();
 
 export function AuthContextProvider({ children }) {
-    const [isAuth, setIsAuth] = useState(false);
+    const [isAuth, setIsAuth] = useState(null);
     const [userId, setUserId] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
