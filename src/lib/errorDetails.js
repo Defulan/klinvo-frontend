@@ -7,6 +7,8 @@ const ERROR_MAP = {
     "INVALID_COOKIE_VALUE": "Неправильное значение в cookie",
     "LANGUAGE_DOESNT_EXIST": "Такого языка не найдено",
     "NO_PERMISSIONS": "У вас нет прав на совершение этого действия",
+    "NOTE_DOESNT_EXIST": "Данной заметки не существует",
+
     "VALIDATION_ERROR": "В одном из полей неправильно введены данные",
     "UNEXCEPTED": "Неизвестная ошибка ._."
 }
