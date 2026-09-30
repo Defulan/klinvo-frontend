@@ -4,13 +4,14 @@ import './index.css'
 import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import { AuthContextProvider } from './context/AuthContext.jsx'
 import { ErrorFallback } from './components/ErrorFallback.jsx'
 import { ErrorBoundary } from 'react-error-boundary'
 
 import Home from './pages/Home.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
+const LanguagePage = lazy(() => import('./pages/languages/Language.jsx'));
 const AccountPage = lazy(() => import("./pages/account/Account.jsx"));
 const Registration = lazy(() => import("./pages/account/Registration.jsx"));
 const Login = lazy(() => import("./pages/account/Login.jsx"));
@@ -22,6 +23,9 @@ const router = createBrowserRouter([
         {path: "account", element: <AccountPage/>},
         {path: "registration", element: <Registration/>},
         {path: "login", element: <Login/>},
+        
+        {path: "/language", element: <Navigate to="/" replace />},
+        {path: "/language/:languageId", element: <LanguagePage/>},
 
         {path: "*", element: <NotFoundPage/>}
     ]}
