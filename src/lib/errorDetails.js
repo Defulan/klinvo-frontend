@@ -6,6 +6,7 @@ const ERROR_MAP = {
     "USER_DOESNT_EXIST": "Такого пользователя нет",
     "INVALID_COOKIE_VALUE": "Неправильное значение в cookie",
     "LANGUAGE_DOESNT_EXIST": "Такого языка не найдено",
+    "NO_PERMISSIONS": "У вас нет прав на совершение этого действия",
     "VALIDATION_ERROR": "В одном из полей неправильно введены данные",
     "UNEXCEPTED": "Неизвестная ошибка ._."
 }
