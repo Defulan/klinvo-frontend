@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 import api from '../../lib/api'
+import { getErrorDetails } from "../../lib/errorDetails";
 
 function Login() {
     const [errorText, setErrorText] = useState("");
@@ -16,7 +17,7 @@ function Login() {
             window.location.href = "/account";
         } catch (error) {
             console.error(error);
-            setErrorText(error.message);
+            setErrorText(getErrorDetails(error));
         }
     };
 
