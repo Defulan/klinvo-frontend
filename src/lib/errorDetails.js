@@ -1,4 +1,4 @@
-export const getErrorMessage = (error) => {
+export const getErrorDetails = (error) => {
     const message = error.response?.data?.detail;
 
     if (Array.isArray(message)) {
