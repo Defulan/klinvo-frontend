@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useState } from 'react';
 import api from '../../lib/api'
 
@@ -43,7 +44,8 @@ function Registration() {
                     onChange={changeFormData} autoComplete="new-password"></input>
             </label><br/>
 
-            <button type="submit">Зарегистрироваться</button>
+            <button type="submit">Зарегистрироваться</button><br/>
+            <Link to="/login">Уже есть аккаунт? (Войти)</Link>
         </form>
     </div>
 }
