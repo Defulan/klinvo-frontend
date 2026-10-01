@@ -1,17 +1,27 @@
-import { useState } from "react";
-import { createContext, useEffect } from "react";
+import { ReactNode, useState, useEffect, createContext } from "react";
 import api from "../lib/api";
 
-export const authContext = createContext();
+interface AuthContextType {
+    isAuth: boolean | null;
+    userId: number | null;
+    isLoading: boolean;
+}
 
-export function AuthContextProvider({ children }) {
-    const [isAuth, setIsAuth] = useState(null);
-    const [userId, setUserId] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+interface AuthContextProviderProps {
+    children: ReactNode;
+}
 
-    async function fetchOperations() {
+export const authContext = createContext<AuthContextType | null>(null);
+
+
+export function AuthContextProvider({ children }: AuthContextProviderProps) {
+    const [isAuth, setIsAuth] = useState<boolean | null>(null);
+    const [userId, setUserId] = useState<number | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+
+    async function fetchOperations(): Promise<void> {
         try {
-            const response = await api.get("/auth/me");
+            const response = await api.get<{isAuth: boolean; userId: number | null}>("/auth/me");
             setIsAuth(response.data.isAuth);
             setUserId(response.data.userId);
         } catch (err) {
