@@ -11,11 +11,11 @@ interface AuthContextProviderProps {
     children: ReactNode;
 }
 
-export const authContext = createContext<AuthContextType | null>(null);
+export const AuthContext = createContext<AuthContextType | null>(null);
 
 
 export function useAuth() {
-    const context = useContext(authContext);
+    const context = useContext(AuthContext);
     if (!context) {
         throw new Error("useAuth outside of AuthContextProvider")
     }
@@ -44,7 +44,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
         fetchOperations();
     }, []);
 
-    return <authContext.Provider value={{isAuth, userId, isLoading}}>
+    return <AuthContext.Provider value={{isAuth, userId, isLoading}}>
         {children}
-    </authContext.Provider>
+    </AuthContext.Provider>
 }
