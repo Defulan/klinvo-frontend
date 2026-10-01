@@ -14,7 +14,7 @@ function Registration() {
         event.preventDefault();
         try {
             const response = await api.post("/users", formData);
-            window.account.href = "/account";
+            window.location.href = "/account";
         } catch (error) {
             console.error(error);
             setErrorText(error);
