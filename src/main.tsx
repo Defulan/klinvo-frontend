@@ -5,16 +5,16 @@ import App from './App'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
-import { AuthContextProvider } from './context/AuthContext.jsx'
-import { ErrorFallback } from './components/ErrorFallback.jsx'
+import { AuthContextProvider } from './context/AuthContext'
+import { ErrorFallback } from './components/ErrorFallback'
 import { ErrorBoundary } from 'react-error-boundary'
 
-import Home from './pages/Home.jsx';
-import NotFoundPage from './pages/NotFoundPage.jsx';
-const LanguagePage = lazy(() => import('./pages/languages/Language.jsx'));
-const AccountPage = lazy(() => import("./pages/account/Account.jsx"));
-const Registration = lazy(() => import("./pages/account/Registration.jsx"));
-const Login = lazy(() => import("./pages/account/Login.jsx"));
+import Home from './pages/Home';
+import NotFoundPage from './pages/NotFoundPage';
+const LanguagePage = lazy(() => import('./pages/languages/Language'));
+const AccountPage = lazy(() => import("./pages/account/Account"));
+const Registration = lazy(() => import("./pages/account/Registration"));
+const Login = lazy(() => import("./pages/account/Login"));
 
 
 const router = createBrowserRouter([
