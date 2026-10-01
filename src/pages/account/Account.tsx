@@ -1,9 +1,9 @@
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../../lib/api";
-import { authContext } from "../../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 
 function AccountPage() {
-    const { isAuth, userId, isContextLoading } = useContext(authContext);
+    const { isAuth, userId, isContextLoading } = useAuth();
     const [user, setUser] = useState({
         id: null,
         name: null,
