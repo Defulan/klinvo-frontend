@@ -7,6 +7,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import { AuthContextProvider } from './context/AuthContext'
 import { ErrorFallback } from './components/ErrorFallback'
+import { RouterErrorFallback } from './components/RouterErrorFallback'
 import { ErrorBoundary } from 'react-error-boundary'
 
 import Home from './pages/Home';
@@ -18,7 +19,7 @@ const Login = lazy(() => import("./pages/account/Login"));
 
 
 const router = createBrowserRouter([
-    {path: "/", element: <App/>, errorElement: <ErrorFallback/>, children: [
+    {path: "/", element: <App/>, errorElement: <RouterErrorFallback/>, children: [
         {index: true, element: <Home/>},
         {path: "account", element: <AccountPage/>},
         {path: "registration", element: <Registration/>},
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
     ]}
 ]);
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <ErrorBoundary FallbackComponent={ErrorFallback}>
             <AuthContextProvider>
