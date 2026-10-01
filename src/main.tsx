@@ -24,8 +24,8 @@ const router = createBrowserRouter([
         {path: "registration", element: <Registration/>},
         {path: "login", element: <Login/>},
         
-        {path: "/language", element: <Navigate to="/" replace />},
-        {path: "/language/:languageId", element: <LanguagePage/>},
+        {path: "language", element: <Navigate to="/" replace />},
+        {path: "language/:languageId", element: <LanguagePage/>},
 
         {path: "*", element: <NotFoundPage/>}
     ]}
