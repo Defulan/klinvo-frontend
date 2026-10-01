@@ -1,4 +1,4 @@
-import { ReactNode, useState, useEffect, createContext } from "react";
+import { ReactNode, useState, useEffect, createContext, useContext } from "react";
 import api from "../lib/api";
 
 interface AuthContextType {
@@ -12,6 +12,15 @@ interface AuthContextProviderProps {
 }
 
 export const authContext = createContext<AuthContextType | null>(null);
+
+
+export function useAuth() {
+    const context = useContext(authContext);
+    if (!context) {
+        throw new Error("useAuth outside of AuthContextProvider")
+    }
+    return context;
+}
 
 
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
