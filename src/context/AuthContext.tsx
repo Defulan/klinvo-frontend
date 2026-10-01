@@ -25,7 +25,7 @@ export function AuthContextProvider({ children }) {
         fetchOperations();
     }, []);
 
-    return <authContext.Provider value={{isAuth, userId, isLoading, fetchOperations}}>
+    return <authContext.Provider value={{isAuth, userId, isLoading}}>
         {children}
     </authContext.Provider>
 }
