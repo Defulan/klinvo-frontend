@@ -1,52 +1,67 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import api from '../../lib/api'
+import { SubmitHandler, useForm } from "react-hook-form";
+import { getErrorDetails } from "../../lib/errorDetails";
+
+interface RegistrationForm {
+    name: string;
+    password: string;
+    repassword: string;
+}
+
 
 function Registration() {
+    const {register, handleSubmit, watch, formState: { errors }} = useForm<RegistrationForm>();
     const [errorText, setErrorText] = useState("");
-    const [formData, setFormData] = useState({
-        name: "",
-        password: "",
-        repassword: ""
-    });
+    const navigate = useNavigate();
+    const password = watch("password");
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    const onSubmit: SubmitHandler<RegistrationForm> = async (data) => {
         try {
-            const response = await api.post("/users", formData);
-            window.location.href = "/account";
+            await api.post("/users", data);
+            navigate("/account");
         } catch (error) {
             console.error(error);
-            setErrorText(error);
+            setErrorText(getErrorDetails(error));
         }
-    };
-
-    const changeFormData = (event) => {
-        const { name, value } = event.target;
-        setFormData(previousData => ({...previousData, [name]: value}));
-    };
+    }
 
     return <div>
-        <div className="error-text">{errorText}</div>
-        <form onSubmit={handleSubmit}>
-            <label>Имя пользователя:
-                <input type="text" name="name" value={formData.name}
-                    onChange={changeFormData} autoComplete="username"></input>
-            </label><br/>
+        {errorText && <div className="error-text">{errorText}</div>}
+        
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <div>
+                {errors.name && <div className="error-form-text"> {errors.name.message}</div>}
+                <label>Имя пользователя:
+                    <input {...register("name", {
+                        required: "Введите имя"
+                    })} autoComplete="username" />
+                </label>
+            </div>
+            
+            <div>
+                {errors.password && <div className="error-form-text"> {errors.password.message}</div>}
+                <label>Пароль:
+                    <input {...register("password", {
+                        required: "Введите пароль"
+                    })} type="password" autoComplete="new-password" />
+                </label>
+            </div>
 
-            <label>Пароль:
-                <input type="password" name="password" value={formData.password}
-                    onChange={changeFormData} autoComplete="new-password"></input>
-            </label><br/>
+            <div>
+                {errors.repassword && <div className="error-form-text"> {errors.repassword.message}</div>}
+                <label>Повторите пароль:
+                    <input {...register("repassword", {
+                        required: "Повторите пароль",
+                        validate: (value) => value === password || "Пароли не совпадают"
+                    })} type="password" autoComplete="new-password" />
+                </label>
+            </div>
 
-            <label>Повторить пароль:
-                <input type="password" name="repassword" value={formData.repassword}
-                    onChange={changeFormData} autoComplete="new-password"></input>
-            </label><br/>
-
-            <button type="submit">Зарегистрироваться</button><br/>
-            <Link to="/login">Уже есть аккаунт? (Войти)</Link>
+            <button type="submit">Зарегистрироваться</button>
         </form>
+        <Link to="/login">Уже есть аккаунт? (Войти)</Link>
     </div>
 }
 
