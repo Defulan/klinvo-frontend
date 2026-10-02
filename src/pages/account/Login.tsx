@@ -1,47 +1,54 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import api from '../../lib/api'
 import { getErrorDetails } from "../../lib/errorDetails";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+interface LoginForm {
+    id: number;
+    password: string;
+}
 
 function Login() {
+    const {register, handleSubmit, formState: { errors }} = useForm<LoginForm>();
     const [errorText, setErrorText] = useState("");
-    const [formData, setFormData] = useState({
-        id: "",
-        password: "",
-    });
+    const navigate = useNavigate();
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    const onSubmit: SubmitHandler<LoginForm> = async (data) => {
         try {
-            const response = await api.post("/auth/login", formData);
-            window.location.href = "/account";
+            await api.post("/auth/login", data);
+            navigate("/account");
         } catch (error) {
-            console.error(error);
             setErrorText(getErrorDetails(error));
         }
-    };
-
-    const changeFormData = (event) => {
-        const { name, value } = event.target;
-        setFormData(previousData => ({...previousData, [name]: value}));
-    };
+    }
 
     return <div>
         <div className="error-text">{errorText && "Произошла ошибка:"} {errorText}</div>
-        <form onSubmit={handleSubmit}>
-            <label>ID пользователя:
-                <input type="text" name="id" value={formData.id}
-                    onChange={changeFormData} autoComplete="off"></input>
-            </label><br/>
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <div>
+                {errors.id && <div className="error-form-text"> {errors.id.message}</div>}
+                <label>ID пользователя: 
+                    <input {...register("id", {
+                        required: "Введите ID",
+                        valueAsNumber: true,
+                        validate: (value) => !isNaN(value) || "ID является числом"
+                    })} autoComplete="off" />
+                </label>
+            </div>
 
-            <label>Пароль:
-                <input type="password" name="password" value={formData.password}
-                    onChange={changeFormData} autoComplete="current-password"></input>
-            </label><br/>
+            <div>
+                {errors.password && <div className="error-form-text"> {errors.password.message}</div>}
+                <label>Пароль: 
+                    <input {...register("password", {
+                        required: "Введите пароль"
+                    })} type="password" autoComplete="current-password" />
+                </label>
+            </div>
 
-            <button type="submit">Войти</button><br/>
-            <Link to="/registration">Нет аккаунта? Зарегистрироваться</Link>
+            <button type="submit">Войти</button>
         </form>
+        <Link to="/registration">Нет аккаунта? Зарегистрироваться</Link>
     </div>
 }
 
