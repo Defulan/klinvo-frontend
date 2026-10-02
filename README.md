@@ -1,16 +1,93 @@
-# React + Vite
+# klinvo-frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+README: [English](README.md) | [Русский](README.RU.md)
 
-Currently, two official plugins are available:
+Klinvo is a web application for constructing artificial languages (conlangs).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* **Tech stack:** React, TypeScript, Bootstrap
+* Created with Vite
+* **Backend repository:** [klinvo-backend]()
 
-## React Compiler
+## How to Start
+* **Requirements:** Node.js v18+ or v20+ (project was written and tested on Node.js v24)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. **Clone the repository**
+```bash
+git clone <link to klinvo-frontend>
+cd klinvo-frontend
+```
+2. **Install dependencies**
+```bash
+npm install
+```
+3. **Set up environment variables (.env)**
+```bash
+cp .env.example .env
+```
+There is only one .env variable:
+* `VITE_API_URL` - backend URL (e.g., http://localhost:8000)
+4. **Run the project**
+```bash
+npm run dev
+```
 
-## Expanding the ESLint configuration
+## Project structure
+Technical files required only for project configuration:
+* `package-lock.json`
+* `package.json`
+* `eslint.config.js`
+* `tsconfig.json`
+* `vite.config.ts`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+More important files:
+* `index.html` - HTML template, sets site title & favicon
+* `.gitignore`
+* `.env.example` - example of the `.env` file
+
+All source code is located inside the `src/` directory:
+* `main.tsx`
+* `App.tsx`
+* `index.css` - global project styles
+* `env.d.ts` - required for correct work of CSS imports
+* `assets/` - folder for images, icons, etc.
+* `components/`
+    * `ErrorFallback.tsx` - appears when an error occurs outside of main layout
+    * `Navbar.tsx`
+    * `RouterErrorFallback.tsx` - appears when an error occurs during page render
+* `context/`
+    * `AuthContext.tsx` - get isAuth & userId from GET endpoint /auth/me
+* `lib/` - utils/configurations of project
+    * `api.ts` - settings for Frontend/Backend connection
+    * `dayjs.ts` - settings for dayjs library
+    * `errorDetails.ts` - designing user-facing error messages
+* `pages/`
+    * `account/` - Account pages
+        * `Account.tsx` - page of user's account
+        * `Login.tsx`
+        * `Registration.tsx`
+    * `Home.tsx` - home page
+    * `NotFoundPage.tsx` - redirects here when a route/URL is not found
+
+
+## Roadmap
+Currently, the main goal is to bring the project to the MVP stage.
+
+### Main (MVP)
+- [x] Error handling & fallback UI
+- [x] Authentification (registration, log in/log out)
+- [ ] Create account page (username, bio, conlangs section, navigation to settings)
+- [ ] Create account settings page (user data editing)
+- [ ] Create language page (description, notes section, navigation to dictionary)
+- [ ] Dictionary table (table design, categories, data editing)
+- [ ] Notes (creating, reading, formatting, changing)
+- [ ] Design home page
+
+### Future Enhancements
+- [ ] UI localization (Russian/English)
+- [ ] Dark/light theme toggle
+- [ ] Blogs of site (author's information about languages/linguistics)
+- [ ] Word formation (language elements which allow to make new words from current)
+- [ ] Transcription (tool for conveniently describing a language's transcription)
+- [ ] Dialects (multiple columns for words, clarifications of words meaning)
+- [ ] Describing changes in daughter languages
+
