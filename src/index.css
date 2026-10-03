@@ -2,3 +2,9 @@
 	font-size: 0.9rem;
 	color: darkgray;
 }
+
+.credits-p {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+}
