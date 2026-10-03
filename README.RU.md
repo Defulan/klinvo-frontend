@@ -5,7 +5,7 @@ README: [English](README.md) | [Русский](README.RU.md)
 Klinvo - веб-приложение для конструирования искусственных языков (конлангов).
 
 * **Технологии:** React, TypeScript, Bootstrap, Vite, Biome
-* **Backend репозиторий:** [klinvo-backend]()
+* **Backend репозиторий:** [klinvo-backend](https://github.com/Defulan/klinvo-backend)
 
 
 ## Как запустить
@@ -13,7 +13,7 @@ Klinvo - веб-приложение для конструирования ис�
 
 1. **Клонировать репозиторий**
 ```bash
-git clone <ссылка на klinvo-frontend>
+git clone https://github.com/Defulan/klinvo-frontend
 cd klinvo-frontend
 ```
 2. **Установить библиотеки**
