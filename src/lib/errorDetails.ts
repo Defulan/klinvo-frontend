@@ -23,12 +23,12 @@ export const getErrorDetails = (error: unknown): string => {
 	const errorCode = (error as { response?: { data?: { detail?: unknown } } })?.response?.data?.detail;
 
 	if (Array.isArray(errorCode)) {
-		return ERROR_MAP["VALIDATION_ERROR"];
+		return ERROR_MAP.VALIDATION_ERROR;
 	}
 
 	if (isErrorCode(errorCode)) {
 		return ERROR_MAP[errorCode];
 	}
 
-	return ERROR_MAP["UNEXPECTED"];
+	return ERROR_MAP.UNEXPECTED;
 };
