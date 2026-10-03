@@ -13,19 +13,19 @@ function AccountPage() {
 	const [user, setUser] = useState<User | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
 
-	async function fetchOperations(): Promise<void> {
-		try {
-			const userResponse = await api.get<User>(`/users/${userId}`);
-			setUser(userResponse.data);
-		} catch (err) {
-			console.error(err);
-		} finally {
-			setIsLoading(false);
-		}
-	}
-
 	useEffect(() => {
 		if (isContextLoading) return;
+
+		const fetchOperations = async (): Promise<void> => {
+			try {
+				const userResponse = await api.get<User>(`/users/${userId}`);
+				setUser(userResponse.data);
+			} catch (err) {
+				console.error(err);
+			} finally {
+				setIsLoading(false);
+			}
+		};
 
 		switch (isAuth) {
 			case null:
