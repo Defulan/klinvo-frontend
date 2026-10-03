@@ -10,21 +10,22 @@
 	},
 	"formatter": {
 		"enabled": true,
-		"indentStyle": "tab"
+		"indentStyle": "tab",
+		"lineWidth": 120
 	},
 	"linter": {
-		"enabled": true,
-		"rules": {
-			"preset": "recommended"
-		}
+		"enabled": true
 	},
 	"javascript": {
 		"formatter": {
-			"quoteStyle": "double"
+			"semicolons": "always",
+			"quoteStyle": "double",
+			"jsxQuoteStyle": "double",
+			"bracketSameLine": true
 		}
 	},
 	"assist": {
-		"enabled": true,
+		"enabled": false,
 		"actions": {
 			"source": {
 				"organizeImports": "on"
