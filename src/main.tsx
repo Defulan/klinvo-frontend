@@ -15,6 +15,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 const AccountPage = lazy(() => import("./pages/account/Account"));
 const Registration = lazy(() => import("./pages/account/Registration"));
 const Login = lazy(() => import("./pages/account/Login"));
+const Credits = lazy(() => import("./pages/Credits"));
 
 const router = createBrowserRouter([
 	{
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
 			{ path: "account", element: <AccountPage /> },
 			{ path: "registration", element: <Registration /> },
 			{ path: "login", element: <Login /> },
+			{ path: "credits", element: <Credits /> },
 
 			{ path: "*", element: <NotFoundPage /> },
 		],
