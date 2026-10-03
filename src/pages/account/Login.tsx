@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import api from "../../lib/api";
 import { getErrorDetails } from "../../lib/errorDetails";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm, type SubmitHandler } from "react-hook-form";
 
 interface LoginForm {
 	id: number;
