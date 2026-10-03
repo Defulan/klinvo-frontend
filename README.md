@@ -83,8 +83,8 @@ Currently, the main goal is to bring the project to the MVP stage.
 ### Main (MVP)
 - [x] Error handling & fallback UI
 - [x] Authentification (registration, log in/log out)
-- [⏳] Create account page (username, bio, navigation to settings, conlangs section)
-- [⏳] Create account settings page (user data editing)
+- [ ] Create account page (username, bio, navigation to settings, conlangs section)
+- [ ] Create account settings page (user data editing)
 - [ ] UI localization (English/Russian)
 - [ ] Create language page (description, notes section, navigation to dictionary)
 - [ ] Dictionary table (table design, categories, data editing)
