@@ -14,3 +14,21 @@
 	align-items: center;
 	gap: 0.5rem;
 }
+
+.footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+	height: 60px;
+
+	background-color: rgb(214, 214, 214);
+}
+
+.credits-link {
+	text-decoration: none;
+
+	font-weight: 600;
+	color: rgb(26, 49, 80);
+}
