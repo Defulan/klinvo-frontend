@@ -5,10 +5,10 @@ function Footer() {
 		<footer className="footer">
 			<div>
 				<Link className="credits-link" to="/credits">
-					Credits
+					Использованные материалы
 				</Link>
 			</div>
-			<div>Klinvo. 2026</div>
+			<div className="footer-klinvo">Klinvo. 2026</div>
 		</footer>
 	);
 }
