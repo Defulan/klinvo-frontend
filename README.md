@@ -89,9 +89,9 @@ Currently, the main goal is to bring the project to the MVP stage.
 - [ ] Dictionary table (table design, categories, data editing)
 - [ ] Notes (creating, reading, formatting, changing)
 - [ ] Design home page
+- [ ] UI localization (Russian/English)
 
 ### Future Enhancements
-- [ ] UI localization (Russian/English)
 - [ ] Dark/light theme toggle
 - [ ] Blogs of site (author's information about languages/linguistics)
 - [ ] Word formation (language elements which allow to make new words from current)
