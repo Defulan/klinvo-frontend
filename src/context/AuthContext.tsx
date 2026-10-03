@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, useContext, type ReactNode } from "react";
+import { useState, useEffect, createContext, useContext, type ReactNode, useCallback } from "react";
 import api from "../lib/api";
 
 interface AuthContextType {
@@ -26,7 +26,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 	const [userId, setUserId] = useState<number | null>(null);
 	const [isContextLoading, setIsContextLoading] = useState<boolean>(true);
 
-	async function fetchOperations(): Promise<void> {
+	const fetchAuth = useCallback(async (): Promise<void> => {
 		try {
 			const response = await api.get<{ isAuth: boolean; userId: number | null }>("/auth/me");
 			setIsAuth(response.data.isAuth);
@@ -36,11 +36,11 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 		} finally {
 			setIsContextLoading(false);
 		}
-	}
+	}, []);
 
 	useEffect(() => {
-		fetchOperations();
-	}, []);
+		fetchAuth();
+	}, [fetchAuth]);
 
 	return <AuthContext.Provider value={{ isAuth, userId, isContextLoading }}>{children}</AuthContext.Provider>;
 }
