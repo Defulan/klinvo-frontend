@@ -85,11 +85,11 @@ Currently, the main goal is to bring the project to the MVP stage.
 - [x] Authentification (registration, log in/log out)
 - [⏳] Create account page (username, bio, navigation to settings, conlangs section)
 - [⏳] Create account settings page (user data editing)
+- [ ] UI localization (English/Russian)
 - [ ] Create language page (description, notes section, navigation to dictionary)
 - [ ] Dictionary table (table design, categories, data editing)
 - [ ] Notes (creating, reading, formatting, changing)
 - [ ] Design home page
-- [ ] UI localization (Russian/English)
 
 ### Future Enhancements
 - [ ] Dark/light theme toggle
