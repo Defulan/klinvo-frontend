@@ -7,6 +7,7 @@ Klinvo - веб-приложение для конструирования ис�
 * **Технологии:** React, TypeScript, Bootstrap, Vite, Biome
 * **Backend репозиторий:** [klinvo-backend]()
 
+
 ## Как запустить
 * **Требования:** Node.js v18+ или v20+ (писался и тестировался проект на Node.js v24)
 
@@ -29,6 +30,7 @@ cp .env.example .env
 ```bash
 npm run dev
 ```
+
 
 ### Список полезных команд
 * `npm run dev` - запустить проект

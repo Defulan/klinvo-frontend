@@ -7,6 +7,7 @@ Klinvo is a web application for constructing artificial languages (conlangs).
 * **Tech stack:** React, TypeScript, Bootstrap, Vite, Biome
 * **Backend repository:** [klinvo-backend]()
 
+
 ## How to Start
 * **Requirements:** Node.js v18+ or v20+ (project was written and tested on Node.js v24)
 
@@ -30,11 +31,13 @@ There is only one .env variable:
 npm run dev
 ```
 
+
 ### List of useful commands
 * `npm run dev` - run the project
 * `npm run build` - build the application
 * `npm run lint` - check code without editing (Biome)
 * `npm run check` - format and fix code (Biome)
+
 
 ## Project structure
 Technical files required only for project configuration:
