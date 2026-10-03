@@ -53,7 +53,9 @@ function AccountPage() {
 					<p>ID: {user.id}</p>
 					{user.bio && <p>{user.bio}</p>}
 					<hr />
-					<button onClick={logout}>Выйти</button>
+					<button type="button" onClick={logout}>
+						Выйти
+					</button>
 				</>
 			)}
 		</>
