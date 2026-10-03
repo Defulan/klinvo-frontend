@@ -3,57 +3,61 @@ import api from "../../lib/api";
 import { useAuth } from "../../context/AuthContext";
 
 interface User {
-    id: number;
-    name: string;
-    bio: string | null;
+	id: number;
+	name: string;
+	bio: string | null;
 }
 
 function AccountPage() {
-    const { isAuth, userId, isContextLoading } = useAuth();
-    const [user, setUser] = useState<User | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
+	const { isAuth, userId, isContextLoading } = useAuth();
+	const [user, setUser] = useState<User | null>(null);
+	const [isLoading, setIsLoading] = useState(true);
 
-    async function fetchOperations(): Promise<void> {
-        try {
-            const userResponse = await api.get<User>(`/users/${userId}`);
-            setUser(userResponse.data);
-        } catch (err) {
-            console.error(err);
-        } finally {
-            setIsLoading(false);
-        }
-    }
+	async function fetchOperations(): Promise<void> {
+		try {
+			const userResponse = await api.get<User>(`/users/${userId}`);
+			setUser(userResponse.data);
+		} catch (err) {
+			console.error(err);
+		} finally {
+			setIsLoading(false);
+		}
+	}
 
-    useEffect(() => {
-        if (isContextLoading) return;
-        
-        switch (isAuth) {
-            case null:
-                return;
-            case false:
-                window.location.href = "/login"
-                break;
-            case true:
-                fetchOperations();
-                break;
-        }
-    }, [isContextLoading, userId, isAuth]);
+	useEffect(() => {
+		if (isContextLoading) return;
 
-    const logout = async (event: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
-        event.preventDefault();
-        await api.post("/auth/logout");
-        window.location.href = "/";
-    }
+		switch (isAuth) {
+			case null:
+				return;
+			case false:
+				window.location.href = "/login";
+				break;
+			case true:
+				fetchOperations();
+				break;
+		}
+	}, [isContextLoading, userId, isAuth]);
 
-    return <>
-        {!isLoading && user && <>
-            <h1>Страница пользователя {user.name}</h1>
-            <p>ID: {user.id}</p>
-            {user.bio && <p>{user.bio}</p>}
-            <hr/>
-            <button onClick={logout}>Выйти</button>
-        </>}
-    </>;
+	const logout = async (event: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
+		event.preventDefault();
+		await api.post("/auth/logout");
+		window.location.href = "/";
+	};
+
+	return (
+		<>
+			{!isLoading && user && (
+				<>
+					<h1>Страница пользователя {user.name}</h1>
+					<p>ID: {user.id}</p>
+					{user.bio && <p>{user.bio}</p>}
+					<hr />
+					<button onClick={logout}>Выйти</button>
+				</>
+			)}
+		</>
+	);
 }
 
 export default AccountPage;
