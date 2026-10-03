@@ -13,7 +13,7 @@
 		"jsx": "react-jsx",
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
-		"strict": false /* Remove when finish migartion JS -> TS */
+		"strict": true
 	},
 	"include": ["src"]
 }
