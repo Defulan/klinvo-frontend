@@ -1,3 +1,9 @@
+.app-container {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
 .error-form-text {
 	font-size: 0.9rem;
 	color: darkgray;
