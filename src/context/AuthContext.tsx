@@ -4,7 +4,7 @@ import api from "../lib/api";
 interface AuthContextType {
 	isAuth: boolean | null;
 	userId: number | null;
-	isLoading: boolean;
+	isContextLoading: boolean;
 }
 
 interface AuthContextProviderProps {
@@ -24,7 +24,7 @@ export function useAuth() {
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
 	const [isAuth, setIsAuth] = useState<boolean | null>(null);
 	const [userId, setUserId] = useState<number | null>(null);
-	const [isLoading, setIsLoading] = useState<boolean>(true);
+	const [isContextLoading, setIsContextLoading] = useState<boolean>(true);
 
 	async function fetchOperations(): Promise<void> {
 		try {
@@ -34,7 +34,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 		} catch (err) {
 			console.error(err);
 		} finally {
-			setIsLoading(false);
+			setIsContextLoading(false);
 		}
 	}
 
@@ -42,5 +42,5 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 		fetchOperations();
 	}, []);
 
-	return <AuthContext.Provider value={{ isAuth, userId, isLoading }}>{children}</AuthContext.Provider>;
+	return <AuthContext.Provider value={{ isAuth, userId, isContextLoading }}>{children}</AuthContext.Provider>;
 }

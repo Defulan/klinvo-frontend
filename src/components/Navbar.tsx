@@ -2,7 +2,7 @@ import klinvoIcon from "../assets/nounLanguage.svg";
 import { useAuth } from "../context/AuthContext";
 
 function Navbar() {
-	const { isAuth, isLoading } = useAuth();
+	const { isAuth, isContextLoading } = useAuth();
 
 	const authItemLink = isAuth ? "/account" : "/login";
 	const authItemText = isAuth ? "Аккаунт" : "Вход";
@@ -16,7 +16,7 @@ function Navbar() {
 				</a>
 				<ul className="navbar-nav me-auto mb-2 mb-lg-0">
 					<li className="nav-item">
-						{!isLoading && (
+						{!isContextLoading && (
 							<a className="nav-link" href={authItemLink}>
 								{authItemText}
 							</a>
