@@ -5,6 +5,7 @@ interface AuthContextType {
 	isAuth: boolean | null;
 	userId: number | null;
 	isContextLoading: boolean;
+	fetchAuth: () => Promise<void>;
 }
 
 interface AuthContextProviderProps {
@@ -42,5 +43,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 		fetchAuth();
 	}, [fetchAuth]);
 
-	return <AuthContext.Provider value={{ isAuth, userId, isContextLoading }}>{children}</AuthContext.Provider>;
+	return (
+		<AuthContext.Provider value={{ isAuth, userId, isContextLoading, fetchAuth }}>{children}</AuthContext.Provider>
+	);
 }
