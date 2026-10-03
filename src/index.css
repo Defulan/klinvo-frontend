@@ -1,3 +1,9 @@
+.app-container {
+	min-height: 100vh;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+}
+
 .error-form-text {
 	font-size: 0.9rem;
 	color: darkgray;
@@ -7,4 +13,26 @@
 	display: inline-flex;
 	align-items: center;
 	gap: 0.5rem;
+}
+
+.footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+	height: 60px;
+
+	background-color: rgb(235, 235, 235);
+}
+
+.credits-link {
+	text-decoration: none;
+
+	font-weight: 600;
+	color: rgb(26, 49, 80);
+}
+
+.footer-klinvo {
+	font-size: 12px;
 }
