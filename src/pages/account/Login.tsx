@@ -41,7 +41,7 @@ function Login() {
 							{...register("id", {
 								required: "Введите ID",
 								valueAsNumber: true,
-								validate: (value) => !isNaN(value) || "ID является числом",
+								validate: (value) => !Number.isNaN(value) || "ID является числом",
 							})}
 							autoComplete="off"
 						/>
