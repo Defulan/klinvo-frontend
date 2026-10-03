@@ -30,6 +30,13 @@ cp .env.example .env
 npm run dev
 ```
 
+### Список полезных команд
+* `npm run dev` - запустить проект
+* `npm run build` - собрать проект
+* `npm run lint` - проверить код без правок (Biome)
+* `npm run check` - форматировать код (Biome)
+
+
 ## Структура проекта
 Технические файлы, нужные лишь для настройки проекта:
 * `package-lock.json`

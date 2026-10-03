@@ -30,6 +30,12 @@ There is only one .env variable:
 npm run dev
 ```
 
+### List of useful commands
+* `npm run dev` - run the project
+* `npm run build` - build the application
+* `npm run lint` - check code without editing (Biome)
+* `npm run check` - format and fix code (Biome)
+
 ## Project structure
 Technical files required only for project configuration:
 * `package-lock.json`
