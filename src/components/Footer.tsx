@@ -3,8 +3,12 @@ import { Link } from "react-router-dom";
 function Footer() {
 	return (
 		<div className="footer">
-			<div>Klinvo</div>
-			<Link to="/credits">Credits</Link>
+			<div>
+				<Link className="credits-link" to="/credits">
+					Credits
+				</Link>
+			</div>
+			<div>Klinvo. 2026</div>
 		</div>
 	);
 }
