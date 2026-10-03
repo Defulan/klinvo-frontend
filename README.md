@@ -4,8 +4,7 @@ README: [English](README.md) | [Русский](README.RU.md)
 
 Klinvo is a web application for constructing artificial languages (conlangs).
 
-* **Tech stack:** React, TypeScript, Bootstrap
-* Created with Vite
+* **Tech stack:** React, TypeScript, Bootstrap, Vite, Biome
 * **Backend repository:** [klinvo-backend]()
 
 ## How to Start
@@ -35,7 +34,7 @@ npm run dev
 Technical files required only for project configuration:
 * `package-lock.json`
 * `package.json`
-* `eslint.config.js`
+* `biome.json`
 * `tsconfig.json`
 * `vite.config.ts`
 

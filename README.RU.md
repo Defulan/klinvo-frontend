@@ -4,8 +4,7 @@ README: [English](README.md) | [Русский](README.RU.md)
 
 Klinvo - веб-приложение для конструирования искусственных языков (конлангов).
 
-* **Технологии:** React, TypeScript, Bootstrap
-* Создан через Vite
+* **Технологии:** React, TypeScript, Bootstrap, Vite, Biome
 * **Backend репозиторий:** [klinvo-backend]()
 
 ## Как запустить
@@ -35,7 +34,7 @@ npm run dev
 Технические файлы, нужные лишь для настройки проекта:
 * `package-lock.json`
 * `package.json`
-* `eslint.config.js`
+* `biome.json`
 * `tsconfig.json`
 * `vite.config.ts`
 
