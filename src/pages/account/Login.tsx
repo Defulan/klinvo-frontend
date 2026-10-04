@@ -3,6 +3,7 @@ import { useState } from "react";
 import api from "../../lib/api";
 import { getErrorDetails } from "../../lib/errorDetails";
 import { useForm, type SubmitHandler } from "react-hook-form";
+import { useAuth } from "../../context/AuthContext";
 
 interface LoginForm {
 	id: number;
@@ -17,10 +18,12 @@ function Login() {
 	} = useForm<LoginForm>();
 	const [errorText, setErrorText] = useState("");
 	const navigate = useNavigate();
+	const { fetchAuth } = useAuth();
 
 	const onSubmit: SubmitHandler<LoginForm> = async (data) => {
 		try {
 			await api.post("/auth/login", data);
+			await fetchAuth();
 			navigate("/account");
 		} catch (error) {
 			setErrorText(getErrorDetails(error));
