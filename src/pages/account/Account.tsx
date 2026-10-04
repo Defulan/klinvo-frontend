@@ -28,13 +28,13 @@ function AccountPage() {
 			case null:
 				return;
 			case false:
-				window.location.href = "/login";
+				navigate("/login");
 				break;
 			case true:
 				fetchOperations();
 				break;
 		}
-	}, [isContextLoading, userId, isAuth]);
+	}, [isContextLoading, userId, isAuth, navigate]);
 
 	const logout = async (event: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
 		event.preventDefault();

@@ -3,6 +3,7 @@ import { useState } from "react";
 import api from "../../lib/api";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { getErrorDetails } from "../../lib/errorDetails";
+import { useAuth } from "../../context/AuthContext";
 
 interface RegistrationForm {
 	name: string;
@@ -20,10 +21,12 @@ function Registration() {
 	const [errorText, setErrorText] = useState("");
 	const navigate = useNavigate();
 	const password = watch("password");
+	const { fetchAuth } = useAuth();
 
 	const onSubmit: SubmitHandler<RegistrationForm> = async (data) => {
 		try {
 			await api.post("/users", data);
+			await fetchAuth();
 			navigate("/account");
 		} catch (error) {
 			console.error(error);
