@@ -1,3 +1,7 @@
+textarea {
+	height: 150px;
+}
+
 .app-container {
 	min-height: 100vh;
 	display: grid;
