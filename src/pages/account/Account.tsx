@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../lib/api";
 import { useAuth } from "../../context/AuthContext";
-
-interface User {
-	id: number;
-	name: string;
-	bio: string | null;
-}
+import type { User } from "../../lib/types/user";
 
 function AccountPage() {
 	const { isAuth, userId, isContextLoading } = useAuth();
