@@ -72,6 +72,8 @@ function AccountSettings() {
 		window.location.href = "/";
 	};
 
+	const titleButtons = <></>;
+
 	const editorButtons = (
 		<>
 			<button className="btn btn-dark btn-sm" type="submit">
@@ -87,12 +89,6 @@ function AccountSettings() {
 			<button className="btn btn-dark btn-sm" type="button" onClick={() => setIsEditing(true)}>
 				Редактировать
 			</button>
-			<button className="btn btn-danger btn-sm" type="button" onClick={logout}>
-				Выйти
-			</button>
-			<button className="btn btn-outline-dark btn-sm" type="button" onClick={() => navigate("/account")}>
-				Аккаунт
-			</button>
 		</>
 	);
 
@@ -101,7 +97,15 @@ function AccountSettings() {
 			{!isLoading && (
 				<div>
 					<div className="error-text">{errorText}</div>
-					<div className="fs-4">ID пользователя: {userId}</div>
+					<div className="fs-4 d-flex align-items-end gap-2">
+						<span>ID пользователя: {userId}</span>
+						<button className="btn btn-outline-dark btn-sm" type="button" onClick={() => navigate("/account")}>
+							<i className="bi bi-person"></i> Аккаунт
+						</button>
+						<button className="btn btn-danger btn-sm" type="button" onClick={logout}>
+							<i className="bi bi-box-arrow-right"></i> Выйти
+						</button>
+					</div>
 					{isEditing && <div className="text-primary text-opacity-75">Режим редактирования</div>}
 					<form onSubmit={handleSubmit(onSubmit)}>
 						{errors.name && <div className="error-form-text"> {errors.name.message}</div>}
