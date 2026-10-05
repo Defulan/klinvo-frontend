@@ -72,6 +72,8 @@ function AccountSettings() {
 		window.location.href = "/";
 	};
 
+	const titleButtons = <></>;
+
 	const editorButtons = (
 		<>
 			<button className="btn btn-dark btn-sm" type="submit">
@@ -98,11 +100,10 @@ function AccountSettings() {
 					<div className="fs-4 d-flex align-items-end gap-2">
 						<span>ID пользователя: {userId}</span>
 						<button className="btn btn-outline-dark btn-sm" type="button" onClick={() => navigate("/account")}>
-							Аккаунт
+							<i className="bi bi-person"></i> Аккаунт
 						</button>
-
 						<button className="btn btn-danger btn-sm" type="button" onClick={logout}>
-							Выйти
+							<i className="bi bi-box-arrow-right"></i> Выйти
 						</button>
 					</div>
 					{isEditing && <div className="text-primary text-opacity-75">Режим редактирования</div>}
