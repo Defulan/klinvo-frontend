@@ -3,7 +3,7 @@ import klinvoIcon from "../assets/nounLanguage.svg";
 import { useAuth } from "../context/AuthContext";
 
 function Navbar() {
-	const { t } = useTranslation();
+	const { t, i18n } = useTranslation();
 
 	const { isAuth, isContextLoading } = useAuth();
 
@@ -24,6 +24,34 @@ function Navbar() {
 								{authItemText}
 							</a>
 						)}
+					</li>
+					<li className="nav-item dropdown">
+						<button
+							className="nav-link dropdown-toggle"
+							type="button"
+							data-bs-toggle="dropdown"
+							data-bs-auto-close="outside"
+							aria-expanded="false">
+							<i className="bi bi-translate"></i>
+						</button>
+						<ul className="dropdown-menu">
+							<li>
+								<button
+									className={`dropdown-item ${i18n.language === "en" ? "active" : ""}`}
+									type="button"
+									onClick={() => i18n.changeLanguage("en")}>
+									English
+								</button>
+							</li>
+							<li>
+								<button
+									className={`dropdown-item ${i18n.language === "ru" ? "active" : ""}`}
+									type="button"
+									onClick={() => i18n.changeLanguage("ru")}>
+									Русский
+								</button>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</div>
