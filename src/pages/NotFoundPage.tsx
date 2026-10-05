@@ -5,7 +5,7 @@ function NotFoundPage() {
 
 	return (
 		<div className="text-center">
-			<h1>{t("notFoundPage.main")}</h1>
+			<h1>{t("notFoundPage.title")}</h1>
 			<p>{t("notFoundPage.info")}</p>
 		</div>
 	);
