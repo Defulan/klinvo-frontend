@@ -1,6 +1,6 @@
 {
 	"home": {
-		"main": "Сайт для создания искуственных языков"
+		"main": "Сайт для создания искусственных языков"
 	},
 	"account": {
 		"settings": "Настройки"
@@ -69,8 +69,8 @@
 	"errors": {
 		"wrongLoginData": "Введён неправильный ID или пароль",
 		"wrongRegisterData": "Пароль и повторённый пароль не совпадают",
-		"unauthorized": "Вы не авторизированы",
-		"authorized": "Вы уже авторизированы",
+		"unauthorized": "Вы не авторизованы",
+		"authorized": "Вы уже авторизованы",
 		"userDoesntExist": "Такого пользователя нет",
 		"invalidCookieValue": "Неправильное значение в cookie",
 		"languageDoesntExist": "Такого языка не найдено",
