@@ -59,7 +59,7 @@ function AccountSettings() {
 		try {
 			await api.patch("/users", data);
 		} catch (error) {
-			setErrorText(getErrorDetails(error));
+			setErrorText(t(getErrorDetails(error)));
 		}
 	};
 

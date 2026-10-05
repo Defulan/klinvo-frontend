@@ -28,7 +28,7 @@ function Login() {
 			await fetchAuth();
 			navigate("/account");
 		} catch (error) {
-			setErrorText(getErrorDetails(error));
+			setErrorText(t(getErrorDetails(error)));
 		}
 	};
 

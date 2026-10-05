@@ -32,7 +32,7 @@ function Registration() {
 			navigate("/account");
 		} catch (error) {
 			console.error(error);
-			setErrorText(getErrorDetails(error));
+			setErrorText(t(getErrorDetails(error)));
 		}
 	};
 

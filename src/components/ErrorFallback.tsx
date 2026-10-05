@@ -10,7 +10,7 @@ export function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
 	return (
 		<div className="container text-center mt-5">
 			<h1>{t("errorFallback.title")}</h1>
-			<p>{getErrorDetails(error)}</p>
+			<p>{t(getErrorDetails(error))}</p>
 			<div className="d-flex justify-content-center gap-2">
 				<button type="button" className="btn" onClick={() => navigate("/")}>
 					{t("errorFallback.home")}
