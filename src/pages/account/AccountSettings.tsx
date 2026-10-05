@@ -87,7 +87,7 @@ function AccountSettings() {
 			<button className="btn btn-dark btn-sm" type="button" onClick={() => setIsEditing(true)}>
 				Редактировать
 			</button>
-			<button type="button" onClick={logout}>
+			<button className="btn btn-danger btn-sm" type="button" onClick={logout}>
 				Выйти
 			</button>
 			<button className="btn btn-outline-dark btn-sm" type="button" onClick={() => navigate("/account")}>
