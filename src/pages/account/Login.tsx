@@ -34,9 +34,7 @@ function Login() {
 
 	return (
 		<div>
-			<div className="error-text">
-				{errorText && t("login.errorText")}: {errorText}
-			</div>
+			<div className="error-text">{errorText && `${t("login.errorText")}: ${errorText}`}</div>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div>
 					{errors.id && <div className="error-form-text"> {errors.id.message}</div>}

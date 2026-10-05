@@ -57,7 +57,7 @@ function Registration() {
 				<div>
 					{errors.password && <div className="error-form-text"> {errors.password.message}</div>}
 					<label>
-						{t("registartion.password")}
+						{t("registration.password")}
 						<input
 							{...register("password", {
 								required: t("registration.passwordRequired"),
@@ -71,7 +71,7 @@ function Registration() {
 				<div>
 					{errors.repassword && <div className="error-form-text"> {errors.repassword.message}</div>}
 					<label>
-						{t("registration.repassword")}:
+						{t("registration.repassword")}
 						<input
 							{...register("repassword", {
 								required: t("registration.repasswordRequired"),
@@ -83,9 +83,9 @@ function Registration() {
 					</label>
 				</div>
 
-				<button type="submit">t("registration.submit")</button>
+				<button type="submit">{t("registration.submit")}</button>
 			</form>
-			<Link to="/login">t("registration.repasswordRequired")</Link>
+			<Link to="/login">{t("registration.toLogin")}</Link>
 		</div>
 	);
 }
