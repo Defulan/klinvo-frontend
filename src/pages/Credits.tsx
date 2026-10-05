@@ -1,9 +1,12 @@
+import { useTranslation } from "react-i18next";
 import klinvoIcon from "../assets/nounLanguage.svg";
 
 function Credits() {
+	const { t } = useTranslation();
+
 	return (
 		<>
-			<main>Указание на использованные на сайте материалы</main>
+			<main>{t("credits.info")}</main>
 			<p className="credits-p">
 				<img alt="" src={klinvoIcon} width={32} height={32} className="d-inline-block align-text-top" />
 				<span>
