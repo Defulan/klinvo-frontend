@@ -36,12 +36,6 @@ function AccountPage() {
 		}
 	}, [isContextLoading, userId, isAuth, navigate]);
 
-	const logout = async (event: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
-		event.preventDefault();
-		await api.post("/auth/logout");
-		window.location.href = "/";
-	};
-
 	return (
 		<>
 			{!isLoading && user && (
@@ -52,9 +46,6 @@ function AccountPage() {
 					<hr />
 					<button type="button" onClick={() => navigate("/account-settings")}>
 						Настройки
-					</button>
-					<button type="button" onClick={logout}>
-						Выйти
 					</button>
 				</>
 			)}
