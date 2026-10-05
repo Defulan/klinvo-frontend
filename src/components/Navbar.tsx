@@ -1,11 +1,14 @@
+import { useTranslation } from "react-i18next";
 import klinvoIcon from "../assets/nounLanguage.svg";
 import { useAuth } from "../context/AuthContext";
 
 function Navbar() {
+	const { t, i18n } = useTranslation();
+
 	const { isAuth, isContextLoading } = useAuth();
 
 	const authItemLink = isAuth ? "/account" : "/login";
-	const authItemText = isAuth ? "Аккаунт" : "Вход";
+	const authItemText = isAuth ? t("navbar.account") : t("navbar.login");
 
 	return (
 		<nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -21,6 +24,34 @@ function Navbar() {
 								{authItemText}
 							</a>
 						)}
+					</li>
+					<li className="nav-item dropdown">
+						<button
+							className="nav-link dropdown-toggle"
+							type="button"
+							data-bs-toggle="dropdown"
+							data-bs-auto-close="outside"
+							aria-expanded="false">
+							<i className="bi bi-translate"></i>
+						</button>
+						<ul className="dropdown-menu">
+							<li>
+								<button
+									className={`dropdown-item ${i18n.language === "en" ? "active" : ""}`}
+									type="button"
+									onClick={() => i18n.changeLanguage("en")}>
+									English
+								</button>
+							</li>
+							<li>
+								<button
+									className={`dropdown-item ${i18n.language === "ru" ? "active" : ""}`}
+									type="button"
+									onClick={() => i18n.changeLanguage("ru")}>
+									Русский
+								</button>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</div>
