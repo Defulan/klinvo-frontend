@@ -90,9 +90,6 @@ function AccountSettings() {
 			<button className="btn btn-danger btn-sm" type="button" onClick={logout}>
 				Выйти
 			</button>
-			<button className="btn btn-outline-dark btn-sm" type="button" onClick={() => navigate("/account")}>
-				Аккаунт
-			</button>
 		</>
 	);
 
@@ -101,7 +98,12 @@ function AccountSettings() {
 			{!isLoading && (
 				<div>
 					<div className="error-text">{errorText}</div>
-					<div className="fs-4">ID пользователя: {userId}</div>
+					<div className="fs-4">
+						ID пользователя: {userId}{" "}
+						<button className="btn btn-outline-dark btn-sm" type="button" onClick={() => navigate("/account")}>
+							Аккаунт
+						</button>
+					</div>
 					{isEditing && <div className="text-primary text-opacity-75">Режим редактирования</div>}
 					<form onSubmit={handleSubmit(onSubmit)}>
 						{errors.name && <div className="error-form-text"> {errors.name.message}</div>}
