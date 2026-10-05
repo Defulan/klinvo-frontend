@@ -4,6 +4,7 @@ import api from "../../lib/api";
 import { getErrorDetails } from "../../lib/errorDetails";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useAuth } from "../../context/AuthContext";
+import { useTranslation } from "react-i18next";
 
 interface LoginForm {
 	id: number;
@@ -11,6 +12,7 @@ interface LoginForm {
 }
 
 function Login() {
+	const { t } = useTranslation();
 	const {
 		register,
 		handleSubmit,
@@ -33,18 +35,18 @@ function Login() {
 	return (
 		<div>
 			<div className="error-text">
-				{errorText && "Произошла ошибка:"} {errorText}
+				{errorText && t("login.errorText")}: {errorText}
 			</div>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div>
 					{errors.id && <div className="error-form-text"> {errors.id.message}</div>}
 					<label>
-						ID пользователя:
+						{t("login.id")}
 						<input
 							{...register("id", {
-								required: "Введите ID",
+								required: t("login.idRequired"),
 								valueAsNumber: true,
-								validate: (value) => !Number.isNaN(value) || "ID является числом",
+								validate: (value) => !Number.isNaN(value) || t("login.idValidate"),
 							})}
 							autoComplete="off"
 						/>
@@ -54,10 +56,10 @@ function Login() {
 				<div>
 					{errors.password && <div className="error-form-text"> {errors.password.message}</div>}
 					<label>
-						Пароль:
+						{t("login.password")}
 						<input
 							{...register("password", {
-								required: "Введите пароль",
+								required: t("login.passwordRequired"),
 							})}
 							type="password"
 							autoComplete="current-password"
@@ -65,9 +67,9 @@ function Login() {
 					</label>
 				</div>
 
-				<button type="submit">Войти</button>
+				<button type="submit">{t("login.submit")}</button>
 			</form>
-			<Link to="/registration">Нет аккаунта? Зарегистрироваться</Link>
+			<Link to="/registration">{t("login.toRegistration")}</Link>
 		</div>
 	);
 }

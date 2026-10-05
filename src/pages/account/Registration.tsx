@@ -4,6 +4,7 @@ import api from "../../lib/api";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { getErrorDetails } from "../../lib/errorDetails";
 import { useAuth } from "../../context/AuthContext";
+import { useTranslation } from "react-i18next";
 
 interface RegistrationForm {
 	name: string;
@@ -12,6 +13,7 @@ interface RegistrationForm {
 }
 
 function Registration() {
+	const { t } = useTranslation();
 	const {
 		register,
 		handleSubmit,
@@ -42,10 +44,10 @@ function Registration() {
 				<div>
 					{errors.name && <div className="error-form-text"> {errors.name.message}</div>}
 					<label>
-						Имя пользователя:
+						{t("registration.name")}
 						<input
 							{...register("name", {
-								required: "Введите имя",
+								required: t("registration.nameRequired"),
 							})}
 							autoComplete="username"
 						/>
@@ -55,10 +57,10 @@ function Registration() {
 				<div>
 					{errors.password && <div className="error-form-text"> {errors.password.message}</div>}
 					<label>
-						Пароль:
+						{t("registartion.password")}
 						<input
 							{...register("password", {
-								required: "Введите пароль",
+								required: t("registration.passwordRequired"),
 							})}
 							type="password"
 							autoComplete="new-password"
@@ -69,11 +71,11 @@ function Registration() {
 				<div>
 					{errors.repassword && <div className="error-form-text"> {errors.repassword.message}</div>}
 					<label>
-						Повторите пароль:
+						{t("registration.repassword")}:
 						<input
 							{...register("repassword", {
-								required: "Повторите пароль",
-								validate: (value) => value === password || "Пароли не совпадают",
+								required: t("registration.repasswordRequired"),
+								validate: (value) => value === password || t("registration.repasswordValidate"),
 							})}
 							type="password"
 							autoComplete="new-password"
@@ -81,9 +83,9 @@ function Registration() {
 					</label>
 				</div>
 
-				<button type="submit">Зарегистрироваться</button>
+				<button type="submit">t("registration.submit")</button>
 			</form>
-			<Link to="/login">Уже есть аккаунт? (Войти)</Link>
+			<Link to="/login">t("registration.repasswordRequired")</Link>
 		</div>
 	);
 }

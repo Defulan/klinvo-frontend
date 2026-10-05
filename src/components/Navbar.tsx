@@ -1,11 +1,14 @@
+import { useTranslation } from "react-i18next";
 import klinvoIcon from "../assets/nounLanguage.svg";
 import { useAuth } from "../context/AuthContext";
 
 function Navbar() {
+	const { t } = useTranslation();
+
 	const { isAuth, isContextLoading } = useAuth();
 
 	const authItemLink = isAuth ? "/account" : "/login";
-	const authItemText = isAuth ? "Аккаунт" : "Вход";
+	const authItemText = isAuth ? t("navbar.account") : t("navbar.login");
 
 	return (
 		<nav className="navbar navbar-expand-lg bg-body-tertiary">

@@ -1,5 +1,9 @@
+import { useTranslation } from "react-i18next";
+
 function Home() {
-	return <main>Сайт для создания искуственных языков</main>;
+	const { t } = useTranslation();
+
+	return <main>{t("home.main")}</main>;
 }
 
 export default Home;

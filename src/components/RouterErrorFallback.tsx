@@ -1,18 +1,21 @@
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 export function RouterErrorFallback() {
+	const { t } = useTranslation();
+
 	const navigate = useNavigate();
 
 	return (
 		<div className="container text-center mt-5">
-			<h1>Произошла ошибка</h1>
-			<p>Во время работы страницы где-то произошла ошибка</p>
+			<h1>{t("routerErrorFallback.title")}</h1>
+			<p>{t("routerErrorFallback.info")}</p>
 			<div className="d-flex justify-content-center gap-2">
 				<button type="button" className="btn" onClick={() => navigate("/")}>
-					На заглавную
+					{t("routerErrorFallback.home")}
 				</button>
 				<button type="button" className="btn" onClick={() => navigate(0)}>
-					Перезайти на страницу
+					{t("routerErrorFallback.reset")}
 				</button>
 			</div>
 		</div>

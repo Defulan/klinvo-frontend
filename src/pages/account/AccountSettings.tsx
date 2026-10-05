@@ -5,6 +5,7 @@ import api from "../../lib/api";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { getErrorDetails } from "../../lib/errorDetails";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 interface UserEditForm {
 	name: string | null;
@@ -12,6 +13,7 @@ interface UserEditForm {
 }
 
 function AccountSettings() {
+	const { t } = useTranslation();
 	const { isAuth, userId, isContextLoading } = useAuth();
 
 	const [isLoading, setIsLoading] = useState(true);
@@ -75,17 +77,17 @@ function AccountSettings() {
 	const editorButtons = (
 		<>
 			<button className="btn btn-dark btn-sm" type="submit">
-				Подтвердить изменения
+				{t("accountSettings.confirm")}
 			</button>
 			<button className="btn btn-danger btn-sm" type="button" onClick={handleCancel}>
-				Отменить
+				{t("accountSettings.cancel")}
 			</button>
 		</>
 	);
 	const watchingButtons = (
 		<>
 			<button className="btn btn-dark btn-sm" type="button" onClick={() => setIsEditing(true)}>
-				Редактировать
+				{t("accountSettings.edit")}
 			</button>
 		</>
 	);
@@ -96,30 +98,32 @@ function AccountSettings() {
 				<div>
 					<div className="error-text">{errorText}</div>
 					<div className="fs-4 d-flex align-items-end gap-2">
-						<span>ID пользователя: {userId}</span>
+						<span>
+							{t("accountSettings.id")}: {userId}
+						</span>
 						<button className="btn btn-outline-dark btn-sm" type="button" onClick={() => navigate("/account")}>
-							<i className="bi bi-person"></i> Аккаунт
+							<i className="bi bi-person"></i> {t("accountSettings.account")}
 						</button>
 						<button className="btn btn-danger btn-sm" type="button" onClick={logout}>
-							<i className="bi bi-box-arrow-right"></i> Выйти
+							<i className="bi bi-box-arrow-right"></i> {t("accountSettings.logout")}
 						</button>
 					</div>
-					{isEditing && <div className="text-primary text-opacity-75">Режим редактирования</div>}
+					{isEditing && <div className="text-primary text-opacity-75">{t("accountSettings.editMode")}</div>}
 					<form onSubmit={handleSubmit(onSubmit)}>
 						{errors.name && <div className="error-form-text"> {errors.name.message}</div>}
 						<div>
 							<label>
-								Имя пользователя:
+								{t("accountSettings.username")}
 								<input className="form-control" readOnly={!isEditing} type="text" {...register("name")} />
 							</label>
 						</div>
 
 						<div>
-							<label htmlFor="bio">Описание:</label>
+							<label htmlFor="bio">{t("accountSettings.bio")}</label>
 							<textarea
 								id="bio"
 								className="form-control"
-								placeholder="Здесь можете оставить описание, которое будет видно на странице вашего аккаунта"
+								placeholder={t("accountSettings.bioPlaceholder")}
 								readOnly={!isEditing}
 								{...register("bio")}
 							/>
