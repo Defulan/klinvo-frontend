@@ -40,12 +40,12 @@ function AccountPage() {
 		<>
 			{!isLoading && user && (
 				<>
-					<h1>
-						{user.name}{" "}
+					<div className="d-flex align-items-center gap-2">
+						<h1>{user.name}</h1>
 						<button className="btn btn-outline-dark btn-sm" type="button" onClick={() => navigate("/account-settings")}>
 							Настройки
 						</button>
-					</h1>
+					</div>
 					{user.bio && <p>{user.bio}</p>}
 					<hr />
 				</>
