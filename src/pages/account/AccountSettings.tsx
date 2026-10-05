@@ -87,9 +87,6 @@ function AccountSettings() {
 			<button className="btn btn-dark btn-sm" type="button" onClick={() => setIsEditing(true)}>
 				Редактировать
 			</button>
-			<button className="btn btn-danger btn-sm" type="button" onClick={logout}>
-				Выйти
-			</button>
 		</>
 	);
 
@@ -102,6 +99,10 @@ function AccountSettings() {
 						<span>ID пользователя: {userId}</span>
 						<button className="btn btn-outline-dark btn-sm" type="button" onClick={() => navigate("/account")}>
 							Аккаунт
+						</button>
+
+						<button className="btn btn-danger btn-sm" type="button" onClick={logout}>
+							Выйти
 						</button>
 					</div>
 					{isEditing && <div className="text-primary text-opacity-75">Режим редактирования</div>}
