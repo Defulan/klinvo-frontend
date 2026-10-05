@@ -98,8 +98,8 @@ function AccountSettings() {
 			{!isLoading && (
 				<div>
 					<div className="error-text">{errorText}</div>
-					<div className="fs-4">
-						ID пользователя: {userId}{" "}
+					<div className="fs-4 d-flex align-items-end gap-2">
+						<span>ID пользователя: {userId}</span>
 						<button className="btn btn-outline-dark btn-sm" type="button" onClick={() => navigate("/account")}>
 							Аккаунт
 						</button>
