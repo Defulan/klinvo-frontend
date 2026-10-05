@@ -40,7 +40,7 @@ function AccountPage() {
 		<>
 			{!isLoading && user && (
 				<>
-					<h1>Страница пользователя {user.name}</h1>
+					<h1>{user.name}</h1>
 					{user.bio && <p>{user.bio}</p>}
 					<hr />
 					<button className="btn btn-outline-dark btn-sm" type="button" onClick={() => navigate("/account-settings")}>
