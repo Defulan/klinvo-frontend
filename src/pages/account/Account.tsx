@@ -44,7 +44,7 @@ function AccountPage() {
 					<p>ID: {user.id}</p>
 					{user.bio && <p>{user.bio}</p>}
 					<hr />
-					<button type="button" onClick={() => navigate("/account-settings")}>
+					<button className="btn btn-outline-dark btn-sm" type="button" onClick={() => navigate("/account-settings")}>
 						Настройки
 					</button>
 				</>
