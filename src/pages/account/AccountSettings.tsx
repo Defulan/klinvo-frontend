@@ -72,8 +72,6 @@ function AccountSettings() {
 		window.location.href = "/";
 	};
 
-	const titleButtons = <></>;
-
 	const editorButtons = (
 		<>
 			<button className="btn btn-dark btn-sm" type="submit">
