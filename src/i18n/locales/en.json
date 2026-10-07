@@ -77,7 +77,16 @@
 		"noPermissions": "You don't have permission to do this",
 		"noteDoesntExist": "This note doesn't exist",
 
-		"validationError": "Invalid data in one of the fields",
 		"unexpected": "Unknown exception ._."
+	},
+	"validationErrors": {
+		"missing": "Missing param",
+		"intType": "One of fields should be a number",
+		"stringType": "One of fields should have a string value",
+		"stringTooShort": "The string is shorter than allowed",
+		"stringTooLong": "The string is longer than allowed",
+		"boolType": "One of fields should have a bool type (true/false)",
+		"datetimeType": "One of fields should have a datetime type",
+		"valueError": "The parameters have an invalid values"
 	}
 }
