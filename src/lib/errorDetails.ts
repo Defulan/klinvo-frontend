@@ -26,14 +26,32 @@ const VALIDATION_ERROR_MAP = {
 type ErrorCode = keyof typeof ERROR_MAP;
 type ValidationErrorCode = keyof typeof VALIDATION_ERROR_MAP;
 
-interface APIError {
+interface ValidationErrorDetail {
+	type: string;
+	msg: string;
+	loc?: (string | number)[];
+	ctx?: Record<string, unknown>;
+}
+
+interface StandartError {
 	response: {
 		data: {
-			detail: string | Record<string, unknown>[];
+			detail: string;
 		};
 		status: number;
 	};
 }
+
+interface ValidationError {
+	response: {
+		data: {
+			detail: ValidationErrorDetail;
+		};
+		status: 422;
+	};
+}
+
+type APIError = StandartError | ValidationError;
 
 const isAPIError = (error: unknown): error is APIError => {
 	if (error === null || typeof error !== "object") return false;
