@@ -45,7 +45,7 @@ interface StandardError {
 interface ValidationError {
 	response: {
 		data: {
-			detail: ValidationErrorDetail;
+			detail: [ValidationErrorDetail, ...ValidationErrorDetail[]];
 		};
 		status: 422;
 	};
