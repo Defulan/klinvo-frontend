@@ -86,6 +86,7 @@
 		"stringTooShort": "The string is shorter than allowed",
 		"stringTooLong": "The string is longer than allowed",
 		"boolType": "One of fields should have a bool type (true/false)",
-		"datetimeType": "One of fields should have a datetime type"
+		"datetimeType": "One of fields should have a datetime type",
+		"valueError": "The parameters have an invalid values"
 	}
 }
