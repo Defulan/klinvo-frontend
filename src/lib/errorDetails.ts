@@ -33,7 +33,7 @@ interface ValidationErrorDetail {
 	ctx?: Record<string, unknown>;
 }
 
-interface StandartError {
+interface StandardError {
 	response: {
 		data: {
 			detail: string;
@@ -51,7 +51,7 @@ interface ValidationError {
 	};
 }
 
-type APIError = StandartError | ValidationError;
+type APIError = StandardError | ValidationError;
 
 const isAPIError = (error: unknown): error is APIError => {
 	if (error === null || typeof error !== "object") return false;
