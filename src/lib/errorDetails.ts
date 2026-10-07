@@ -36,15 +36,13 @@ interface APIError {
 }
 
 const isAPIError = (error: unknown): error is APIError => {
-	return (
-		error !== null &&
-		typeof error === "object" &&
-		"response" in error &&
-		typeof (error as Record<string, unknown>) === "object" &&
-		(error as Record<string, unknown>).response !== null &&
-		"status" in (error as APIError).response &&
-		"data" in (error as APIError).response
-	);
+	if (error === null || typeof error !== "object") return false;
+
+	const err = error as Record<string, unknown>;
+	if (err.response === null || typeof err.response !== "object") return false;
+
+	const errResponse = err.response as Record<string, unknown>;
+	return typeof errResponse.status === "number" && "data" in errResponse;
 };
 
 const isErrorCode = (code: unknown): code is ErrorCode => {
