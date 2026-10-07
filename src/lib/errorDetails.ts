@@ -59,16 +59,15 @@ export const getErrorDetails = (error: unknown): string => {
 	if (!isAPIError(error)) return `errors.${ERROR_MAP.UNEXPECTED}`;
 
 	const { data, status } = error.response;
-
-	const errorCode = data?.detail;
+	const errorDetail = data?.detail;
 
 	if (status === 422) {
-		if (Array.isArray(errorCode) && errorCode.length > 0 && errorCode[0]?.type) {
-			let errorType = errorCode[0].type;
+		if (Array.isArray(errorDetail) && errorDetail.length > 0 && errorDetail[0]?.type) {
+			let errorType = errorDetail[0].type;
 
 			if (isValidationErrorCode(errorType)) {
 				if (errorType === "value_error") {
-					const errorMessage = errorCode[0].msg;
+					const errorMessage = errorDetail[0].msg;
 					if (isErrorCode(errorMessage)) return `errors.${ERROR_MAP[errorMessage]}`;
 				}
 
@@ -81,8 +80,8 @@ export const getErrorDetails = (error: unknown): string => {
 		}
 	}
 
-	if (isErrorCode(errorCode)) {
-		return `errors.${ERROR_MAP[errorCode]}`;
+	if (isErrorCode(errorDetail)) {
+		return `errors.${ERROR_MAP[errorDetail]}`;
 	}
 
 	return `errors.${ERROR_MAP.UNEXPECTED}`;
