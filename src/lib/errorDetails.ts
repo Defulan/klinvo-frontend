@@ -29,7 +29,7 @@ type ValidationErrorCode = keyof typeof VALIDATION_ERROR_MAP;
 interface APIError {
 	response: {
 		data: {
-			detail?: string | Record<string, unknown>;
+			detail: string | Record<string, unknown>[];
 		};
 		status: number;
 	};
@@ -59,7 +59,7 @@ export const getErrorDetails = (error: unknown): string => {
 	if (!isAPIError(error)) return `errors.${ERROR_MAP.UNEXPECTED}`;
 
 	const { data, status } = error.response;
-	const errorDetail = data?.detail;
+	const errorDetail = data.detail;
 
 	if (isErrorCode(errorDetail)) {
 		return `errors.${ERROR_MAP[errorDetail]}`;
