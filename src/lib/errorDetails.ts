@@ -61,8 +61,12 @@ export const getErrorDetails = (error: unknown): string => {
 	const { data, status } = error.response;
 	const errorDetail = data?.detail;
 
-	if (status === 422) {
-		if (Array.isArray(errorDetail) && errorDetail.length > 0 && errorDetail[0]?.type) {
+	if (isErrorCode(errorDetail)) {
+		return `errors.${ERROR_MAP[errorDetail]}`;
+	}
+
+	if (status === 422 && Array.isArray(errorDetail)) {
+		if (errorDetail.length > 0 && errorDetail[0]?.type) {
 			let errorType = errorDetail[0].type;
 
 			if (isValidationErrorCode(errorType)) {
@@ -78,10 +82,6 @@ export const getErrorDetails = (error: unknown): string => {
 				return `validationErrors.${VALIDATION_ERROR_MAP[errorType]}`;
 			}
 		}
-	}
-
-	if (isErrorCode(errorDetail)) {
-		return `errors.${ERROR_MAP[errorDetail]}`;
 	}
 
 	return `errors.${ERROR_MAP.UNEXPECTED}`;
