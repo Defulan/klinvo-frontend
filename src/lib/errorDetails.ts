@@ -21,7 +21,7 @@ const VALIDATION_ERROR_MAP = {
 	bool_type: "boolType",
 	datetime_type: "datetimeType",
 	value_error: "valueError",
-};
+} as const;
 
 type ErrorCode = keyof typeof ERROR_MAP;
 type ValidationErrorCode = keyof typeof VALIDATION_ERROR_MAP;
