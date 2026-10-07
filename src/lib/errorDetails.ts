@@ -26,6 +26,27 @@ const VALIDATION_ERROR_MAP = {
 type ErrorCode = keyof typeof ERROR_MAP;
 type ValidationErrorCode = keyof typeof VALIDATION_ERROR_MAP;
 
+interface APIError {
+	response: {
+		data: {
+			detail?: string | Record<string, unknown>;
+		};
+		status: number;
+	};
+}
+
+const isAPIError = (error: unknown): error is APIError => {
+	return (
+		error !== null &&
+		typeof error === "object" &&
+		"response" in error &&
+		typeof (error as Record<string, unknown>) === "object" &&
+		(error as Record<string, unknown>).response !== null &&
+		"status" in (error as APIError).response &&
+		"data" in (error as APIError).response
+	);
+};
+
 const isErrorCode = (code: unknown): code is ErrorCode => {
 	return typeof code === "string" && code in ERROR_MAP;
 };
@@ -35,10 +56,13 @@ const isValidationErrorCode = (code: unknown): code is ValidationErrorCode => {
 };
 
 export const getErrorDetails = (error: unknown): string => {
-	const errorCode = (error as { response?: { data?: { detail?: unknown } } })?.response?.data?.detail;
-	const statusCode = (error as { response?: { status?: unknown } })?.response?.status;
+	if (!isAPIError(error)) return `errors.${ERROR_MAP.UNEXPECTED}`;
 
-	if (statusCode === 422) {
+	const { data, status } = error.response;
+
+	const errorCode = data?.detail;
+
+	if (status === 422) {
 		if (Array.isArray(errorCode) && errorCode.length > 0 && errorCode[0]?.type) {
 			let errorType = errorCode[0].type;
 
