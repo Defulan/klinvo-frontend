@@ -98,17 +98,18 @@ export const getErrorDetails = (error: unknown): string => {
 	if (isValidationError(error)) {
 		const errorDetail = error.response.data.detail;
 		const firstError = errorDetail[0];
+
 		let errorType = firstError.type;
+		if (errorType.endsWith("_parsing")) {
+			errorType = errorType.replace("_parsing", "_type");
+		}
 
 		if (isValidationErrorCode(errorType)) {
 			if (errorType === "value_error") {
 				const errorMessage = firstError.msg;
-				if (isErrorCode(errorMessage)) return `errors.${ERROR_MAP[errorMessage]}`;
-			}
-
-			if (errorType.endsWith("_parsing")) {
-				errorType = errorType.replace("_parsing", "_type");
-				if (!isValidationErrorCode(errorType)) throw new Error("Problem of unrefactored code");
+				if (isErrorCode(errorMessage)) {
+					return `errors.${ERROR_MAP[errorMessage]}`;
+				}
 			}
 			return `validationErrors.${VALIDATION_ERROR_MAP[errorType]}`;
 		}
