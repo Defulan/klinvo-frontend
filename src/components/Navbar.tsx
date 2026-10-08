@@ -5,10 +5,10 @@ import { useAuth } from "../context/AuthContext";
 function Navbar() {
 	const { t, i18n } = useTranslation();
 
-	const { isAuth, isContextLoading } = useAuth();
+	const { user, isContextLoading } = useAuth();
 
-	const authItemLink = isAuth ? "/account" : "/login";
-	const authItemText = isAuth ? t("navbar.account") : t("navbar.login");
+	const authItemLink = user ? "/account" : "/login";
+	const authItemText = user ? t("navbar.account") : t("navbar.login");
 
 	return (
 		<nav className="navbar navbar-expand-lg bg-body-tertiary">
