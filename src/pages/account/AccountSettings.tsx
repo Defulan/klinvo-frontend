@@ -44,7 +44,7 @@ function AccountSettings() {
 
 	const onSubmit: SubmitHandler<UserEditForm> = async (data) => {
 		try {
-			await api.patch("/users", data);
+			await api.patch("/users/", data);
 		} catch (error) {
 			setErrorText(t(getErrorDetails(error)));
 		}
