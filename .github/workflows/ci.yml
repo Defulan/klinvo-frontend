@@ -1,0 +1,34 @@
+name: Frontend Jobs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  checks:
+    name: TypeScript & Biome checks and Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Types check (TypeScript)
+        run: npx tsc --noEmit
+      
+      - name: Linter check (Biome)
+        run: npx @biomejs/biome ci .
+      
+      - name: Build project
+        run: npm run build
