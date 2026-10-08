@@ -4,8 +4,10 @@ README: [English](README.md) | [Русский](README.RU.md)
 
 Klinvo - веб-приложение для конструирования искусственных языков (конлангов).
 
-* **Технологии:** React, TypeScript, Bootstrap, Vite, Biome
-* **Backend репозиторий:** [klinvo-backend](https://github.com/Defulan/klinvo-backend)
+* **Backend репозиторий:** [klinvo-backend ↗](https://github.com/Defulan/klinvo-backend)
+* **Klinvo (0.1.1):** https://klinvo-frontend.vercel.app
+* **Технологии:** React, TypeScript | Bootstrap (styles), Vite (build tool), Biome (linter/formatter)
+* *Примечание: в первую минуту с момента входа Klinvo скорее всего будет иметь проблемы с авторизацией/регистрацией из-за особенностей хостинга, где расположен API. Проблемы должны пройти спустя 30-60 секунд после захода на сайт*
 
 
 ## Как запустить
