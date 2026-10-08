@@ -27,7 +27,7 @@ function Registration() {
 
 	const onSubmit: SubmitHandler<RegistrationForm> = async (data) => {
 		try {
-			await api.post("/users", data);
+			await api.post("/users/", data);
 			await fetchAuth();
 			navigate("/account");
 		} catch (error) {
