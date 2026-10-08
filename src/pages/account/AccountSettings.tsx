@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-import type { User } from "../../lib/types/user";
 import api from "../../lib/api";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { getErrorDetails } from "../../lib/errorDetails";
@@ -14,7 +13,7 @@ interface UserEditForm {
 
 function AccountSettings() {
 	const { t } = useTranslation();
-	const { isAuth, userId, isContextLoading } = useAuth();
+	const { user, isContextLoading } = useAuth();
 
 	const [isLoading, setIsLoading] = useState(true);
 	const [isEditing, setIsEditing] = useState(false);
@@ -32,28 +31,16 @@ function AccountSettings() {
 	useEffect(() => {
 		if (isContextLoading) return;
 
-		const fetchOperations = async (): Promise<void> => {
-			try {
-				const userResponse = await api.get<User>(`/users/${userId}`);
-				reset(userResponse.data);
-			} catch (err) {
-				console.error(err);
-			} finally {
-				setIsLoading(false);
-			}
-		};
-
-		switch (isAuth) {
-			case null:
-				return;
-			case false:
-				window.location.href = "/login";
-				break;
-			case true:
-				fetchOperations();
-				break;
+		if (user) {
+			reset({
+				name: user.name,
+				bio: user.bio,
+			});
+			setIsLoading(false);
+		} else {
+			window.location.href = "/login";
 		}
-	}, [isContextLoading, userId, isAuth, reset]);
+	}, [isContextLoading, user, reset]);
 
 	const onSubmit: SubmitHandler<UserEditForm> = async (data) => {
 		try {
@@ -94,12 +81,12 @@ function AccountSettings() {
 
 	return (
 		<>
-			{!isLoading && (
+			{!isLoading && user && (
 				<div>
 					<div className="error-text">{errorText}</div>
 					<div className="fs-4 d-flex align-items-end gap-2">
 						<span>
-							{t("accountSettings.id")}: {userId}
+							{t("accountSettings.id")}: {user.id}
 						</span>
 						<button className="btn btn-outline-dark btn-sm" type="button" onClick={() => navigate("/account")}>
 							<i className="bi bi-person"></i> {t("accountSettings.account")}
