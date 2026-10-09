@@ -19,6 +19,7 @@ const AccountSettings = lazy(() => import("./pages/account/AccountSettings"));
 const Registration = lazy(() => import("./pages/account/Registration"));
 const Login = lazy(() => import("./pages/account/Login"));
 const Credits = lazy(() => import("./pages/Credits"));
+const LanguagePage = lazy(() => import("./pages/Language"));
 
 const router = createBrowserRouter([
 	{
@@ -32,6 +33,9 @@ const router = createBrowserRouter([
 			{ path: "registration", element: <Registration /> },
 			{ path: "login", element: <Login /> },
 			{ path: "credits", element: <Credits /> },
+
+			{ path: "language", element: <LanguagePage /> },
+			{ path: "language/:languageId", element: <LanguagePage /> },
 
 			{ path: "*", element: <NotFoundPage /> },
 		],
