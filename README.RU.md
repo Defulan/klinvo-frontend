@@ -42,38 +42,42 @@ npm run dev
 
 
 ## Структура проекта
-Файлы корневой папки. Большинство из них просто настройка проекта
-* `.env.example` - пример `.env` файла
-* `.gitignore`
-* `biome.json` - настройка Biome
-* `index.html` - HTML шаблон
-* `LICENSE`
-* `package-lock.json`
-* `package.json`
-* `README.md` - на английском
-* `README.RU.md` - на русском
-* `tsconfig.json` - настройка TypeScript
-* `vercel.json` - настройка Vercel
-* `vite.config.ts`
-
-### Папки
-* `.github/` - папка для CI (GitHub Actions)
-* `src/` - весь основной код
-    * `App.tsx` - шаблон страниц
-    * `env.d.ts` - нужен для корректной работы импортированного CSS
-    * `index.css` - глобальные стили проекта
-    * `main.tsx` - здесь находится роутер и подключение глобальных библиотек/файлов
-    * `assets/` - иконки и изображения
-    * `components/`
-    * `context/`
-        * `AuthContext.tsx` - получить данные пользователя из куки
-    * `i18n/` - Английский и русский переводы
-    * `lib/` - настройки проекта и функции
-        * `types/` - TypeScript типы
-        * `api.ts` - настройка REST API
-        * `dayjs.ts` - настрока библиотеки dayjs
-        * `errorDetails.ts` - оформление сообщений об ошибках
-    * `pages/` - все React-страницы
+Весь основной код находится в `src/`. Большинство файлов корневой папки являются просто настройкой проекта. 
+```
+klinvo-frontend
+├─ .github/ - папка для CI (GitHub Actions)
+│
+├─ src/ - весь основной код
+│  ├─ assets/ - иконки и изображения
+│  ├─ components/
+│  ├─ context/
+│  │   └─ AuthContext.tsx - получение данных пользователя из cookie
+│  ├─ i18n/ - Локализация (en, ru)
+│  ├─ lib/ - настройки проекта и функции
+│  │   ├─ types/ - TypeScript типы
+│  │   ├─ api.ts - настройка REST API
+│  │   ├─ dayjs.ts - настройка библиотеки dayjs
+│  │   └─ errorDetails.ts - оформление сообщений об ошибках
+│  ├─ pages/ - все React-страницы
+│  │
+│  ├─ App.tsx - шаблон/обёртка React-страницы
+│  ├─ env.d.ts - TypeScript настройка для корректной работы импортированного CSS
+│  ├─ index.css - глобальные стили проекта
+│  └─ main.tsx - входная точка проекта; роутер и глобальные импорты
+│
+├─ .env.example - пример .env файла
+├─ .gitignore
+├─ biome.json - настройка Biome
+├─ index.html - HTML шаблон
+├─ LICENSE
+├─ package-lock.json
+├─ package.json
+├─ README.md - на английском
+├─ README.RU.md - на русском
+├─ tsconfig.json - настройка TypeScript
+├─ vercel.json - настройка Vercel
+└─ vite.config.ts
+```
 
 
 ## Roadmap

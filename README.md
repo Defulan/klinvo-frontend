@@ -42,39 +42,42 @@ npm run dev
 
 
 ## Project structure
-Files of the root folder. Most of them are just project configuration
-* `.env.example` - example of the `.env` file
-* `.gitignore`
-* `biome.json` - Biome configuration
-* `index.html` - HTML template
-* `LICENSE`
-* `package-lock.json`
-* `package.json`
-* `README.md` - in English
-* `README.RU.md` - in Russian
-* `tsconfig.json` - TypeScript configuration
-* `vercel.json` - Vercel configuration
-* `vite.config.ts`
-
-### Folders
-* `.github/` - folder for CI jobs (GitHub Actions)
-* `src/` - all source code
-    * `App.tsx` - layout of pages
-    * `env.d.ts` - needs for correct work of imported CSS
-    * `index.css` - global project styles
-    * `main.tsx` - there is router and global library/files connections
-    * `assets/` - icons and images
-    * `components/`
-    * `context/`
-        * `AuthContext.tsx` - get user data by cookie
-    * `i18n/` - English and Russian translations
-    * `lib/` - utils and configurations of the project
-        * `types/` - TypeScript types
-        * `api.ts` - settings for REST API connection
-        * `dayjs.ts` - set up dayjs library
-        * `errorDetails.ts` - designing user-facing error messages
-    * `pages/` - React-pages of the project
-
+All source code located in `src/`. Most of files in the root directory are just project configuration. 
+```
+klinvo-frontend
+├─ .github/ - directory for CI jobs (GitHub Actions)
+│
+├─ src/ - all source code
+│  ├─ assets/ - icons and images
+│  ├─ components/
+│  ├─ context/
+│  │   └─ AuthContext.tsx - cookie-based getting of user data
+│  ├─ i18n/ - Localization (en, ru)
+│  ├─ lib/ - utils and configurations of the project
+│  │   ├─ types/ - TypeScript types
+│  │   ├─ api.ts - REST API configuration
+│  │   ├─ dayjs.ts - set up dayjs library
+│  │   └─ errorDetails.ts - formatting error messages
+│  ├─ pages/ - React pages of the project
+│  │
+│  ├─ App.tsx - layout of pages
+│  ├─ env.d.ts - TypeScript configuration for correct work of imported CSS
+│  ├─ index.css - global project styles
+│  └─ main.tsx - entry point of application; router and global imports
+│
+├─ .env.example - example of the .env file
+├─ .gitignore
+├─ biome.json - Biome configuration
+├─ index.html - HTML template
+├─ LICENSE
+├─ package-lock.json
+├─ package.json
+├─ README.md - in English
+├─ README.RU.md - in Russian
+├─ tsconfig.json - TypeScript configuration
+├─ vercel.json - Vercel configuration
+└─ vite.config.ts
+```
 
 ## Roadmap
 Currently, the main goal is to bring the project to the MVP stage.
