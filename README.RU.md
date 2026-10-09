@@ -2,10 +2,13 @@
 
 README: [English](README.md) | [Русский](README.RU.md)
 
-Klinvo - веб-приложение для конструирования искусственных языков (конлангов).
+Klinvo - минималистичный веб-инструмент для конструирования искусственных языков (конлангов).
 
-* **Технологии:** React, TypeScript, Bootstrap, Vite, Biome
-* **Backend репозиторий:** [klinvo-backend](https://github.com/Defulan/klinvo-backend)
+* **Klinvo (онлайн демо):** https://klinvo-frontend.vercel.app
+* **Технологии:** React, TypeScript | Bootstrap *(стили)*, Vite *(сборка)*, Biome *(линтер/форматтер)*
+* **Backend репозиторий:** [klinvo-backend ↗](https://github.com/Defulan/klinvo-backend)
+
+> *Примечание: в первую минуту с момента входа Klinvo может иметь проблемы с авторизацией/регистрацией из-за холодного старта бесплатного хостинга, где расположен API. Проблемы должны пройти спустя 30-60 секунд после захода на сайт*
 
 
 ## Как запустить
@@ -40,42 +43,42 @@ npm run dev
 
 
 ## Структура проекта
-Технические файлы, нужные лишь для настройки проекта:
-* `package-lock.json`
-* `package.json`
-* `biome.json`
-* `tsconfig.json`
-* `vite.config.ts`
-
-Более важные файлы:
-* `index.html` - тут ставятся иконка и название сайта; также подключается main.tsx
-* `.gitignore`
-* `.env.example` - пример `.env` файла
-
-
-Весь основной код проекта лежит в src:
-* `main.tsx`
-* `App.tsx`
-* `index.css` - общие стили всего проекта
-* `env.d.ts` - нужен для корректной работы CSS-импортов
-* `assets/` - папка для изображений, иконок и т.п.
-* `components/`
-    * `ErrorFallback.tsx` - появляется при ошибках вне роутера
-    * `Navbar.tsx`
-    * `RouterErrorFallback.tsx` - появляется при ошибках рендеринга страницы (внутри роутера)
-* `context/`
-    * `AuthContext.tsx` - получение isAuth & userId от GET-эндпоинта /auth/me
-* `lib/` - функции проекта и настройка
-    * `api.ts` - настройка соединения с Backend'ом
-    * `dayjs.ts` - настройки библиотеки dayjs
-    * `errorDetails.ts` - оформление сообщений об ошибках для пользователя
-* `pages/`
-    * `account/` - страницы, связанные с аккаунтом
-        * `Account.tsx` - страница аккаунта пользователя
-        * `Login.tsx`
-        * `Registration.tsx`
-    * `Home.tsx` - заглавная (главная страница)
-    * `NotFoundPage.tsx` - на эту страницу перенаправляется, когда URL не найден
+Весь основной код находится в `src/`. Большинство файлов корневой папки являются просто настройкой проекта. 
+```
+klinvo-frontend
+├─ .github/ - папка для CI (GitHub Actions)
+│
+├─ src/ - весь основной код
+│  ├─ assets/ - иконки и изображения
+│  ├─ components/
+│  ├─ context/
+│  │   └─ AuthContext.tsx - получение данных пользователя из cookie
+│  ├─ i18n/ - Локализация (en, ru)
+│  ├─ lib/ - настройки проекта и функции
+│  │   ├─ types/ - TypeScript типы
+│  │   ├─ api.ts - настройка REST API
+│  │   ├─ dayjs.ts - настройка библиотеки dayjs
+│  │   └─ errorDetails.ts - оформление сообщений об ошибках
+│  ├─ pages/ - все React-страницы
+│  │
+│  ├─ App.tsx - шаблон/обёртка React-страницы
+│  ├─ env.d.ts - TypeScript настройка для корректной работы импортированного CSS
+│  ├─ index.css - глобальные стили проекта
+│  └─ main.tsx - входная точка проекта; роутер и глобальные импорты
+│
+├─ .env.example - пример .env файла
+├─ .gitignore
+├─ biome.json - настройка Biome
+├─ index.html - HTML шаблон
+├─ LICENSE
+├─ package-lock.json
+├─ package.json
+├─ README.md - на английском
+├─ README.RU.md - на русском
+├─ tsconfig.json - настройка TypeScript
+├─ vercel.json - настройка Vercel
+└─ vite.config.ts
+```
 
 
 ## Roadmap
