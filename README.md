@@ -42,41 +42,38 @@ npm run dev
 
 
 ## Project structure
-Technical files required only for project configuration:
+Files of the root folder. Most of them are just project configuration
+* `.env.example` - example of the `.env` file
+* `.gitignore`
+* `biome.json` - Biome configuration
+* `index.html` - HTML template
+* `LICENSE`
 * `package-lock.json`
 * `package.json`
-* `biome.json`
-* `tsconfig.json`
+* `README.md` - in English
+* `README.RU.md` - in Russian
+* `tsconfig.json` - TypeScript configuration
+* `vercel.json` - Vercel configuration
 * `vite.config.ts`
 
-More important files:
-* `index.html` - HTML template, sets site title & favicon
-* `.gitignore`
-* `.env.example` - example of the `.env` file
-
-All source code is located inside the `src/` directory:
-* `main.tsx`
-* `App.tsx`
-* `index.css` - global project styles
-* `env.d.ts` - required for correct work of CSS imports
-* `assets/` - folder for images, icons, etc.
-* `components/`
-    * `ErrorFallback.tsx` - appears when an error occurs outside of main layout
-    * `Navbar.tsx`
-    * `RouterErrorFallback.tsx` - appears when an error occurs during page render
-* `context/`
-    * `AuthContext.tsx` - get isAuth & userId from GET endpoint /auth/me
-* `lib/` - utils/configurations of project
-    * `api.ts` - settings for Frontend/Backend connection
-    * `dayjs.ts` - settings for dayjs library
-    * `errorDetails.ts` - designing user-facing error messages
-* `pages/`
-    * `account/` - Account pages
-        * `Account.tsx` - page of user's account
-        * `Login.tsx`
-        * `Registration.tsx`
-    * `Home.tsx` - home page
-    * `NotFoundPage.tsx` - redirects here when a route/URL is not found
+### Folders
+* `.github/` - folder for CI jobs (GitHub Actions)
+* `src/` - all source code
+    * `App.tsx` - layout of pages
+    * `env.d.ts` - needs for correct work of imported CSS
+    * `index.css` - global project styles
+    * `main.tsx` - there is router and global library/files connections
+    * `assets/` - icons and images
+    * `components/`
+    * `context/`
+        * `AuthContext.tsx` - get user data by cookie
+    * `i18n/` - English and Russian translations
+    * `lib/` - utils and configurations of the project
+        * `types/` - TypeScript types
+        * `api.ts` - settings for REST API connection
+        * `dayjs.ts` - set up dayjs library
+        * `errorDetails.ts` - designing user-facing error messages
+    * `pages/` - React-pages of the project
 
 
 ## Roadmap
