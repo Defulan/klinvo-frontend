@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import klinvoIcon from "../assets/nounLanguage.svg";
+import klinvoIcon from "../assets/nounLanguageWhite.svg";
 import { useAuth } from "../context/AuthContext";
 
 function Navbar() {
