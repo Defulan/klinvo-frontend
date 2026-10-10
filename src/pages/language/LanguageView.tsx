@@ -39,8 +39,10 @@ function LanguageView() {
 		};
 		fetchLanguageGet();
 
-		if (!isLoading && !language) {
-			navigate("/404");
+		if (!isLoading) {
+			if (!language || language.isPrivate) {
+				navigate("/404");
+			}
 		}
 
 		return () => {
