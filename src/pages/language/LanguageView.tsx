@@ -27,6 +27,13 @@ function LanguageView() {
 				const authorResponse = await api.get<User>(`/users/${languageResponse.data.authorId}`);
 
 				if (isMounted) {
+					const languageData = languageResponse.data;
+
+					if (!languageData || languageData.isPrivate) {
+						navigate("/404");
+						return;
+					}
+
 					setLanguage(languageResponse.data);
 					setAuthor(authorResponse.data);
 				}
@@ -40,16 +47,10 @@ function LanguageView() {
 		};
 		fetchLanguageGet();
 
-		if (!isLoading) {
-			if (!language || language.isPrivate) {
-				navigate("/404");
-			}
-		}
-
 		return () => {
 			isMounted = false;
 		};
-	}, [isLoading, language, navigate, languageId]);
+	}, [navigate, languageId]);
 
 	return (
 		<>
