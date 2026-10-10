@@ -19,7 +19,7 @@ const AccountSettings = lazy(() => import("./pages/account/AccountSettings"));
 const Registration = lazy(() => import("./pages/account/Registration"));
 const Login = lazy(() => import("./pages/account/Login"));
 const Credits = lazy(() => import("./pages/Credits"));
-const LanguagePage = lazy(() => import("./pages/Language"));
+const LanguagePage = lazy(() => import("./pages/language/Language"));
 
 const router = createBrowserRouter([
 	{

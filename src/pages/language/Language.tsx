@@ -1,12 +1,12 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import { useTranslation } from "react-i18next";
-import api from "../lib/api";
+import api from "../../lib/api";
 import { useEffect, useState } from "react";
-import { getErrorDetails } from "../lib/errorDetails";
+import { getErrorDetails } from "../../lib/errorDetails";
 import { useNavigate, useParams } from "react-router-dom";
-import type { Language } from "../lib/types/language";
-import type { User } from "../lib/types/user";
+import type { Language } from "../../lib/types/language";
+import type { User } from "../../lib/types/user";
 
 interface LanguageCreate {
 	name: string;
