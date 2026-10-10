@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import AccountLanguagesComponent from "./AccountLanguages";
 
 function AccountPage() {
 	const { t } = useTranslation();
@@ -28,6 +29,7 @@ function AccountPage() {
 			</div>
 			{user.bio && <p>{user.bio}</p>}
 			<hr />
+			<AccountLanguagesComponent userId={user.id} />
 		</>
 	);
 }
