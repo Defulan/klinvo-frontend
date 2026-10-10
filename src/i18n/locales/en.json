@@ -53,6 +53,12 @@
 		"createdAt": "Created at",
 		"itsPrivate": "This language can see only you"
 	},
+	"languageEdit": {
+		"title": "You can edit here the language's values",
+		"nameLabel": "Language name",
+		"privateLabel": "Make this language public to view",
+		"submit": "Change"
+	},
 	"notFoundPage": {
 		"title": "This page doesn't exist",
 		"info": "But I do"
