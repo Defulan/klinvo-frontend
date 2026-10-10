@@ -89,7 +89,7 @@ Currently, the main goal is to bring the project to the MVP stage.
 - [ ] Account page (username, bio, navigation to settings, conlangs section)
 - [x] Account settings page (user data editing)
 - [x] UI localization (English/Russian)
-- [ ] Language page (description, notes section, navigation to dictionary)
+- [x] Language page (description, notes section, navigation to dictionary)
 - [ ] Dictionary table (table design, categories, data editing)
 - [ ] Notes (creating, reading, formatting, changing)
 - [ ] Design home page

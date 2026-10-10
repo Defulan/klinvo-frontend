@@ -41,6 +41,24 @@
 	"credits": {
 		"info": "Attribution for materials used on the site"
 	},
+	"createLanguage": {
+		"title": "Give a name to a language",
+		"submit": "Create a language",
+		"nameRequired": "Fill this field",
+		"nameTooShort": "Too short name (1-255 characters)",
+		"nameTooLong": "Too long name (1-255 characters)"
+	},
+	"languageView": {
+		"createdBy": "Author",
+		"createdAt": "Created at",
+		"itsPrivate": "This language can see only you"
+	},
+	"languageEdit": {
+		"title": "You can edit here the language's values",
+		"nameLabel": "Language name",
+		"privateLabel": "Make this language public to view",
+		"submit": "Change"
+	},
 	"notFoundPage": {
 		"title": "This page doesn't exist",
 		"info": "But I do"
