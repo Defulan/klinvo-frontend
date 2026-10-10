@@ -30,11 +30,11 @@ const router = createBrowserRouter([
 		children: [
 			{ index: true, element: <Home /> },
 			{ path: "account", element: <AccountPage /> },
+			{ path: "account/:userId", element: <AccountPage /> },
 			{ path: "account-settings", element: <AccountSettings /> },
 			{ path: "registration", element: <Registration /> },
 			{ path: "login", element: <Login /> },
 			{ path: "credits", element: <Credits /> },
-
 			{ path: "language", element: <CreateLanguagePage /> },
 			{ path: "language/:languageId", element: <LanguageView /> },
 
