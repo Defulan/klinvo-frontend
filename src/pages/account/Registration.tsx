@@ -37,55 +37,57 @@ function Registration() {
 	};
 
 	return (
-		<div>
+		<div className="col-lg-6 mx-auto d-flex flex-column">
+			<div className="fs-3">{t("registration.title")}</div>
 			{errorText && <div className="error-text">{errorText}</div>}
 
-			<form onSubmit={handleSubmit(onSubmit)}>
+			<form onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column gap-1">
 				<div>
 					{errors.name && <div className="error-form-text"> {errors.name.message}</div>}
-					<label>
-						{t("registration.name")}
-						<input
-							{...register("name", {
-								required: t("registration.nameRequired"),
-							})}
-							autoComplete="username"
-						/>
-					</label>
+					<input
+						className="form-control w-50"
+						placeholder={t("registration.name")}
+						{...register("name", {
+							required: t("registration.nameRequired"),
+						})}
+						autoComplete="username"
+					/>
 				</div>
 
 				<div>
 					{errors.password && <div className="error-form-text"> {errors.password.message}</div>}
-					<label>
-						{t("registration.password")}
-						<input
-							{...register("password", {
-								required: t("registration.passwordRequired"),
-							})}
-							type="password"
-							autoComplete="new-password"
-						/>
-					</label>
+					<input
+						className="form-control w-50"
+						placeholder={t("registration.password")}
+						{...register("password", {
+							required: t("registration.passwordRequired"),
+						})}
+						type="password"
+						autoComplete="new-password"
+					/>
 				</div>
 
 				<div>
 					{errors.repassword && <div className="error-form-text"> {errors.repassword.message}</div>}
-					<label>
-						{t("registration.repassword")}
-						<input
-							{...register("repassword", {
-								required: t("registration.repasswordRequired"),
-								validate: (value) => value === password || t("registration.repasswordValidate"),
-							})}
-							type="password"
-							autoComplete="new-password"
-						/>
-					</label>
+					<input
+						className="form-control w-50"
+						placeholder={t("registration.repassword")}
+						{...register("repassword", {
+							required: t("registration.repasswordRequired"),
+							validate: (value) => value === password || t("registration.repasswordValidate"),
+						})}
+						type="password"
+						autoComplete="new-password"
+					/>
 				</div>
 
-				<button type="submit">{t("registration.submit")}</button>
+				<button className="btn btn-dark mt-2" type="submit">
+					{t("registration.submit")}
+				</button>
 			</form>
-			<Link to="/login">{t("registration.toLogin")}</Link>
+			<button type="button" className="btn btn-link text-decoration-none" onClick={() => navigate("/login")}>
+				{t("registration.toLogin")}
+			</button>
 		</div>
 	);
 }
