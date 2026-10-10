@@ -18,25 +18,35 @@ function LanguageView() {
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
+		let isMounted = true;
+
 		const fetchLanguageGet = async () => {
 			try {
 				const languageResponse = await api.get<Language>(`/languages/${languageId}`);
 				const authorResponse = await api.get<User>(`/users/${languageResponse.data.authorId}`);
-				setLanguage(languageResponse.data);
-				setAuthor(authorResponse.data);
+
+				if (isMounted) {
+					setLanguage(languageResponse.data);
+					setAuthor(authorResponse.data);
+				}
 			} catch (error) {
 				console.error(error);
 			} finally {
-				setIsLoading(false);
+				if (isMounted) {
+					setIsLoading(false);
+				}
 			}
 		};
+		fetchLanguageGet();
 
-		if (!language) {
+		if (!isLoading && !language) {
 			navigate("/404");
 		}
 
-		fetchLanguageGet();
-	}, [language, navigate, languageId]);
+		return () => {
+			isMounted = false;
+		};
+	}, [isLoading, language, navigate, languageId]);
 
 	return (
 		<>
