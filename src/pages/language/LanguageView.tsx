@@ -8,7 +8,7 @@ import type { Language } from "../../lib/types/language";
 import type { User } from "../../lib/types/user";
 
 function LanguageView() {
-	const { languageId } = useParams<{ languageId?: string }>();
+	const { languageId } = useParams<{ languageId: string }>();
 	const { user, isContextLoading } = useAuth();
 	const { t } = useTranslation();
 	const [errorText, setErrorText] = useState<string>("");
@@ -31,16 +31,12 @@ function LanguageView() {
 			}
 		};
 
-		if (!languageId) {
-			if (isContextLoading) return;
-
-			if (!user) {
-				navigate("/login");
-			}
-		} else {
-			fetchLanguageGet();
+		if (!language) {
+			navigate("/404");
 		}
-	}, [isContextLoading, user, navigate, languageId]);
+
+		fetchLanguageGet();
+	}, [language, navigate, languageId]);
 
 	return (
 		<>
