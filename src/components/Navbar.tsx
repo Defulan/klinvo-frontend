@@ -19,10 +19,14 @@ function Navbar() {
 				</a>
 				<ul className="navbar-nav mx-auto position-absolute start-50 translate-middle-x">
 					<li className="nav-item">
-						{!isContextLoading && (
+						{!isContextLoading ? (
 							<a className="nav-link text-white" href={authItemLink}>
 								{authItemText}
 							</a>
+						) : (
+							<div className="spinner-grow spinner-grow-sm text-light" role="status">
+								<span className="visually-hidden">Loading...</span>
+							</div>
 						)}
 					</li>
 				</ul>
