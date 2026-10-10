@@ -47,29 +47,29 @@ function LanguageView() {
 		fetchLanguageData();
 	}, [isContextLoading, fetchLanguageData]);
 
+	if (isLoading || !language || !author) {
+		return;
+	}
+
 	return (
 		<>
-			{!isLoading && language && author && (
+			<h1>{language.name}</h1>
+			<ul>
+				<li>
+					{t("languageView.createdBy")} {author.name}
+				</li>
+				<li>
+					{t("languageView.createdAt")} {dayjs(language.createdAt).format("lll")}
+				</li>
+				{language.isPrivate && <li>{t("languageView.itsPrivate")}</li>}
+			</ul>
+			{isAuthor && (
 				<>
-					<h1>{language.name}</h1>
-					<ul>
-						<li>
-							{t("languageView.createdBy")} {author.name}
-						</li>
-						<li>
-							{t("languageView.createdAt")} {dayjs(language.createdAt).format("lll")}
-						</li>
-						{language.isPrivate && <li>{t("languageView.itsPrivate")}</li>}
-					</ul>
-					{isAuthor && (
-						<>
-							<hr />
-							<LanguageEditComponent language={language} onSuccess={fetchLanguageData} />
-						</>
-					)}
 					<hr />
+					<LanguageEditComponent language={language} onSuccess={fetchLanguageData} />
 				</>
 			)}
+			<hr />
 		</>
 	);
 }

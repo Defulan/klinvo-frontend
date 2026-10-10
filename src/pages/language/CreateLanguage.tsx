@@ -38,40 +38,40 @@ function CreateLanguagePage() {
 		}
 	};
 
+	if (isContextLoading || !user) {
+		return;
+	}
+
 	return (
-		<>
-			{!isContextLoading && user && (
-				<div className="col-lg-7 mx-auto">
-					{errorText && <div>{errorText}</div>}
-					<form onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column text-center gap-4">
-						<label className="fs-3" htmlFor="name">
-							{t("createLanguage.title")}
-						</label>
-						{errors.name && <div className="error-form-text"> {errors.name.message}</div>}
-						<input
-							className="form-control w-75 mx-auto"
-							type="text"
-							id="name"
-							autoComplete="off"
-							{...register("name", {
-								required: t("createLanguage.nameRequired"),
-								minLength: {
-									value: 1,
-									message: t("createLanguage.nameShort"),
-								},
-								maxLength: {
-									value: 255,
-									message: t("createLanguage.nameLong"),
-								},
-							})}
-						/>
-						<button className="btn btn-outline-primary w-25 mx-auto" type="submit">
-							{t("createLanguage.submit")}
-						</button>
-					</form>
-				</div>
-			)}
-		</>
+		<div className="col-lg-7 mx-auto">
+			{errorText && <div>{errorText}</div>}
+			<form onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column text-center gap-4">
+				<label className="fs-3" htmlFor="name">
+					{t("createLanguage.title")}
+				</label>
+				{errors.name && <div className="error-form-text"> {errors.name.message}</div>}
+				<input
+					className="form-control w-75 mx-auto"
+					type="text"
+					id="name"
+					autoComplete="off"
+					{...register("name", {
+						required: t("createLanguage.nameRequired"),
+						minLength: {
+							value: 1,
+							message: t("createLanguage.nameShort"),
+						},
+						maxLength: {
+							value: 255,
+							message: t("createLanguage.nameLong"),
+						},
+					})}
+				/>
+				<button className="btn btn-outline-primary w-25 mx-auto" type="submit">
+					{t("createLanguage.submit")}
+				</button>
+			</form>
+		</div>
 	);
 }
 
