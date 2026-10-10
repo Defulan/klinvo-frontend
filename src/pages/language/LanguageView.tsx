@@ -7,6 +7,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import dayjs from "../../lib/dayjs";
 import type { Language } from "../../lib/types/language";
 import type { User } from "../../lib/types/user";
+import LanguageEditComponent from "./LanguageEdit";
 
 function LanguageView() {
 	const { languageId } = useParams<{ languageId: string }>();
@@ -17,6 +18,7 @@ function LanguageView() {
 	const [language, setLanguage] = useState<Language | null>(null);
 	const [author, setAuthor] = useState<User | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
+	const [isAuthor, setIsAuthor] = useState(false);
 
 	useEffect(() => {
 		let isMounted = true;
@@ -29,7 +31,9 @@ function LanguageView() {
 				if (isMounted) {
 					const languageData = languageResponse.data;
 
-					if (!languageData || languageData.isPrivate) {
+					if (languageData.authorId === user?.id) {
+						setIsAuthor(true);
+					} else if (languageData.isPrivate) {
 						navigate("/404");
 						return;
 					}
@@ -39,6 +43,7 @@ function LanguageView() {
 				}
 			} catch (error) {
 				console.error(error);
+				navigate("/404");
 			} finally {
 				if (isMounted) {
 					setIsLoading(false);
@@ -50,11 +55,11 @@ function LanguageView() {
 		return () => {
 			isMounted = false;
 		};
-	}, [navigate, languageId]);
+	}, [navigate, languageId, user]);
 
 	return (
 		<>
-			{!isLoading && language && author && !language.isPrivate && (
+			{!isLoading && language && author && (
 				<>
 					<h1>{language.name}</h1>
 					<ul>
@@ -66,6 +71,12 @@ function LanguageView() {
 						</li>
 						{language.isPrivate && <li>{t("languageView.itsPrivate")}</li>}
 					</ul>
+					{isAuthor && (
+						<>
+							<hr />
+							<LanguageEditComponent language={language} />
+						</>
+					)}
 					<hr />
 				</>
 			)}
