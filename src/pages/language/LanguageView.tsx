@@ -2,8 +2,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useTranslation } from "react-i18next";
 import api from "../../lib/api";
 import { useEffect, useState } from "react";
-import { getErrorDetails } from "../../lib/errorDetails";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import dayjs from "../../lib/dayjs";
 import type { Language } from "../../lib/types/language";
 import type { User } from "../../lib/types/user";
@@ -11,9 +10,8 @@ import LanguageEditComponent from "./LanguageEdit";
 
 function LanguageView() {
 	const { languageId } = useParams<{ languageId: string }>();
-	const { user, isContextLoading } = useAuth();
+	const { user } = useAuth();
 	const { t } = useTranslation();
-	const [errorText, setErrorText] = useState<string>("");
 	const navigate = useNavigate();
 	const [language, setLanguage] = useState<Language | null>(null);
 	const [author, setAuthor] = useState<User | null>(null);
@@ -41,7 +39,7 @@ function LanguageView() {
 					setLanguage(languageResponse.data);
 					setAuthor(authorResponse.data);
 				}
-			} catch (error) {
+			} catch {
 				navigate("/404");
 			} finally {
 				if (isMounted) {
