@@ -7,6 +7,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 
 interface LanguageEditProps {
 	language: Language;
+	onSuccess: () => void;
 }
 
 interface LanguageEditForm {
@@ -14,7 +15,7 @@ interface LanguageEditForm {
 	isPrivate: boolean | null;
 }
 
-function LanguageEditComponent({ language }: LanguageEditProps) {
+function LanguageEditComponent({ language, onSuccess }: LanguageEditProps) {
 	const { t } = useTranslation();
 	const [errorText, setErrorText] = useState<string>("");
 	const {
@@ -34,6 +35,7 @@ function LanguageEditComponent({ language }: LanguageEditProps) {
 	const onSubmit: SubmitHandler<LanguageEditForm> = async (data) => {
 		try {
 			await api.patch(`/languages/${language.id}`, data);
+			onSuccess();
 		} catch (error) {
 			console.error(error);
 			setErrorText(getErrorDetails(error));

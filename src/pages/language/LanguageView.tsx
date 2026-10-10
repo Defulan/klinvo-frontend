@@ -1,7 +1,7 @@
 import { useAuth } from "../../context/AuthContext";
 import { useTranslation } from "react-i18next";
 import api from "../../lib/api";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import dayjs from "../../lib/dayjs";
 import type { Language } from "../../lib/types/language";
@@ -10,7 +10,7 @@ import LanguageEditComponent from "./LanguageEdit";
 
 function LanguageView() {
 	const { languageId } = useParams<{ languageId: string }>();
-	const { user } = useAuth();
+	const { user, isContextLoading } = useAuth();
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 	const [language, setLanguage] = useState<Language | null>(null);
@@ -18,41 +18,34 @@ function LanguageView() {
 	const [isLoading, setIsLoading] = useState(true);
 	const [isAuthor, setIsAuthor] = useState(false);
 
-	useEffect(() => {
-		let isMounted = true;
+	const fetchLanguageData = useCallback(async () => {
+		try {
+			const languageResponse = await api.get<Language>(`/languages/${languageId}`);
+			const authorResponse = await api.get<User>(`/users/${languageResponse.data.authorId}`);
 
-		const fetchLanguageGet = async () => {
-			try {
-				const languageResponse = await api.get<Language>(`/languages/${languageId}`);
-				const authorResponse = await api.get<User>(`/users/${languageResponse.data.authorId}`);
+			const languageData = languageResponse.data;
 
-				if (isMounted) {
-					const languageData = languageResponse.data;
-
-					if (languageData.authorId === user?.id) {
-						setIsAuthor(true);
-					} else if (languageData.isPrivate) {
-						navigate("/404");
-						return;
-					}
-
-					setLanguage(languageResponse.data);
-					setAuthor(authorResponse.data);
-				}
-			} catch {
+			if (languageData.authorId === user?.id) {
+				setIsAuthor(true);
+			} else if (languageData.isPrivate) {
 				navigate("/404");
-			} finally {
-				if (isMounted) {
-					setIsLoading(false);
-				}
+				return;
 			}
-		};
-		fetchLanguageGet();
 
-		return () => {
-			isMounted = false;
-		};
-	}, [navigate, languageId, user]);
+			setLanguage(languageResponse.data);
+			setAuthor(authorResponse.data);
+		} catch {
+			navigate("/404");
+		} finally {
+			setIsLoading(false);
+		}
+	}, [languageId, user, navigate]);
+
+	useEffect(() => {
+		if (isContextLoading) return;
+
+		fetchLanguageData();
+	}, [isContextLoading, fetchLanguageData]);
 
 	return (
 		<>
@@ -71,7 +64,7 @@ function LanguageView() {
 					{isAuthor && (
 						<>
 							<hr />
-							<LanguageEditComponent language={language} />
+							<LanguageEditComponent language={language} onSuccess={fetchLanguageData} />
 						</>
 					)}
 					<hr />
