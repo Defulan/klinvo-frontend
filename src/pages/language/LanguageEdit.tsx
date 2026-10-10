@@ -65,7 +65,7 @@ function LanguageEditComponent({ language }: LanguageEditProps) {
 					</label>
 				</div>
 				<button className="btn btn-outline-dark btn-sm" type="submit">
-					{t("languageEdit.submitLanguageEdit")}
+					{t("languageEdit.submit")}
 				</button>
 			</form>
 		</>
