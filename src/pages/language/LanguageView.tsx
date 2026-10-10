@@ -35,7 +35,7 @@ function LanguageView() {
 			if (isContextLoading) return;
 
 			if (!user) {
-				navigate("/");
+				navigate("/login");
 			}
 		} else {
 			fetchLanguageGet();

@@ -25,7 +25,7 @@ function CreateLanguagePage() {
 		if (isContextLoading) return;
 
 		if (!user) {
-			navigate("/");
+			navigate("/login");
 		}
 	}, [isContextLoading, user, navigate]);
 
