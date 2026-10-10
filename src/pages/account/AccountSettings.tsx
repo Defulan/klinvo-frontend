@@ -13,7 +13,7 @@ interface UserEditForm {
 
 function AccountSettings() {
 	const { t } = useTranslation();
-	const { user, isContextLoading } = useAuth();
+	const { user, isContextLoading, fetchAuth } = useAuth();
 
 	const [isLoading, setIsLoading] = useState(true);
 	const [isEditing, setIsEditing] = useState(false);
@@ -45,6 +45,7 @@ function AccountSettings() {
 	const onSubmit: SubmitHandler<UserEditForm> = async (data) => {
 		try {
 			await api.patch("/users/", data);
+			await fetchAuth();
 		} catch (error) {
 			setErrorText(t(getErrorDetails(error)));
 		}
