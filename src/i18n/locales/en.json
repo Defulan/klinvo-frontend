@@ -1,6 +1,8 @@
 {
 	"home": {
-		"main": "Site for constructing artificial languages"
+		"main": "Minimalist platform for constructing artificial languages",
+		"firstSection": "If you decide to create a conlang, this can be your environment for it. Klinvo is just a set of tools, which tools to use is up to you. You can even make everything in a single note.",
+		"secondSection": "To get started, sign up or sign in, then you can proceed to create a language"
 	},
 	"account": {
 		"settings": "Settings"
