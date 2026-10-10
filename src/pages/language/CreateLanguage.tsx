@@ -45,7 +45,7 @@ function CreateLanguagePage() {
 					{errorText && <div>{errorText}</div>}
 					<form onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column text-center gap-4">
 						<label className="fs-3" htmlFor="name">
-							Назовите язык
+							{t("createLanguage.title")}
 						</label>
 						{errors.name && <div className="error-form-text"> {errors.name.message}</div>}
 						<input
@@ -66,7 +66,7 @@ function CreateLanguagePage() {
 							})}
 						/>
 						<button className="btn btn-outline-primary w-25 mx-auto" type="submit">
-							Создать язык
+							{t("createLanguage.submit")}
 						</button>
 					</form>
 				</div>
