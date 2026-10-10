@@ -42,7 +42,6 @@ function LanguageView() {
 					setAuthor(authorResponse.data);
 				}
 			} catch (error) {
-				console.error(error);
 				navigate("/404");
 			} finally {
 				if (isMounted) {
