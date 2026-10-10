@@ -63,6 +63,10 @@
 		"privateLabel": "Сделать этот язык открытым для просматривания",
 		"submit": "Изменить"
 	},
+	"languageCard": {
+		"author": "Автор",
+		"toLanguagePage": "Перейти"
+	},
 	"notFoundPage": {
 		"title": "Такой страницы нет",
 		"info": "Зато есть я"
