@@ -17,7 +17,7 @@ function Navbar() {
 					<img alt="" src={klinvoIcon} width={32} height={32} className="d-inline-block" />
 					<span className="align-text-center">Klinvo</span>
 				</a>
-				<ul className="navbar-nav mx-auto mb-2 mb-lg-0">
+				<ul className="navbar-nav mx-auto">
 					<li className="nav-item">
 						{!isContextLoading && (
 							<a className="nav-link text-white" href={authItemLink}>
