@@ -12,12 +12,12 @@ function Navbar() {
 
 	return (
 		<nav className="navbar navbar-expand-lg navbar-color">
-			<div className="container-fluid container d-flex align-items-center">
+			<div className="container-fluid container d-flex align-items-center position-relative">
 				<a className="navbar-brand text-white d-flex gap-2" href="/">
 					<img alt="" src={klinvoIcon} width={32} height={32} className="d-inline-block" />
 					<span className="align-text-center">Klinvo</span>
 				</a>
-				<ul className="navbar-nav mx-auto">
+				<ul className="navbar-nav mx-auto position-absolute start-50 translate-middle-x">
 					<li className="nav-item">
 						{!isContextLoading && (
 							<a className="nav-link text-white" href={authItemLink}>
