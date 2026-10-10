@@ -54,14 +54,14 @@ function CreateLanguagePage() {
 							id="name"
 							autoComplete="off"
 							{...register("name", {
-								required: t("language.nameRequired"),
+								required: t("createLanguage.nameRequired"),
 								minLength: {
 									value: 1,
-									message: t("language.nameShort"),
+									message: t("createLanguage.nameShort"),
 								},
 								maxLength: {
 									value: 255,
-									message: t("language.nameLong"),
+									message: t("createLanguage.nameLong"),
 								},
 							})}
 						/>
