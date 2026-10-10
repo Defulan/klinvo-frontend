@@ -10,6 +10,18 @@ function Navbar() {
 	const authItemLink = user ? "/account" : "/login";
 	const authItemText = user ? t("navbar.account") : t("navbar.login");
 
+	const authItem = (
+		<a className="nav-link text-white" href={authItemLink}>
+			{authItemText}
+		</a>
+	);
+
+	const authItemSpinner = (
+		<div className="spinner-grow spinner-grow-sm text-light" role="status">
+			<span className="visually-hidden">Loading...</span>
+		</div>
+	);
+
 	return (
 		<nav className="navbar navbar-expand-lg navbar-color">
 			<div className="container-fluid container d-flex align-items-center position-relative">
@@ -18,17 +30,7 @@ function Navbar() {
 					<span className="align-text-center">Klinvo</span>
 				</a>
 				<ul className="navbar-nav mx-auto position-absolute start-50 translate-middle-x">
-					<li className="nav-item">
-						{!isContextLoading ? (
-							<a className="nav-link text-white" href={authItemLink}>
-								{authItemText}
-							</a>
-						) : (
-							<div className="spinner-grow spinner-grow-sm text-light" role="status">
-								<span className="visually-hidden">Loading...</span>
-							</div>
-						)}
-					</li>
+					<li className="nav-item">{!isContextLoading ? authItem : authItemSpinner}</li>
 				</ul>
 				<div className="nav-item dropdown">
 					<button
