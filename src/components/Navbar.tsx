@@ -11,7 +11,7 @@ function Navbar() {
 	const authItemText = user ? t("navbar.account") : t("navbar.login");
 
 	return (
-		<nav className="navbar navbar-expand-lg bg-black bg-opacity-75">
+		<nav className="navbar navbar-expand-lg navbar-color">
 			<div className="container-fluid container d-flex align-items-center">
 				<a className="navbar-brand text-white d-flex gap-2" href="/">
 					<img alt="" src={klinvoIcon} width={32} height={32} className="d-inline-block" />
@@ -35,10 +35,10 @@ function Navbar() {
 						aria-expanded="false">
 						<i className="bi bi-translate"></i>
 					</button>
-					<ul className="dropdown-menu">
+					<ul className="dropdown-menu bg-dark">
 						<li>
 							<button
-								className={`dropdown-item ${i18n.language === "en" ? "active" : ""}`}
+								className={`dropdown-item text-white navbar-button-colors ${i18n.language === "en" ? "active" : ""}`}
 								type="button"
 								onClick={() => i18n.changeLanguage("en")}>
 								English
@@ -46,7 +46,7 @@ function Navbar() {
 						</li>
 						<li>
 							<button
-								className={`dropdown-item ${i18n.language === "ru" ? "active" : ""}`}
+								className={`dropdown-item text-white navbar-button-colors ${i18n.language === "ru" ? "active" : ""}`}
 								type="button"
 								onClick={() => i18n.changeLanguage("ru")}>
 								Русский
