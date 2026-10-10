@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import AccountLanguagesComponent from "./AccountLanguages";
 
 function AccountPage() {
 	const { t } = useTranslation();
@@ -27,7 +28,11 @@ function AccountPage() {
 				</button>
 			</div>
 			{user.bio && <p>{user.bio}</p>}
+			<Link to="/language" className="text-decoration-none fw-medium">
+				Создать язык
+			</Link>
 			<hr />
+			<AccountLanguagesComponent userId={user.id} />
 		</>
 	);
 }
