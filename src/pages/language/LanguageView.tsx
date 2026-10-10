@@ -3,7 +3,8 @@ import { useTranslation } from "react-i18next";
 import api from "../../lib/api";
 import { useEffect, useState } from "react";
 import { getErrorDetails } from "../../lib/errorDetails";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import dayjs from "../../lib/dayjs";
 import type { Language } from "../../lib/types/language";
 import type { User } from "../../lib/types/user";
 
@@ -54,8 +55,17 @@ function LanguageView() {
 		<>
 			{!isLoading && language && author && !language.isPrivate && (
 				<>
-					<h1>Название языка: {language.name}</h1>
-					<div>Создан {author.name}</div>
+					<h1>{language.name}</h1>
+					<ul>
+						<li>
+							{t("languageView.createdBy")} {author.name}
+						</li>
+						<li>
+							{t("languageView.createdAt")} {dayjs(language.createdAt).format("lll")}
+						</li>
+						{language.isPrivate && <li>{t("languageView.itsPrivate")}</li>}
+					</ul>
+					<hr />
 				</>
 			)}
 		</>
