@@ -2,7 +2,7 @@ Versions of Frontend and Backend releases at the same time — that is,
 Frontend version implies compatible with the corresponding Backend version
 
 
-## unreleased
+## v0.3.0
 #### Added
 - Language create page (`/language`)
 - Language view page (`/language/<languageId>`)
@@ -12,6 +12,17 @@ Frontend version implies compatible with the corresponding Backend version
 
 #### Changed
 - Design of platform (Home page, Navbar, Login, Registration)
+
+### Roadmap of this version
+- [x] Error handling & fallback UI
+- [x] Authentification (registration, log in/log out)
+- [x] Account page (username, bio, navigation to settings, conlangs section)
+- [x] Account settings page (user data editing)
+- [x] UI localization (English/Russian)
+- [x] Language page (description, notes section, navigation to dictionary)
+- [ ] Dictionary table (table design, categories, data editing)
+- [ ] Notes (creating, reading, formatting, changing)
+- [x] Design home page
 
 
 ## v0.2.0
