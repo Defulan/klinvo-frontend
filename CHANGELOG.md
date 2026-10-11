@@ -3,6 +3,16 @@ Frontend version implies compatible with the corresponding Backend version
 
 
 ## unreleased
+#### Added
+- Language create page (`/language`)
+- Language view page (`/language/<languageId>`)
+- Public languages page (all not-private languages on platform)
+- Category of conlangs on Account page
+- Viewing of other account pages (`/account/<userId>`)
+
+#### Changed
+- Design of platform (Home page, Navbar, Login, Registration)
+
 
 ## v0.2.0
 #### Added
@@ -12,7 +22,7 @@ Frontend version implies compatible with the corresponding Backend version
 #### Changed
 - **❗ AuthContext now returns only `user` and no more `isAuth` & `userId`**
 - Validation errors is more specific
-- style of README
+- Style of README
 
 #### Roadmap of this version
 - [x] Error handling & fallback UI
