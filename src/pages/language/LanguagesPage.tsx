@@ -12,7 +12,7 @@ function LanguagesPage() {
 	useEffect(() => {
 		const fetchLanguagesGet = async () => {
 			try {
-				const response = await api.get<Language[]>("/languages");
+				const response = await api.get<Language[]>("/languages/");
 				setLanguages(response.data);
 			} catch (error) {
 				console.error(error);
