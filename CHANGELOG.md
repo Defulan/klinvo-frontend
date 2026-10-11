@@ -13,7 +13,7 @@ Frontend version implies compatible with the corresponding Backend version
 #### Changed
 - Design of platform (Home page, Navbar, Login, Registration)
 
-### Roadmap of this version
+#### Roadmap of this version
 - [x] Error handling & fallback UI
 - [x] Authentification (registration, log in/log out)
 - [x] Account page (username, bio, navigation to settings, conlangs section)
