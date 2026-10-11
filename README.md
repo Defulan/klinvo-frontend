@@ -87,13 +87,13 @@ Currently, the main goal is to bring the project to the MVP stage.
 ### Main (MVP)
 - [x] Error handling & fallback UI
 - [x] Authentification (registration, log in/log out)
-- [ ] Account page (username, bio, navigation to settings, conlangs section)
+- [x] Account page (username, bio, navigation to settings, conlangs section)
 - [x] Account settings page (user data editing)
 - [x] UI localization (English/Russian)
 - [x] Language page (description, notes section, navigation to dictionary)
 - [ ] Dictionary table (table design, categories, data editing)
 - [ ] Notes (creating, reading, formatting, changing)
-- [ ] Design home page
+- [x] Design home page
 
 ### Future Enhancements
 - [ ] Dark/light theme toggle
