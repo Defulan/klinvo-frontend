@@ -92,7 +92,8 @@
 	},
 	"navbar": {
 		"account": "Account",
-		"login": "Sign in"
+		"login": "Sign in",
+		"languages": "Languages"
 	},
 
 	"errors": {

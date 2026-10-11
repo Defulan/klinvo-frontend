@@ -92,7 +92,8 @@
 	},
 	"navbar": {
 		"account": "Аккаунт",
-		"login": "Вход"
+		"login": "Вход",
+		"languages": "Языки"
 	},
 
 	"errors": {
