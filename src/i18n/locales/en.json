@@ -5,7 +5,8 @@
 		"secondSection": "To get started, sign up or sign in, then you can proceed to create a language"
 	},
 	"account": {
-		"settings": "Settings"
+		"settings": "Settings",
+		"toCreateLanguage": "Create a language"
 	},
 	"accountSettings": {
 		"id": "User ID",

@@ -57,7 +57,7 @@ function AccountPage() {
 			{accountUser.bio && <p>{accountUser.bio}</p>}
 			{isAccountOwner && (
 				<Link to="/language" className="text-decoration-none fw-medium">
-					Создать язык
+					{t("account.toCreateLanguage")}
 				</Link>
 			)}
 			<hr />
