@@ -63,6 +63,9 @@
 		"privateLabel": "Make this language public to view",
 		"submit": "Change"
 	},
+	"languagesPage": {
+		"title": "Conlangs of Klinvo"
+	},
 	"languageCard": {
 		"author": "Author",
 		"toLanguagePage": "Explore it"
@@ -89,7 +92,8 @@
 	},
 	"navbar": {
 		"account": "Account",
-		"login": "Sign in"
+		"login": "Sign in",
+		"languages": "Languages"
 	},
 
 	"errors": {

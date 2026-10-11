@@ -16,10 +16,25 @@ function Navbar() {
 		</a>
 	);
 
+	const languagesItem = (
+		<a className="nav-link text-white" href="/languages">
+			{t("navbar.languages")}
+		</a>
+	);
+
 	const authItemSpinner = (
-		<div className="spinner-grow spinner-grow-sm text-light" role="status">
-			<span className="visually-hidden">Loading...</span>
-		</div>
+		<li className="nav-item">
+			<div className="spinner-grow spinner-grow-sm text-light" role="status">
+				<span className="visually-hidden">Loading...</span>
+			</div>
+		</li>
+	);
+
+	const navbarItems = (
+		<>
+			<li className="nav-item">{languagesItem}</li>
+			<li className="nav-item">{authItem}</li>
+		</>
 	);
 
 	return (
@@ -29,8 +44,8 @@ function Navbar() {
 					<img alt="" src={klinvoIcon} width={32} height={32} className="d-inline-block" />
 					<span className="align-text-center">Klinvo</span>
 				</a>
-				<ul className="navbar-nav mx-auto position-absolute start-50 translate-middle-x">
-					<li className="nav-item">{!isContextLoading ? authItem : authItemSpinner}</li>
+				<ul className="navbar-nav mx-auto position-absolute start-50 translate-middle-x d-flex gap-2">
+					{!isContextLoading ? navbarItems : authItemSpinner}
 				</ul>
 				<div className="nav-item dropdown">
 					<button

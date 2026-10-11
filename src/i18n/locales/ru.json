@@ -63,6 +63,9 @@
 		"privateLabel": "Сделать этот язык открытым для просматривания",
 		"submit": "Изменить"
 	},
+	"languagesPage": {
+		"title": "Конланги сайта"
+	},
 	"languageCard": {
 		"author": "Автор",
 		"toLanguagePage": "Перейти"
@@ -89,7 +92,8 @@
 	},
 	"navbar": {
 		"account": "Аккаунт",
-		"login": "Вход"
+		"login": "Вход",
+		"languages": "Языки"
 	},
 
 	"errors": {
