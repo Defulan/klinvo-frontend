@@ -8,6 +8,7 @@ import type { Language } from "../../lib/types/language";
 import type { User } from "../../lib/types/user";
 import LanguageEditComponent from "./LanguageEdit";
 import useTitle from "../../hooks/useTitle";
+import LanguageNotesComponent from "./LanguageNotes";
 
 function LanguageView() {
 	const { languageId } = useParams<{ languageId: string }>();
@@ -73,6 +74,7 @@ function LanguageView() {
 				</>
 			)}
 			<hr />
+			<LanguageNotesComponent language={language} />
 		</>
 	);
 }
