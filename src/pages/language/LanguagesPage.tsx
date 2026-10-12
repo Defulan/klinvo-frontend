@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../lib/api";
 import type { Language } from "../../lib/types/language";
-import LanguageCard from "./LanguageCard";
+import LanguageCard from "./components/LanguageCard";
 import { useTranslation } from "react-i18next";
 import useTitle from "../../hooks/useTitle";
 
