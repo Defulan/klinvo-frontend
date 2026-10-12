@@ -2,6 +2,17 @@ Versions of Frontend and Backend releases at the same time — that is,
 Frontend version implies compatible with the corresponding Backend version
 
 
+## unreleased
+
+#### Added
+- Title in every page
+
+#### Changed
+- Canceling account editing after submitting changes
+- Fixed buttons in an account page (moved non-editing buttons outside of `<form>`)
+- (CI) Reminder to update Changelog after changes in a branch
+
+
 ## v0.3.0
 #### Added
 - Language create page (`/language`)
