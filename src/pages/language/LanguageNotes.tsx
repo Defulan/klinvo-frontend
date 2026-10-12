@@ -52,6 +52,7 @@ function LanguageNotesComponent({ language, isAuthor }: LanguageNotesProps) {
 				))}
 				{isAuthor && isCreatingActive && (
 					<LanguageNoteCreateItem
+						languageId={language.id}
 						onClose={() => setIsCreatingActive(false)}
 						onCreation={() => setIsCreatingActive(false)}
 					/>
