@@ -6,6 +6,7 @@ import { getErrorDetails } from "../../lib/errorDetails";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import useTitle from "../../hooks/useTitle";
+import type { User } from "../../lib/types/user";
 
 interface UserEditForm {
 	name: string | null;
@@ -50,8 +51,14 @@ function AccountSettings() {
 
 	const onSubmit: SubmitHandler<UserEditForm> = async (data) => {
 		try {
-			await api.patch("/users/", data);
+			const response = await api.patch<User>("/users/", data);
 			await fetchAuth();
+
+			reset({
+				name: response.data.name,
+				bio: response.data.bio,
+			});
+			setIsEditing(false);
 		} catch (error) {
 			setErrorText(t(getErrorDetails(error)));
 		}
