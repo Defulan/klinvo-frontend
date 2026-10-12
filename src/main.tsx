@@ -14,6 +14,7 @@ import { ErrorBoundary } from "react-error-boundary";
 
 import Home from "./pages/Home";
 import NotFoundPage from "./pages/NotFoundPage";
+import NotePage from "./pages/notes/NotePage";
 const AccountPage = lazy(() => import("./pages/account/Account"));
 const AccountSettings = lazy(() => import("./pages/account/AccountSettings"));
 const Registration = lazy(() => import("./pages/account/Registration"));
@@ -39,6 +40,7 @@ const router = createBrowserRouter([
 			{ path: "language", element: <CreateLanguagePage /> },
 			{ path: "language/:languageId", element: <LanguageView /> },
 			{ path: "languages", element: <LanguagesPage /> },
+			{ path: "notes/:noteId", element: <NotePage /> },
 
 			{ path: "*", element: <NotFoundPage /> },
 		],
