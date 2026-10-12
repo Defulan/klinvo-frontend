@@ -29,22 +29,26 @@ function LanguageNotesComponent({ language, isAuthor }: LanguageNotesProps) {
 		fetchNotes();
 	}, [language]);
 
+	const createLanguage = (
+		<li className="list-group-item list-group-item-action">
+			<i className="bi bi-plus-square"> {t("languageNotes.create")}</i>
+		</li>
+	);
+
 	if (isLoading || !notes) {
 		return;
 	}
 
 	return (
 		<>
-			<div className="fs-4 fw-medium">{t("languageView.notesTitle")}</div>
+			<div className="fs-4 fw-medium">{t("languageNotes.title")}</div>
 			<ul className="list-group">
 				{notes.map((note) => (
 					<li key={note.id} className="list-group-item list-group-item-action">
 						<div className="fw-medium">{note.title}</div>
 					</li>
 				))}
-				<li className="list-group-item list-group-item-action">
-					<i className="bi bi-plus-square"> {t("languageView.noteCreate")}</i>
-				</li>
+				{isAuthor && createLanguage}
 			</ul>
 		</>
 	);
