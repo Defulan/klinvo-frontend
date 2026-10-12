@@ -74,7 +74,7 @@ function LanguageView() {
 				</>
 			)}
 			<hr />
-			<LanguageNotesComponent language={language} />
+			<LanguageNotesComponent language={language} isAuthor={isAuthor} />
 		</>
 	);
 }

@@ -6,9 +6,10 @@ import { useTranslation } from "react-i18next";
 
 interface LanguageNotesProps {
 	language: Language;
+	isAuthor: boolean;
 }
 
-function LanguageNotesComponent({ language }: LanguageNotesProps) {
+function LanguageNotesComponent({ language, isAuthor }: LanguageNotesProps) {
 	const { t } = useTranslation();
 	const [notes, setNotes] = useState<Note[] | null>();
 	const [isLoading, setIsLoading] = useState(true);
