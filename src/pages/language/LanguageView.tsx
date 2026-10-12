@@ -6,9 +6,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import dayjs from "../../lib/dayjs";
 import type { Language } from "../../lib/types/language";
 import type { User } from "../../lib/types/user";
-import LanguageEditComponent from "./LanguageEdit";
+import LanguageEditComponent from "./components/LanguageEdit";
 import useTitle from "../../hooks/useTitle";
-import LanguageNotesComponent from "./LanguageNotes";
+import LanguageNotesComponent from "./components/LanguageNotes";
 
 function LanguageView() {
 	const { languageId } = useParams<{ languageId: string }>();

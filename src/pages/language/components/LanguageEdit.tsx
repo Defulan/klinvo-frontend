@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
-import api from "../../lib/api";
+import api from "../../../lib/api";
 import { useEffect, useState } from "react";
-import { getErrorDetails } from "../../lib/errorDetails";
-import type { Language } from "../../lib/types/language";
+import { getErrorDetails } from "../../../lib/errorDetails";
+import type { Language } from "../../../lib/types/language";
 import { useForm, type SubmitHandler } from "react-hook-form";
 
 interface LanguageEditProps {
