@@ -5,6 +5,7 @@ import { getErrorDetails } from "../../lib/errorDetails";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useAuth } from "../../context/AuthContext";
 import { useTranslation } from "react-i18next";
+import useTitle from "../../hooks/useTitle";
 
 interface LoginForm {
 	id: number;
@@ -21,6 +22,8 @@ function Login() {
 	const [errorText, setErrorText] = useState("");
 	const navigate = useNavigate();
 	const { fetchAuth } = useAuth();
+
+	useTitle(t("login.pageTitle"));
 
 	const onSubmit: SubmitHandler<LoginForm> = async (data) => {
 		try {

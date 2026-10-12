@@ -5,6 +5,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { getErrorDetails } from "../../lib/errorDetails";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import useTitle from "../../hooks/useTitle";
 
 interface UserEditForm {
 	name: string | null;
@@ -27,6 +28,11 @@ function AccountSettings() {
 	} = useForm<UserEditForm>();
 
 	const navigate = useNavigate();
+
+	const loadedTitle = t("accountSettings.pageTitle", { name: user?.name });
+	const unloadedTitle = t("accountSettings.unloadedPageTitle");
+
+	useTitle(user?.name ? loadedTitle : unloadedTitle);
 
 	useEffect(() => {
 		if (isContextLoading) return;

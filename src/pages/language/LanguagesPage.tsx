@@ -3,11 +3,14 @@ import api from "../../lib/api";
 import type { Language } from "../../lib/types/language";
 import LanguageCard from "./LanguageCard";
 import { useTranslation } from "react-i18next";
+import useTitle from "../../hooks/useTitle";
 
 function LanguagesPage() {
 	const [languages, setLanguages] = useState<Language[] | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const { t } = useTranslation();
+
+	useTitle(t("languagesPage.pageTitle"));
 
 	useEffect(() => {
 		const fetchLanguagesGet = async () => {

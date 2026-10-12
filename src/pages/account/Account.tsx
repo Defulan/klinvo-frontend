@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import AccountLanguagesComponent from "./AccountLanguages";
 import api from "../../lib/api";
 import type { User } from "../../lib/types/user";
+import useTitle from "../../hooks/useTitle";
 
 function AccountPage() {
 	const { userId } = useParams<{ userId?: string }>();
@@ -14,6 +15,13 @@ function AccountPage() {
 	const [isLoading, setIsLoading] = useState(true);
 	const [accountUser, setAccountUser] = useState<User | null>(null);
 	const [isAccountOwner, setIsAccountOwner] = useState(false);
+
+	const loadedTitle = t("account.pageTitle", { name: user?.name });
+	const unloadedTitle = t("account.unloadedPageTitle");
+
+	useTitle(user?.name ? loadedTitle : unloadedTitle);
+
+	useTitle(t("account.pageTitle", { name: accountUser?.name || "Account" }));
 
 	useEffect(() => {
 		if (!userId) {
