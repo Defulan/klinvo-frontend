@@ -48,7 +48,7 @@ function Registration() {
 				<div>
 					{errors.name && <div className="error-form-text"> {errors.name.message}</div>}
 					<input
-						className="form-control w-50"
+						className="form-control"
 						placeholder={t("registration.name")}
 						{...register("name", {
 							required: t("registration.nameRequired"),
@@ -60,7 +60,7 @@ function Registration() {
 				<div>
 					{errors.password && <div className="error-form-text"> {errors.password.message}</div>}
 					<input
-						className="form-control w-50"
+						className="form-control"
 						placeholder={t("registration.password")}
 						{...register("password", {
 							required: t("registration.passwordRequired"),
@@ -73,7 +73,7 @@ function Registration() {
 				<div>
 					{errors.repassword && <div className="error-form-text"> {errors.repassword.message}</div>}
 					<input
-						className="form-control w-50"
+						className="form-control"
 						placeholder={t("registration.repassword")}
 						{...register("repassword", {
 							required: t("registration.repasswordRequired"),

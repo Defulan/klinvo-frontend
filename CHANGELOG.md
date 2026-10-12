@@ -11,6 +11,7 @@ Frontend version implies compatible with the corresponding Backend version
 - Canceling account editing after submitting changes
 - Fixed buttons in an account page (moved non-editing buttons outside of `<form>`)
 - (CI) Reminder to update Changelog after changes in a branch
+- Fixed design of inputs on the Registration page
 
 
 ## v0.3.0
