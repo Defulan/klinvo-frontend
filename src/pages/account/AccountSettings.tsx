@@ -134,7 +134,7 @@ function AccountSettings() {
 
 				<div className="d-flex gap-1 mt-2">{isEditing && editorButtons}</div>
 			</form>
-			<div className="d-flex gap-1 mt-2">{!isEditing && watchingButtons}</div>
+			<div className="d-flex gap-1">{!isEditing && watchingButtons}</div>
 		</div>
 	);
 }
