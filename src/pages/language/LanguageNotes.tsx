@@ -29,7 +29,7 @@ function LanguageNotesComponent({ language, isAuthor }: LanguageNotesProps) {
 		fetchNotes();
 	}, [language]);
 
-	if (isLoading) {
+	if (isLoading || !notes) {
 		return;
 	}
 
@@ -37,7 +37,12 @@ function LanguageNotesComponent({ language, isAuthor }: LanguageNotesProps) {
 		<>
 			<div className="fs-4 fw-medium">{t("languageView.notesTitle")}</div>
 			<ul className="list-group">
-				<li className="list-group-item">
+				{notes.map((note) => (
+					<li key={note.id} className="list-group-item list-group-item-action">
+						<div className="fw-medium">{note.title}</div>
+					</li>
+				))}
+				<li className="list-group-item list-group-item-action">
 					<i className="bi bi-plus-square"> {t("languageView.noteCreate")}</i>
 				</li>
 			</ul>
