@@ -68,6 +68,10 @@
 		"createdAt": "Created at",
 		"itsPrivate": "This language can see only you"
 	},
+	"languageNotes": {
+		"notesTitle": "Notes",
+		"noteCreate": "Create a note"
+	},
 	"languageEdit": {
 		"title": "You can edit here the language's values",
 		"nameLabel": "Language name",
