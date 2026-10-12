@@ -3,6 +3,7 @@ import type { Language } from "../../lib/types/language";
 import type { Note } from "../../lib/types/note";
 import api from "../../lib/api";
 import { useTranslation } from "react-i18next";
+import LanguageNoteCreateItem from "./LanguageNoteCreate";
 
 interface LanguageNotesProps {
 	language: Language;
@@ -13,6 +14,7 @@ function LanguageNotesComponent({ language, isAuthor }: LanguageNotesProps) {
 	const { t } = useTranslation();
 	const [notes, setNotes] = useState<Note[] | null>();
 	const [isLoading, setIsLoading] = useState(true);
+	const [isCreatingActive, setIsCreatingActive] = useState(false);
 
 	useEffect(() => {
 		const fetchNotes = async () => {
@@ -30,7 +32,7 @@ function LanguageNotesComponent({ language, isAuthor }: LanguageNotesProps) {
 	}, [language]);
 
 	const createLanguage = (
-		<li className="list-group-item list-group-item-action">
+		<li onMouseDown={() => setIsCreatingActive(true)} className="list-group-item list-group-item-action">
 			<i className="bi bi-plus-square"> {t("languageNotes.create")}</i>
 		</li>
 	);
@@ -48,7 +50,13 @@ function LanguageNotesComponent({ language, isAuthor }: LanguageNotesProps) {
 						<div className="fw-medium">{note.title}</div>
 					</li>
 				))}
-				{isAuthor && createLanguage}
+				{isAuthor && isCreatingActive && (
+					<LanguageNoteCreateItem
+						onClose={() => setIsCreatingActive(false)}
+						onCreation={() => setIsCreatingActive(false)}
+					/>
+				)}
+				{isAuthor && !isCreatingActive && createLanguage}
 			</ul>
 		</>
 	);
