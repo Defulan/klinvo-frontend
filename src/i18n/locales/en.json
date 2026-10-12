@@ -1,14 +1,19 @@
 {
 	"home": {
+		"pageTitle": "Klinvo",
 		"main": "Minimalist platform for constructing artificial languages",
 		"firstSection": "If you decide to create a conlang, this can be your environment for it. Klinvo is just a set of tools, which tools to use is up to you. You can even make everything in a single note.",
 		"secondSection": "To get started, sign up or sign in, then you can proceed to create a language"
 	},
 	"account": {
+		"pageTitle": "{{name}}'s account",
+		"unloadedPageTitle": "User account",
 		"settings": "Settings",
 		"toCreateLanguage": "Create a language"
 	},
 	"accountSettings": {
+		"pageTitle": "Settings of {{name}}",
+		"unloadedPageTitle": "Settings page",
 		"id": "User ID",
 		"account": "Account",
 		"logout": "Sign out",
@@ -21,6 +26,7 @@
 		"bioPlaceholder": "You can write something about yourself to display on your account page"
 	},
 	"login": {
+		"pageTitle": "Signing in",
 		"title": "Sign in",
 		"errorText": "An error occurred",
 		"id": "User ID",
@@ -32,6 +38,7 @@
 		"toRegistration": "Don't have an account? (Sign up)"
 	},
 	"registration": {
+		"pageTitle": "Registration",
 		"title": "Registration",
 		"name": "Username",
 		"nameRequired": "Enter username",
@@ -44,9 +51,11 @@
 		"toLogin": "Already have an account? (Sign in)"
 	},
 	"credits": {
+		"pageTitle": "Credits",
 		"info": "Attribution for materials used on the site"
 	},
 	"createLanguage": {
+		"pageTitle": "Create a language",
 		"title": "Give a name to a language",
 		"submit": "Create a language",
 		"nameRequired": "Fill this field",
@@ -54,6 +63,7 @@
 		"nameTooLong": "Too long name (1-255 characters)"
 	},
 	"languageView": {
+		"pageTitle": "{{name}}",
 		"createdBy": "Author",
 		"createdAt": "Created at",
 		"itsPrivate": "This language can see only you"
@@ -65,6 +75,7 @@
 		"submit": "Change"
 	},
 	"languagesPage": {
+		"pageTitle": "Languages",
 		"title": "Conlangs of Klinvo"
 	},
 	"languageCard": {
@@ -72,6 +83,7 @@
 		"toLanguagePage": "Explore it"
 	},
 	"notFoundPage": {
+		"pageTitle": "404 — Page doesn't exist",
 		"title": "This page doesn't exist",
 		"info": "But I do"
 	},
