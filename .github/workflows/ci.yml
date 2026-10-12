@@ -34,8 +34,8 @@ jobs:
         run: npm run build
   
   
-  readme-reminder:
-    name: README update reminder
+  to-change-reminder:
+    name: Updating README and CHANGELOG reminder
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
           
