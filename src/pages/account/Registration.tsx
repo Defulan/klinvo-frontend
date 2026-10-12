@@ -5,6 +5,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { getErrorDetails } from "../../lib/errorDetails";
 import { useAuth } from "../../context/AuthContext";
 import { useTranslation } from "react-i18next";
+import useTitle from "../../hooks/useTitle";
 
 interface RegistrationForm {
 	name: string;
@@ -24,6 +25,8 @@ function Registration() {
 	const navigate = useNavigate();
 	const password = watch("password");
 	const { fetchAuth } = useAuth();
+
+	useTitle(t("registration.pageTitle"));
 
 	const onSubmit: SubmitHandler<RegistrationForm> = async (data) => {
 		try {

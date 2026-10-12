@@ -1,8 +1,11 @@
 import { useTranslation } from "react-i18next";
 import klinvoIcon from "../assets/nounLanguage.svg";
+import useTitle from "../hooks/useTitle";
 
 function Credits() {
 	const { t } = useTranslation();
+
+	useTitle(t("credits.pageTitle"));
 
 	return (
 		<>

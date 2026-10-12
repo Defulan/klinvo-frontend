@@ -7,6 +7,7 @@ import dayjs from "../../lib/dayjs";
 import type { Language } from "../../lib/types/language";
 import type { User } from "../../lib/types/user";
 import LanguageEditComponent from "./LanguageEdit";
+import useTitle from "../../hooks/useTitle";
 
 function LanguageView() {
 	const { languageId } = useParams<{ languageId: string }>();
@@ -17,6 +18,8 @@ function LanguageView() {
 	const [author, setAuthor] = useState<User | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const [isAuthor, setIsAuthor] = useState(false);
+
+	useTitle(t("languageView.pageTitle", { name: language?.name || "Klinvo" }));
 
 	const fetchLanguageData = useCallback(async () => {
 		try {

@@ -5,6 +5,7 @@ import api from "../../lib/api";
 import { useEffect, useState } from "react";
 import { getErrorDetails } from "../../lib/errorDetails";
 import { useNavigate } from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 
 interface LanguageCreate {
 	name: string;
@@ -20,6 +21,8 @@ function CreateLanguagePage() {
 	const { t } = useTranslation();
 	const [errorText, setErrorText] = useState<string>("");
 	const navigate = useNavigate();
+
+	useTitle(t("createLanguage.pageTitle"));
 
 	useEffect(() => {
 		if (isContextLoading) return;

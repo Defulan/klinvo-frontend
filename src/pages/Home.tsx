@@ -1,7 +1,10 @@
 import { useTranslation } from "react-i18next";
+import useTitle from "../hooks/useTitle";
 
 function Home() {
 	const { t } = useTranslation();
+
+	useTitle(t("home.pageTitle"));
 
 	return (
 		<div className="text-center">
