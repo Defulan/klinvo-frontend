@@ -2,15 +2,16 @@ Versions of Frontend and Backend releases at the same time — that is,
 Frontend version implies compatible with the corresponding Backend version
 
 
-## unreleased
+## v0.3.1
 
 #### Added
-- Title in every page
+- Title in every page with new hook `useTitle`
 
 #### Changed
 - Canceling account editing after submitting changes
 - Fixed buttons in an account page (moved non-editing buttons outside of `<form>`)
 - (CI) Reminder to update Changelog after changes in a branch
+- (CI) Job `readme-reminder` renamed to `to-change-reminder`
 - Fixed design of inputs on the Registration page
 
 
