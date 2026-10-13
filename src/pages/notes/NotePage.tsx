@@ -155,7 +155,7 @@ function NotePage() {
 				)}
 			</ul>
 			{watchingButtons}
-
+			<hr />
 			<div className="markdown-body">
 				<Markdown remarkPlugins={[remarkGfm]}>{note.content}</Markdown>
 			</div>
