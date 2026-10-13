@@ -38,6 +38,14 @@ function NotesListComponent({ language, isAuthor }: NotesListProps) {
 		</li>
 	);
 
+	const onCreationCancel = () => {
+		setIsCreatingActive(false);
+	};
+
+	const onCreationSuccess = () => {
+		setIsCreatingActive(false);
+	};
+
 	if (isLoading || !notes) {
 		return;
 	}
@@ -50,11 +58,7 @@ function NotesListComponent({ language, isAuthor }: NotesListProps) {
 					<NoteItem key={note.id} note={note} />
 				))}
 				{isAuthor && isCreatingActive && (
-					<NoteItemCreate
-						languageId={language.id}
-						onClose={() => setIsCreatingActive(false)}
-						onCreation={() => setIsCreatingActive(false)}
-					/>
+					<NoteItemCreate languageId={language.id} onClose={onCreationCancel} onCreation={onCreationSuccess} />
 				)}
 				{isAuthor && !isCreatingActive && toCreateItem}
 			</ul>
