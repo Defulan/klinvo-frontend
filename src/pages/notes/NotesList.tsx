@@ -43,6 +43,7 @@ function NotesListComponent({ language, isAuthor }: NotesListProps) {
 	};
 
 	const onCreationSuccess = () => {
+		fetchNotes();
 		setIsCreatingActive(false);
 	};
 
