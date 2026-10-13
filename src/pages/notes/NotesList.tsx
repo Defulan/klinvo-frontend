@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { Language } from "../../lib/types/language";
 import type { Note } from "../../lib/types/note";
 import api from "../../lib/api";
@@ -17,20 +17,20 @@ function NotesListComponent({ language, isAuthor }: NotesListProps) {
 	const [isLoading, setIsLoading] = useState(true);
 	const [isCreatingActive, setIsCreatingActive] = useState(false);
 
-	useEffect(() => {
-		const fetchNotes = async () => {
-			try {
-				const response = await api.get<Note[]>(`/languages/${language.id}/notes`);
-				setNotes(response.data);
-			} catch (error) {
-				console.error(error);
-			} finally {
-				setIsLoading(false);
-			}
-		};
-
-		fetchNotes();
+	const fetchNotes = useCallback(async () => {
+		try {
+			const response = await api.get<Note[]>(`/languages/${language.id}/notes`);
+			setNotes(response.data);
+		} catch (error) {
+			console.error(error);
+		} finally {
+			setIsLoading(false);
+		}
 	}, [language]);
+
+	useEffect(() => {
+		fetchNotes();
+	}, [fetchNotes]);
 
 	const toCreateItem = (
 		<li onMouseDown={() => setIsCreatingActive(true)} className="list-group-item list-group-item-action">
