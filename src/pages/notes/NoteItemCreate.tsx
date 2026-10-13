@@ -57,7 +57,7 @@ function NoteItemCreate({ languageId, onCancel, onCreation }: NoteItemCreateProp
 					<i className="bi bi-plus-circle"></i>
 				</button>
 			</form>
-			<button type="button" className="btn-close" aria-label="Close" onClick={onCancel}></button>
+			<button type="button" className="btn btn-close btn-sm" aria-label="Close" onClick={onCancel}></button>
 		</li>
 	);
 }
