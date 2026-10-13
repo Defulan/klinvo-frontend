@@ -5,6 +5,8 @@ import type { Note } from "../../lib/types/note";
 import dayjs from "../../lib/dayjs";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 interface NoteEditForm {
 	title: string | null;
@@ -132,7 +134,7 @@ function NotePage() {
 			</ul>
 			{watchingButtons}
 
-			<div>{note.content}</div>
+			<Markdown remarkPlugins={[remarkGfm]}>{note.content}</Markdown>
 		</>
 	);
 }
