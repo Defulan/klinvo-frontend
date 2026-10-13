@@ -83,6 +83,10 @@
 		"toLanguagePage": "Explore it"
 	},
 	"notePage": {
+		"titleLabel": "Note's title",
+		"titleRequired": "Title is required",
+		"titleTooShort": "Title is too short (1-255)",
+		"titleTooLong": "Title is too long (1-255)",
 		"editButton": "Edit",
 		"confirmChanges": "Confirm changes",
 		"cancelChanges": "Cancel"

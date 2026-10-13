@@ -83,6 +83,10 @@
 		"toLanguagePage": "Перейти"
 	},
 	"notePage": {
+		"titleLabel": "Название заметки",
+		"titleRequired": "Заголовок обязателен",
+		"titleTooShort": "Заголовок слишком короткий (1-255)",
+		"titleTooLong": "Заголовок слишком длинный (1-255)",
 		"editButton": "Редактировать",
 		"confirmChanges": "Применить изменения",
 		"cancelChanges": "Отменить"
