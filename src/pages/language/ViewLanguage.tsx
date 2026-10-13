@@ -10,7 +10,7 @@ import LanguageEditComponent from "./components/LanguageEdit";
 import useTitle from "../../hooks/useTitle";
 import LanguageNotesComponent from "./components/LanguageNotes";
 
-function LanguageView() {
+function ViewLanguagePage() {
 	const { languageId } = useParams<{ languageId: string }>();
 	const { user, isContextLoading } = useAuth();
 	const { t } = useTranslation();
@@ -79,4 +79,4 @@ function LanguageView() {
 	);
 }
 
-export default LanguageView;
+export default ViewLanguagePage;
