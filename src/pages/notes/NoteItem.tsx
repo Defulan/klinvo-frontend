@@ -8,7 +8,7 @@ interface NoteItemProps {
 function NoteItem({ note }: NoteItemProps) {
 	return (
 		<li className="list-group-item list-group-item-action">
-			<Link to={`/notes/${note.id}`} className="fw-medium text-decoration-none">
+			<Link to={`/notes/${note.id}`} className="fw-medium text-decoration-none text-break">
 				{note.title}
 			</Link>
 		</li>
