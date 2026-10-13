@@ -3,7 +3,7 @@ import type { Language } from "../../lib/types/language";
 import type { Note } from "../../lib/types/note";
 import api from "../../lib/api";
 import { useTranslation } from "react-i18next";
-import LanguageNoteCreateItem from "../language/components/LanguageNoteCreate";
+import LanguageNoteCreateItem from "../language/components/NoteItemCreate";
 import { Link } from "react-router-dom";
 
 interface NotesListProps {
