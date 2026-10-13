@@ -6,12 +6,12 @@ import { useTranslation } from "react-i18next";
 import LanguageNoteCreateItem from "../language/components/LanguageNoteCreate";
 import { Link } from "react-router-dom";
 
-interface LanguageNotesProps {
+interface NotesListProps {
 	language: Language;
 	isAuthor: boolean;
 }
 
-function LanguageNotesComponent({ language, isAuthor }: LanguageNotesProps) {
+function NotesListComponent({ language, isAuthor }: NotesListProps) {
 	const { t } = useTranslation();
 	const [notes, setNotes] = useState<Note[] | null>();
 	const [isLoading, setIsLoading] = useState(true);
@@ -66,4 +66,4 @@ function LanguageNotesComponent({ language, isAuthor }: LanguageNotesProps) {
 	);
 }
 
-export default LanguageNotesComponent;
+export default NotesListComponent;
