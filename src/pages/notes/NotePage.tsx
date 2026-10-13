@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import api from "../../lib/api";
 import type { Note } from "../../lib/types/note";
 import dayjs from "../../lib/dayjs";
@@ -144,6 +144,13 @@ function NotePage() {
 			<h1>{note.title}</h1>
 			<ul>
 				<li>{dayjs(note.createdAt).format("lll")}</li>
+				{language && (
+					<li>
+						<Link to={`/language/${language.id}`}>
+							{t("notePage.languageItem")} {language.name}
+						</Link>
+					</li>
+				)}
 			</ul>
 			{watchingButtons}
 
