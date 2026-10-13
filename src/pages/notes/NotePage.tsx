@@ -94,10 +94,12 @@ function NotePage() {
 
 	if (isEditing) {
 		return (
-			<form onSubmit={handleSubmit(onSubmit)}>
+			<form onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column gap-2">
 				<div>
 					<label>
+						<span>{t("notePage.titleLabel")}</span>
 						<input
+							className="form-control"
 							type="text"
 							{...register("title", {
 								required: t("notePage.titleRequired"),
@@ -114,9 +116,9 @@ function NotePage() {
 					</label>
 				</div>
 				<label>
-					<textarea {...register("content")} />
+					<textarea className="form-control note-content-edit" {...register("content")} />
 				</label>
-				{editorButtons}
+				<div>{editorButtons}</div>
 			</form>
 		);
 	}
