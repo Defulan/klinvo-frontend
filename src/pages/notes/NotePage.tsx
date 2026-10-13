@@ -143,7 +143,9 @@ function NotePage() {
 		<>
 			<h1>{note.title}</h1>
 			<ul>
-				<li>{dayjs(note.createdAt).format("lll")}</li>
+				<li>
+					{t("notePage.createdAtItem")} {dayjs(note.createdAt).format("lll")}
+				</li>
 				{language && (
 					<li>
 						<Link to={`/language/${language.id}`}>
