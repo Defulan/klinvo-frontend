@@ -87,6 +87,8 @@
 		"titleRequired": "Title is required",
 		"titleTooShort": "Title is too short (1-255)",
 		"titleTooLong": "Title is too long (1-255)",
+		"createdAtItem": "Created at:",
+		"languageItem": "Note's language:",
 		"editButton": "Edit",
 		"confirmChanges": "Confirm changes",
 		"cancelChanges": "Cancel"
