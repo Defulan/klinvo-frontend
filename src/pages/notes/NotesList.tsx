@@ -5,6 +5,7 @@ import api from "../../lib/api";
 import { useTranslation } from "react-i18next";
 import NoteItemCreate from "./NoteItemCreate";
 import NoteItem from "./NoteItem";
+import NoteItemAuthor from "./NoteItemAuthor";
 
 interface NotesListProps {
 	language: Language;
@@ -47,6 +48,10 @@ function NotesListComponent({ language, isAuthor }: NotesListProps) {
 		setIsCreatingActive(false);
 	};
 
+	const onNoteDelete = () => {
+		fetchNotes();
+	};
+
 	if (isLoading || !notes) {
 		return;
 	}
@@ -55,9 +60,9 @@ function NotesListComponent({ language, isAuthor }: NotesListProps) {
 		<>
 			<div className="fs-4 fw-medium">{t("notesList.title")}</div>
 			<ul className="list-group">
-				{notes.map((note) => (
-					<NoteItem key={note.id} note={note} />
-				))}
+				{!isAuthor
+					? notes.map((note) => <NoteItem key={note.id} note={note} />)
+					: notes.map((note) => <NoteItemAuthor key={note.id} note={note} onDelete={onNoteDelete} />)}
 				{isAuthor && isCreatingActive && (
 					<NoteItemCreate languageId={language.id} onCancel={onCreationCancel} onCreation={onCreationSuccess} />
 				)}
