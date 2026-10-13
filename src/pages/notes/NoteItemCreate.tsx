@@ -30,7 +30,8 @@ function NoteItemCreate({ languageId, onCancel, onCreation }: NoteItemCreateProp
 	};
 
 	return (
-		<li className="list-group-item d-flex align-items-center">
+		<li className="list-group-item d-flex align-items-center gap-2">
+			<button type="button" className="btn btn-close btn-sm" aria-label="Close" onClick={onCancel}></button>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className="d-flex align-items-center justify-content-between flex-grow-1 gap-2">
@@ -57,7 +58,6 @@ function NoteItemCreate({ languageId, onCancel, onCreation }: NoteItemCreateProp
 					<i className="bi bi-plus-circle"></i>
 				</button>
 			</form>
-			<button type="button" className="btn btn-close btn-sm" aria-label="Close" onClick={onCancel}></button>
 		</li>
 	);
 }
