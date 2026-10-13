@@ -32,8 +32,9 @@ function NoteItemCreate({ languageId, onCancel, onCreation }: NoteItemCreateProp
 	return (
 		<li className="list-group-item d-flex align-items-center">
 			<form onSubmit={handleSubmit(onSubmit)} className="d-flex align-items-center justify-content-between flex-grow-1">
-				<label>
+				<label className="flex-grow-1">
 					<input
+						className="form-control form-control-sm"
 						placeholder={t("noteItemCreate.titleLabel")}
 						type="text"
 						{...register("title", {
