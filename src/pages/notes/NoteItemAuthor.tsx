@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import type { Note } from "../../lib/types/note";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useTimeout } from "usehooks-ts";
 
 interface NoteItemAuthorProps {
 	note: Note;
@@ -10,12 +11,22 @@ interface NoteItemAuthorProps {
 
 function NoteItemAuthor({ note, onDelete }: NoteItemAuthorProps) {
 	const [isDeletionClicked, setIsDeletionClicked] = useState(false);
+	const [isDisabled, setIsDisabled] = useState(false);
+	const [timeoutDelay, setTimeoutDelay] = useState<number | null>(null);
 	const { t } = useTranslation();
 
+	useTimeout(() => {
+		setIsDisabled(false);
+		setTimeoutDelay(null);
+	}, timeoutDelay);
+
 	const onDeleteClick = () => {
+		if (isDisabled) return;
+
 		if (!isDeletionClicked) {
+			setIsDisabled(true);
 			setIsDeletionClicked(true);
-			return;
+			setTimeoutDelay(2000);
 		}
 
 		onDelete();
@@ -27,7 +38,7 @@ function NoteItemAuthor({ note, onDelete }: NoteItemAuthorProps) {
 				{note.title}
 			</Link>
 			{isDeletionClicked && <div>{t("noteItemAuthor.onDeletion")}</div>}
-			<button type="button" className="btn" onClick={onDeleteClick}>
+			<button type="button" className="btn" onClick={onDeleteClick} disabled={isDisabled}>
 				<i className="bi bi-trash-fill"></i>
 			</button>
 		</li>
