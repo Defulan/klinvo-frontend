@@ -34,8 +34,8 @@ function NoteItemCreate({ languageId, onCancel, onCreation }: NoteItemCreateProp
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<label>
 					{errors.title && <div className="error-form-text"> {errors.title.message}</div>}
-					{t("noteItemCreate.titleLabel")}
 					<input
+						placeholder={t("noteItemCreate.titleLabel")}
 						type="text"
 						{...register("title", {
 							required: t("noteItemCreate.titleRequired"),
