@@ -31,7 +31,9 @@ function NoteItemCreate({ languageId, onCancel, onCreation }: NoteItemCreateProp
 
 	return (
 		<li className="list-group-item d-flex align-items-center">
-			<form onSubmit={handleSubmit(onSubmit)} className="d-flex align-items-center justify-content-between flex-grow-1">
+			<form
+				onSubmit={handleSubmit(onSubmit)}
+				className="d-flex align-items-center justify-content-between flex-grow-1 gap-2">
 				<label className="flex-grow-1">
 					<input
 						className="form-control form-control-sm"
@@ -50,6 +52,7 @@ function NoteItemCreate({ languageId, onCancel, onCreation }: NoteItemCreateProp
 						})}
 					/>
 				</label>
+				{errors.title && <div className="error-form-text"> {errors.title.message}</div>}
 				<button type="submit" className="btn">
 					<i className="bi bi-plus-circle"></i>
 				</button>
