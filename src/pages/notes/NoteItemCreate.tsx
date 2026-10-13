@@ -34,11 +34,11 @@ function NoteItemCreate({ languageId, onClose, onCreation }: NoteItemCreateProps
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<label>
 					{errors.title && <div className="error-form-text"> {errors.title.message}</div>}
-					{t("noteCreateItem.titleLabel")}
+					{t("noteItemCreate.titleLabel")}
 					<input
 						type="text"
 						{...register("title", {
-							required: t("noteCreateItem.titleRequired"),
+							required: t("noteItemCreate.titleRequired"),
 						})}
 					/>
 				</label>

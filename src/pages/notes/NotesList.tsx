@@ -34,7 +34,7 @@ function NotesListComponent({ language, isAuthor }: NotesListProps) {
 
 	const toCreateItem = (
 		<li onMouseDown={() => setIsCreatingActive(true)} className="list-group-item list-group-item-action">
-			<i className="bi bi-plus-square"> {t("languageNotes.create")}</i>
+			<i className="bi bi-plus-square"> {t("notesList.toCreate")}</i>
 		</li>
 	);
 
@@ -44,7 +44,7 @@ function NotesListComponent({ language, isAuthor }: NotesListProps) {
 
 	return (
 		<>
-			<div className="fs-4 fw-medium">{t("languageNotes.title")}</div>
+			<div className="fs-4 fw-medium">{t("notesList.title")}</div>
 			<ul className="list-group">
 				{notes.map((note) => (
 					<NoteItem key={note.id} note={note} />

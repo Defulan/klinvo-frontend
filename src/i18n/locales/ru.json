@@ -68,10 +68,6 @@
 		"createdAt": "Создано",
 		"itsPrivate": "Этот язык можете видеть только вы"
 	},
-	"languageNotes": {
-		"title": "Заметки",
-		"create": "Создать заметку"
-	},
 	"languageEdit": {
 		"title": "Здесь вы можете поменять общие параметры/значения языка",
 		"nameLabel": "Название языка",
@@ -85,6 +81,10 @@
 	"languageCard": {
 		"author": "Автор",
 		"toLanguagePage": "Перейти"
+	},
+	"notesList": {
+		"title": "Заметки",
+		"toCreate": "Создать заметку"
 	},
 	"notFoundPage": {
 		"pageTitle": "404 — страницы не существует",

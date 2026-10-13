@@ -68,10 +68,6 @@
 		"createdAt": "Created at",
 		"itsPrivate": "This language can see only you"
 	},
-	"languageNotes": {
-		"title": "Notes",
-		"create": "Create a note"
-	},
 	"languageEdit": {
 		"title": "You can edit here the language's values",
 		"nameLabel": "Language name",
@@ -85,6 +81,10 @@
 	"languageCard": {
 		"author": "Author",
 		"toLanguagePage": "Explore it"
+	},
+	"notesList": {
+		"title": "Notes",
+		"toCreate": "Create a note"
 	},
 	"notFoundPage": {
 		"pageTitle": "404 — Page doesn't exist",
