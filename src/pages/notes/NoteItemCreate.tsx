@@ -39,6 +39,14 @@ function NoteItemCreate({ languageId, onClose, onCreation }: NoteItemCreateProps
 						type="text"
 						{...register("title", {
 							required: t("noteItemCreate.titleRequired"),
+							minLength: {
+								value: 1,
+								message: t("noteItemCreate.titleTooShort"),
+							},
+							maxLength: {
+								value: 255,
+								message: t("noteItemCreate.titleTooLong"),
+							},
 						})}
 					/>
 				</label>
