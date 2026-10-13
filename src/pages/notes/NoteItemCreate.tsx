@@ -6,13 +6,13 @@ interface NoteCreateForm {
 	title: string;
 }
 
-interface NoteCreateItemProps {
+interface NoteItemCreateProps {
 	languageId: number;
 	onClose: () => void;
 	onCreation: () => void;
 }
 
-function LanguageNoteCreateItem({ languageId, onClose, onCreation }: NoteCreateItemProps) {
+function NoteItemCreate({ languageId, onClose, onCreation }: NoteItemCreateProps) {
 	const {
 		register,
 		handleSubmit,
@@ -51,4 +51,4 @@ function LanguageNoteCreateItem({ languageId, onClose, onCreation }: NoteCreateI
 	);
 }
 
-export default LanguageNoteCreateItem;
+export default NoteItemCreate;

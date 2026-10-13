@@ -3,7 +3,7 @@ import type { Language } from "../../lib/types/language";
 import type { Note } from "../../lib/types/note";
 import api from "../../lib/api";
 import { useTranslation } from "react-i18next";
-import LanguageNoteCreateItem from "./NoteItemCreate";
+import NoteItemCreate from "./NoteItemCreate";
 import { Link } from "react-router-dom";
 
 interface NotesListProps {
@@ -54,7 +54,7 @@ function NotesListComponent({ language, isAuthor }: NotesListProps) {
 					</li>
 				))}
 				{isAuthor && isCreatingActive && (
-					<LanguageNoteCreateItem
+					<NoteItemCreate
 						languageId={language.id}
 						onClose={() => setIsCreatingActive(false)}
 						onCreation={() => setIsCreatingActive(false)}
