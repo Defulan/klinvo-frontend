@@ -32,7 +32,7 @@ function NotesListComponent({ language, isAuthor }: NotesListProps) {
 		fetchNotes();
 	}, [language]);
 
-	const createLanguage = (
+	const toCreateItem = (
 		<li onMouseDown={() => setIsCreatingActive(true)} className="list-group-item list-group-item-action">
 			<i className="bi bi-plus-square"> {t("languageNotes.create")}</i>
 		</li>
@@ -56,7 +56,7 @@ function NotesListComponent({ language, isAuthor }: NotesListProps) {
 						onCreation={() => setIsCreatingActive(false)}
 					/>
 				)}
-				{isAuthor && !isCreatingActive && createLanguage}
+				{isAuthor && !isCreatingActive && toCreateItem}
 			</ul>
 		</>
 	);
