@@ -4,7 +4,7 @@ import type { Note } from "../../lib/types/note";
 import api from "../../lib/api";
 import { useTranslation } from "react-i18next";
 import NoteItemCreate from "./NoteItemCreate";
-import { Link } from "react-router-dom";
+import NoteItem from "./NoteItem";
 
 interface NotesListProps {
 	language: Language;
@@ -47,11 +47,7 @@ function NotesListComponent({ language, isAuthor }: NotesListProps) {
 			<div className="fs-4 fw-medium">{t("languageNotes.title")}</div>
 			<ul className="list-group">
 				{notes.map((note) => (
-					<li key={note.id} className="list-group-item list-group-item-action">
-						<Link to={`/notes/${note.id}`} className="fw-medium text-decoration-none">
-							{note.title}
-						</Link>
-					</li>
+					<NoteItem key={note.id} note={note} />
 				))}
 				{isAuthor && isCreatingActive && (
 					<NoteItemCreate
