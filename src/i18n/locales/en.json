@@ -82,6 +82,11 @@
 		"author": "Author",
 		"toLanguagePage": "Explore it"
 	},
+	"notePage": {
+		"editButton": "Edit",
+		"confirmChanges": "Confirm changes",
+		"cancelChanges": "Cancel"
+	},
 	"notesList": {
 		"title": "Notes",
 		"toCreate": "Create a note"

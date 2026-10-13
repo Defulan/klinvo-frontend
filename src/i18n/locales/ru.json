@@ -82,6 +82,11 @@
 		"author": "Автор",
 		"toLanguagePage": "Перейти"
 	},
+	"notePage": {
+		"editButton": "Редактировать",
+		"confirmChanges": "Применить изменения",
+		"cancelChanges": "Отменить"
+	},
 	"notesList": {
 		"title": "Заметки",
 		"toCreate": "Создать заметку"
