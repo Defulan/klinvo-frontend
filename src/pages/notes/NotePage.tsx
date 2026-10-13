@@ -7,6 +7,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import type { Language } from "../../lib/types/language";
 
 interface NoteEditForm {
 	title: string | null;
@@ -23,6 +24,7 @@ function NotePage() {
 	} = useForm<NoteEditForm>();
 	const { noteId } = useParams<{ noteId: string }>();
 	const [note, setNote] = useState<Note | null>(null);
+	const [language, setLanguage] = useState<Language | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const [isEditing, setIsEditing] = useState(false);
 	const navigate = useNavigate();
@@ -44,11 +46,22 @@ function NotePage() {
 	}, [fetchNote]);
 
 	useEffect(() => {
+		const fetchLanguage = async () => {
+			if (note) {
+				try {
+					const response = await api.get<Language>(`/languages/${note.id}`);
+					setLanguage(response.data);
+				} catch (error) {
+					console.error(error);
+				}
+			}
+		};
 		if (note) {
 			reset({
 				title: note.title,
 				content: note.content,
 			});
+			fetchLanguage();
 		}
 	}, [reset, note]);
 
