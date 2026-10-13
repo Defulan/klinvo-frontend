@@ -8,7 +8,7 @@ import type { Language } from "../../lib/types/language";
 import type { User } from "../../lib/types/user";
 import LanguageEditComponent from "./components/LanguageEdit";
 import useTitle from "../../hooks/useTitle";
-import LanguageNotesComponent from "./components/LanguageNotes";
+import LanguageNotesComponent from "../notes/LanguageNotes";
 
 function ViewLanguagePage() {
 	const { languageId } = useParams<{ languageId: string }>();
