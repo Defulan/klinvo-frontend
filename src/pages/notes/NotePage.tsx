@@ -98,6 +98,7 @@ function NotePage() {
 				<div>
 					<label>
 						<span>{t("notePage.titleLabel")}</span>
+						{errors.title && <div className="error-form-text"> {errors.title.message}</div>}
 						<input
 							className="form-control"
 							type="text"
