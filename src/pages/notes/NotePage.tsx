@@ -134,7 +134,9 @@ function NotePage() {
 			</ul>
 			{watchingButtons}
 
-			<Markdown remarkPlugins={[remarkGfm]}>{note.content}</Markdown>
+			<div className="markdown-body">
+				<Markdown remarkPlugins={[remarkGfm]}>{note.content}</Markdown>
+			</div>
 		</>
 	);
 }
