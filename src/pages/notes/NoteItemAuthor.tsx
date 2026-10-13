@@ -36,6 +36,7 @@ function NoteItemAuthor({ note, onDelete }: NoteItemAuthorProps) {
 			setIsDisabled(true);
 			setIsDeletionClicked(true);
 			setTimeoutDelay(2000);
+			return;
 		}
 
 		deleteNote();
