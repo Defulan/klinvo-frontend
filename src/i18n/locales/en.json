@@ -86,6 +86,9 @@
 		"title": "Notes",
 		"toCreate": "Create a note"
 	},
+	"noteItemAuthor": {
+		"onDeletion": "Are you sure?"
+	},
 	"noteItemCreate": {
 		"titleLabel": "Note title:",
 		"titleRequired": "Title is required",
