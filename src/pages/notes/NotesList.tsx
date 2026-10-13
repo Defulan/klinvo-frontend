@@ -56,17 +56,30 @@ function NotesListComponent({ language, isAuthor }: NotesListProps) {
 		return;
 	}
 
+	if (isAuthor) {
+		return (
+			<>
+				<div className="fs-4 fw-medium">{t("notesList.title")}</div>
+				<ul className="list-group">
+					{notes.map((note) => (
+						<NoteItemAuthor key={note.id} note={note} onDelete={onNoteDelete} />
+					))}
+					{isCreatingActive && (
+						<NoteItemCreate languageId={language.id} onCancel={onCreationCancel} onCreation={onCreationSuccess} />
+					)}
+					{!isCreatingActive && toCreateItem}
+				</ul>
+			</>
+		);
+	}
+
 	return (
 		<>
 			<div className="fs-4 fw-medium">{t("notesList.title")}</div>
 			<ul className="list-group">
-				{!isAuthor
-					? notes.map((note) => <NoteItem key={note.id} note={note} />)
-					: notes.map((note) => <NoteItemAuthor key={note.id} note={note} onDelete={onNoteDelete} />)}
-				{isAuthor && isCreatingActive && (
-					<NoteItemCreate languageId={language.id} onCancel={onCreationCancel} onCreation={onCreationSuccess} />
-				)}
-				{isAuthor && !isCreatingActive && toCreateItem}
+				{notes.map((note) => (
+					<NoteItem key={note.id} note={note} />
+				))}
 			</ul>
 		</>
 	);
