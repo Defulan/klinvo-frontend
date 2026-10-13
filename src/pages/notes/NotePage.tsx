@@ -49,7 +49,7 @@ function NotePage() {
 		const fetchLanguage = async () => {
 			if (note) {
 				try {
-					const response = await api.get<Language>(`/languages/${note.id}`);
+					const response = await api.get<Language>(`/languages/${note.languageId}`);
 					setLanguage(response.data);
 				} catch (error) {
 					console.error(error);
