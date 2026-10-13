@@ -58,7 +58,7 @@ function NotesListComponent({ language, isAuthor }: NotesListProps) {
 					<NoteItem key={note.id} note={note} />
 				))}
 				{isAuthor && isCreatingActive && (
-					<NoteItemCreate languageId={language.id} onClose={onCreationCancel} onCreation={onCreationSuccess} />
+					<NoteItemCreate languageId={language.id} onCancel={onCreationCancel} onCreation={onCreationSuccess} />
 				)}
 				{isAuthor && !isCreatingActive && toCreateItem}
 			</ul>

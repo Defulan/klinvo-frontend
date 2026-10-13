@@ -8,11 +8,11 @@ interface NoteCreateForm {
 
 interface NoteItemCreateProps {
 	languageId: number;
-	onClose: () => void;
+	onCancel: () => void;
 	onCreation: () => void;
 }
 
-function NoteItemCreate({ languageId, onClose, onCreation }: NoteItemCreateProps) {
+function NoteItemCreate({ languageId, onCancel, onCreation }: NoteItemCreateProps) {
 	const {
 		register,
 		handleSubmit,
@@ -54,7 +54,7 @@ function NoteItemCreate({ languageId, onClose, onCreation }: NoteItemCreateProps
 					<i className="bi bi-plus-circle"></i>
 				</button>
 			</form>
-			<button type="button" className="btn-close" aria-label="Close" onClick={onClose}></button>
+			<button type="button" className="btn-close" aria-label="Close" onClick={onCancel}></button>
 		</li>
 	);
 }
