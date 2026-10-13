@@ -33,7 +33,6 @@ function NoteItemCreate({ languageId, onCancel, onCreation }: NoteItemCreateProp
 		<li className="list-group-item d-flex align-items-center">
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<label>
-					{errors.title && <div className="error-form-text"> {errors.title.message}</div>}
 					<input
 						placeholder={t("noteItemCreate.titleLabel")}
 						type="text"
