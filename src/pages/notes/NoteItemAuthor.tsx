@@ -32,15 +32,25 @@ function NoteItemAuthor({ note, onDelete }: NoteItemAuthorProps) {
 		onDelete();
 	};
 
+	const disabledDeleteButton = (
+		<button type="button" className="btn border-0" onClick={onDeleteClick} disabled={true}>
+			<i className="bi bi-trash"></i>
+		</button>
+	);
+
+	const deleteButton = (
+		<button type="button" className="btn" onClick={onDeleteClick}>
+			<i className="bi bi-trash-fill"></i>
+		</button>
+	);
+
 	return (
 		<li className="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
 			<Link to={`/notes/${note.id}`} className="fw-medium text-decoration-none text-break flex-grow-1">
 				{note.title}
 			</Link>
 			{isDeletionClicked && <div>{t("noteItemAuthor.onDeletion")}</div>}
-			<button type="button" className="btn" onClick={onDeleteClick} disabled={isDisabled}>
-				<i className="bi bi-trash-fill"></i>
-			</button>
+			{isDisabled ? disabledDeleteButton : deleteButton}
 		</li>
 	);
 }
