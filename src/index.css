@@ -17,6 +17,10 @@ textarea {
 	grid-template-rows: auto 1fr auto;
 }
 
+.note-content-edit {
+	height: 400px;
+}
+
 .error-form-text {
 	font-size: 0.9rem;
 	color: darkgray;
