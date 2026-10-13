@@ -3,6 +3,7 @@ import type { Note } from "../../lib/types/note";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useTimeout } from "usehooks-ts";
+import api from "../../lib/api";
 
 interface NoteItemAuthorProps {
 	note: Note;
@@ -20,6 +21,14 @@ function NoteItemAuthor({ note, onDelete }: NoteItemAuthorProps) {
 		setTimeoutDelay(null);
 	}, timeoutDelay);
 
+	const deleteNote = async () => {
+		try {
+			await api.delete(`/notes/${note.id}`);
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	const onDeleteClick = () => {
 		if (isDisabled) return;
 
@@ -29,6 +38,7 @@ function NoteItemAuthor({ note, onDelete }: NoteItemAuthorProps) {
 			setTimeoutDelay(2000);
 		}
 
+		deleteNote();
 		onDelete();
 	};
 
