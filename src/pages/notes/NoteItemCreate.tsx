@@ -31,7 +31,7 @@ function NoteItemCreate({ languageId, onCancel, onCreation }: NoteItemCreateProp
 
 	return (
 		<li className="list-group-item d-flex align-items-center">
-			<form onSubmit={handleSubmit(onSubmit)}>
+			<form onSubmit={handleSubmit(onSubmit)} className="d-flex align-items-center justify-content-between flex-grow-1">
 				<label>
 					<input
 						placeholder={t("noteItemCreate.titleLabel")}
