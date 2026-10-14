@@ -8,7 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import type { Language } from "../../lib/types/language";
 import EditorBar from "../../components/EditorBar";
-import { getSelected } from "../../lib/textWrapping";
+import { getSelected, wrapSelectedText } from "../../lib/textWrapping";
 
 interface NoteEditForm {
 	title: string | null;
@@ -96,30 +96,6 @@ function NotePageEditing() {
 	};
 
 	const { ref: registerRef, ...contentRest } = register("content");
-
-	const wrapSelectedText = (
-		textArea: HTMLTextAreaElement,
-		key: string,
-		before: string | null = null,
-		after: string | null = null,
-	) => {
-		if (!before) before = key;
-		if (!after) after = before;
-
-		const start = textArea.selectionStart;
-		const end = textArea.selectionEnd;
-		const selected = getSelected(textArea);
-
-		const replacement = `${before}${selected}${after}`;
-		const cursorPositionEndAdd = before.length + after.length;
-
-		textArea.setRangeText(replacement, start, end, "preserve");
-
-		setTimeout(() => {
-			textArea.focus();
-			textArea.setSelectionRange(start, end + cursorPositionEndAdd);
-		});
-	};
 
 	const wrapKeysAndValues: Record<string, string | [string, string, string]> = {
 		"(": ["(", "(", ")"],
