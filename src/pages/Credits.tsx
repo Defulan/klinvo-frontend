@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import klinvoIcon from "../assets/nounLanguage.svg";
-import notePopup from "../assets/notePopup.svg";
+import notePopover from "../assets/notePopover.svg";
 import useTitle from "../hooks/useTitle";
 
 function Credits() {
@@ -27,7 +27,7 @@ function Credits() {
 			</p>
 			<br />
 			<p className="credits-p">
-				<img alt="" src={notePopup} width={32} height={32} className="d-inline-block align-text-top" />
+				<img alt="" src={notePopover} width={32} height={32} className="d-inline-block align-text-top" />
 				<span>
 					popup by Gregor Cresnar from
 					<a
