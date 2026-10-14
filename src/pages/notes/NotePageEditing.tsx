@@ -156,17 +156,6 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 		}
 	};
 
-	const editorButtons = (
-		<>
-			<button className="btn btn-dark btn-sm" type="submit">
-				{t("notePage.confirmChanges")}
-			</button>
-			<button className="btn btn-danger btn-sm" type="button" onClick={handleCancelEditing}>
-				{t("notePage.cancelChanges")}
-			</button>
-		</>
-	);
-
 	const editorBar = (
 		<div className="d-flex bg-body-secondary align-items-center justify-content-between border border-2">
 			<div>
