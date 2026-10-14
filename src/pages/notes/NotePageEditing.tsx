@@ -7,6 +7,8 @@ import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import type { Language } from "../../lib/types/language";
+import EditorBar from "../../components/EditorBar";
+import { getSelected, getWrapValue, wrapSelectedText } from "../../lib/textWrapping";
 
 interface NoteEditForm {
 	title: string | null;
@@ -95,130 +97,36 @@ function NotePageEditing() {
 
 	const { ref: registerRef, ...contentRest } = register("content");
 
-	const onWrapKeyDown = (key: string, before: string | null = null, after: string | null = null) => {
-		if (!before) before = key;
-		if (!after) after = before;
-
-		const textArea = textAreaRef.current;
-		if (!textArea) return;
-
-		const start = textArea.selectionStart;
-		const end = textArea.selectionEnd;
-
-		let replacement: string;
-		let cursorPositionStartAdd: number = 0;
-		let cursorPositionEndAdd: number;
-
-		if (start === end) {
-			replacement = key;
-
-			cursorPositionStartAdd = key.length;
-			cursorPositionEndAdd = key.length;
-		} else {
-			const selectedText = textArea.value.substring(start, end);
-			replacement = `${before}${selectedText}${after}`;
-
-			cursorPositionEndAdd = before.length + after.length;
-		}
-
-		textArea.setRangeText(replacement, start, end, "preserve");
-		setValue("content", textArea.value, { shouldDirty: true, shouldValidate: true });
-
-		setTimeout(() => {
-			textArea.focus();
-			textArea.setSelectionRange(start + cursorPositionStartAdd, end + cursorPositionEndAdd);
-		});
-	};
-
 	const handleOnKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-		if (event.shiftKey) {
-			switch (event.code) {
-				case "BracketLeft":
-					if (event.key !== "{") return;
+		const textArea = textAreaRef.current;
+		if (!textArea || !getSelected(textArea)) {
+			return;
+		}
 
-					event.preventDefault();
-					onWrapKeyDown("{", "{", "}");
-					break;
+		const wrapValue = getWrapValue(event.key);
 
-				case "Comma":
-					if (event.key !== "<") return;
+		if (!wrapValue) {
+			return;
+		}
 
-					event.preventDefault();
-					onWrapKeyDown("<", "<", ">");
-					break;
-			}
+		event.preventDefault();
+
+		if (Array.isArray(wrapValue)) {
+			wrapSelectedText(textArea, ...wrapValue);
 		} else {
-			switch (event.code) {
-				case "BracketLeft":
-					if (event.key !== "[") return;
-
-					event.preventDefault();
-					onWrapKeyDown("[", "[", "]");
-					break;
-			}
+			wrapSelectedText(textArea, wrapValue);
 		}
-
-		switch (event.key) {
-			case "*":
-				event.preventDefault();
-				onWrapKeyDown("*");
-				break;
-
-			case "_":
-				event.preventDefault();
-				onWrapKeyDown("_");
-				break;
-
-			case "`":
-				event.preventDefault();
-				onWrapKeyDown("`");
-				break;
-
-			case "'":
-				event.preventDefault();
-				onWrapKeyDown("'");
-				break;
-
-			case '"':
-				event.preventDefault();
-				onWrapKeyDown('"');
-				break;
-
-			case "~":
-				event.preventDefault();
-				onWrapKeyDown("~");
-				break;
-
-			case "(":
-				event.preventDefault();
-				onWrapKeyDown("(", "(", ")");
-				break;
-		}
+		setValue("content", textArea.value, { shouldDirty: true, shouldValidate: true });
 	};
 
-	const editorBar = (
-		<div className="d-flex bg-body-secondary align-items-center justify-content-between border border-2">
-			<div>
-				<button type="button" className="btn border-0 fs-5" onClick={() => onWrapKeyDown("**")}>
-					<i className="bi bi-type-bold"></i>
-				</button>
-				<button type="button" className="btn border-0 fs-5" onClick={() => onWrapKeyDown("_")}>
-					<i className="bi bi-type-italic"></i>
-				</button>
-				<button type="button" className="btn border-0 fs-5" onClick={() => onWrapKeyDown("~~")}>
-					<i className="bi bi-type-strikethrough"></i>
-				</button>
-			</div>
-			<div className="d-flex gap-1 pe-2">
-				<button className="btn btn-danger border-0 btn-sm" type="button" onClick={handleCancelEditing}>
-					{t("notePageEdit.cancelChanges")}
-				</button>
-				<button className="btn btn-dark border-0 btn-sm" type="submit">
-					{t("notePageEdit.confirmChanges")}
-				</button>
-			</div>
-		</div>
-	);
+	const onWrapButtonClick = (wrapWith: string) => {
+		if (!getSelected || !textAreaRef.current) {
+			return;
+		}
+
+		wrapSelectedText(textAreaRef.current, wrapWith);
+		setValue("content", textAreaRef.current.value, { shouldDirty: true, shouldValidate: true });
+	};
 
 	if (isContextLoading || isLoading) {
 		return;
@@ -252,7 +160,7 @@ function NotePageEditing() {
 				</label>
 			</div>
 			<label>
-				{editorBar}
+				<EditorBar onWrapButtonClick={onWrapButtonClick} onEditingCancel={handleCancelEditing} />
 				<textarea
 					placeholder={t("notePageEdit.contentPlaceholder")}
 					{...contentRest}
