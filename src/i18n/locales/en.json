@@ -92,6 +92,7 @@
 		"titleRequired": "Title is required",
 		"titleTooShort": "Title is too short (1-255)",
 		"titleTooLong": "Title is too long (1-255)",
+		"contentPlaceholder": "Start writing something...",
 		"confirmChanges": "Confirm changes",
 		"cancelChanges": "Cancel"
 	},

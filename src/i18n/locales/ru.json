@@ -92,6 +92,7 @@
 		"titleRequired": "Заголовок обязателен",
 		"titleTooShort": "Заголовок слишком короткий (1-255)",
 		"titleTooLong": "Заголовок слишком длинный (1-255)",
+		"contentPlaceholder": "Начните писать что-либо...",
 		"confirmChanges": "Применить изменения",
 		"cancelChanges": "Отменить"
 	},
