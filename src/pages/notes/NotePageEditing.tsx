@@ -97,6 +97,12 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 				event.preventDefault();
 				onSpecialKeyDown("*");
 				break;
+
+			case "_":
+				event.preventDefault();
+				onSpecialKeyDown("_");
+				break;
+
 			case "(":
 				event.preventDefault();
 				onSpecialKeyDown("(", "(", ")");
