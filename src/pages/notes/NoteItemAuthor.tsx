@@ -3,11 +3,8 @@ import type { Note } from "../../lib/types/note";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useTimeout } from "usehooks-ts";
-import notePopover from "../../assets/notePopover.svg";
 import api from "../../lib/api";
-import { OverlayTrigger, Popover } from "react-bootstrap";
-import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import NotePopoverButton from "./NotePopoverButton";
 
 interface NoteItemAuthorProps {
 	note: Note;
@@ -59,26 +56,9 @@ function NoteItemAuthor({ note, onDelete }: NoteItemAuthorProps) {
 		</button>
 	);
 
-	const popover = (
-		<Popover id={`popover-${note.id}`}>
-			<Popover.Header as="h3">{note.title}</Popover.Header>
-			<Popover.Body className="markdown-body popover-overflow">
-				<Markdown remarkPlugins={[remarkGfm]}>{note.content}</Markdown>
-			</Popover.Body>
-		</Popover>
-	);
-
-	const popoverButton = (
-		<OverlayTrigger trigger="click" placement="left" overlay={popover} rootClose>
-			<button type="button" className="btn p-0 border-0">
-				<img alt="" src={notePopover} width={28} height={28} className="d-inline-block mx-1" />
-			</button>
-		</OverlayTrigger>
-	);
-
 	return (
 		<li className="list-group-item list-group-item-action d-flex align-items-center justify-content-between px-2 gap-1">
-			{popoverButton}
+			<NotePopoverButton note={note} />
 			<Link to={`/notes/${note.id}`} className="fw-medium text-decoration-none text-break flex-grow-1">
 				{note.title}
 			</Link>
