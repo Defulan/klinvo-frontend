@@ -174,7 +174,7 @@ function NotePageEditing() {
 
 	const editorBar = (
 		<div className="d-flex bg-body-secondary align-items-center justify-content-between border border-2">
-			<div>
+			{/* <div>
 				<button type="button" className="btn border-0 fs-5" onClick={() => onWrapKeyDown("**")}>
 					<i className="bi bi-type-bold"></i>
 				</button>
@@ -184,7 +184,7 @@ function NotePageEditing() {
 				<button type="button" className="btn border-0 fs-5" onClick={() => onWrapKeyDown("~~")}>
 					<i className="bi bi-type-strikethrough"></i>
 				</button>
-			</div>
+			</div> */}
 			<div className="d-flex gap-1 pe-2">
 				<button className="btn btn-danger border-0 btn-sm" type="button" onClick={handleCancelEditing}>
 					{t("notePageEdit.cancelChanges")}
