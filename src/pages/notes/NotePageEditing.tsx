@@ -88,7 +88,7 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 			<label>
 				<textarea className="form-control note-content-edit" {...register("content")} />
 			</label>
-			<div>{editorButtons}</div>
+			<div className="d-flex gap-1">{editorButtons}</div>
 		</form>
 	);
 }
