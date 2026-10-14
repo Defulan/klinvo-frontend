@@ -103,6 +103,26 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 				onWrapKeyDown("_");
 				break;
 
+			case "`":
+				event.preventDefault();
+				onWrapKeyDown("`");
+				break;
+
+			case "'":
+				event.preventDefault();
+				onWrapKeyDown("'");
+				break;
+
+			case '"':
+				event.preventDefault();
+				onWrapKeyDown('"');
+				break;
+
+			case "~":
+				event.preventDefault();
+				onWrapKeyDown("~");
+				break;
+
 			case "(":
 				event.preventDefault();
 				onWrapKeyDown("(", "(", ")");
