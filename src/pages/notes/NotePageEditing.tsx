@@ -8,7 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import type { Language } from "../../lib/types/language";
 import EditorBar from "../../components/EditorBar";
-import { getSelected, wrapSelectedText } from "../../lib/textWrapping";
+import { getSelected, getWrapValue, wrapSelectedText } from "../../lib/textWrapping";
 
 interface NoteEditForm {
 	title: string | null;
@@ -97,24 +97,11 @@ function NotePageEditing() {
 
 	const { ref: registerRef, ...contentRest } = register("content");
 
-	const wrapKeysAndValues: Record<string, string | [string, string, string]> = {
-		"(": ["(", "(", ")"],
-		"{": ["{", "{", "}"],
-		"<": ["<", "<", ">"],
-		"[": ["[", "[", "]"],
-		"*": "*",
-		_: "_",
-		"`": "`",
-		"'": "'",
-		'"': '"',
-		"~": "~",
-	};
-
 	const handleOnKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
 		const textArea = textAreaRef.current;
 		if (!textArea || !getSelected(textArea)) return;
 
-		const wrapValue = wrapKeysAndValues[event.key];
+		const wrapValue = getWrapValue(event.key);
 
 		if (!wrapValue) {
 			return;
