@@ -73,7 +73,7 @@ function NotePage() {
 
 	return (
 		<>
-			<h1>{note.title}</h1>
+			<h1 className="text-break">{note.title}</h1>
 			<ul>
 				<li>
 					{t("notePage.createdAtItem")} {dayjs(note.createdAt).format("lll")}
