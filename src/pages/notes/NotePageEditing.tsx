@@ -67,16 +67,28 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 		const end = textArea.selectionEnd;
 
 		let replacement: string;
+		let cursorPositionStartAdd: number = 0;
+		let cursorPositionEndAdd: number;
 
 		if (start === end) {
 			replacement = key;
+
+			cursorPositionStartAdd = key.length;
+			cursorPositionEndAdd = key.length;
 		} else {
 			const selectedText = textArea.value.substring(start, end);
 			replacement = `${before}${selectedText}${after}`;
+
+			cursorPositionEndAdd = before.length + after.length;
 		}
 
 		textArea.setRangeText(replacement, start, end, "preserve");
 		setValue("content", textArea.value, { shouldDirty: true, shouldValidate: true });
+
+		setTimeout(() => {
+			textArea.focus();
+			textArea.setSelectionRange(start + cursorPositionStartAdd, end + cursorPositionEndAdd);
+		});
 	};
 
 	const handleOnKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
