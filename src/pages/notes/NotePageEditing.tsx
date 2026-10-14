@@ -228,7 +228,7 @@ function NotePageEditing() {
 	}
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column gap-2">
+		<form onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column gap-3">
 			<div>
 				<label className="w-100">
 					<span>{t("notePage.titleLabel")}</span>
