@@ -99,7 +99,9 @@ function NotePageEditing() {
 
 	const handleOnKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
 		const textArea = textAreaRef.current;
-		if (!textArea || !getSelected(textArea)) return;
+		if (!textArea || !getSelected(textArea)) {
+			return;
+		}
 
 		const wrapValue = getWrapValue(event.key);
 
