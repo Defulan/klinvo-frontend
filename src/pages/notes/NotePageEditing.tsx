@@ -132,58 +132,31 @@ function NotePageEditing() {
 	const handleOnKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
 		if (!textAreaRef.current) return;
 
-		switch (event.key) {
-			case "*":
-				event.preventDefault();
-				onWrapKeyDown("*");
-				break;
+		const wrapKeysAndValues: Record<string, string | [string, string, string]> = {
+			"(": ["(", "(", ")"],
+			"{": ["{", "{", "}"],
+			"<": ["<", "<", ">"],
+			"[": ["[", "[", "]"],
+			"*": "*",
+			_: "_",
+			"`": "`",
+			"'": "'",
+			'"': '"',
+			"~": "~",
+		};
 
-			case "_":
-				event.preventDefault();
-				onWrapKeyDown("_");
-				break;
+		const wrapValue = wrapKeysAndValues[event.key];
 
-			case "`":
-				event.preventDefault();
-				onWrapKeyDown("`");
-				break;
+		if (wrapValue) {
+			event.preventDefault();
 
-			case "'":
-				event.preventDefault();
-				onWrapKeyDown("'");
-				break;
-
-			case '"':
-				event.preventDefault();
-				onWrapKeyDown('"');
-				break;
-
-			case "~":
-				event.preventDefault();
-				onWrapKeyDown("~");
-				break;
-
-			case "(":
-				event.preventDefault();
-				onWrapKeyDown("(", "(", ")");
-				break;
-
-			case "[":
-				event.preventDefault();
-				onWrapKeyDown("[", "[", "]");
-				break;
-
-			case "<":
-				event.preventDefault();
-				onWrapKeyDown("<", "<", ">");
-				break;
-
-			case "{":
-				event.preventDefault();
-				onWrapKeyDown("{", "{", "}");
-				break;
+			if (Array.isArray(wrapValue)) {
+				onWrapKeyDown(...wrapValue);
+			} else {
+				onWrapKeyDown(wrapValue);
+			}
+			setValue("content", textAreaRef.current.value, { shouldDirty: true, shouldValidate: true });
 		}
-		setValue("content", textAreaRef.current.value, { shouldDirty: true, shouldValidate: true });
 	};
 
 	const editorBar = (
