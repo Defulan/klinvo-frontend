@@ -162,6 +162,15 @@ function NotePageEditing() {
 		setValue("content", textAreaRef.current.value, { shouldDirty: true, shouldValidate: true });
 	};
 
+	const onWrapButtonClick = (wrapWith: string) => {
+		if (!getSelected || !textAreaRef.current) {
+			return;
+		}
+
+		wrapText(textAreaRef.current, wrapWith);
+		setValue("content", textAreaRef.current.value, { shouldDirty: true, shouldValidate: true });
+	};
+
 	const editorBar = (
 		<div className="d-flex bg-body-secondary align-items-center justify-content-between border border-2">
 			{/* <div>
