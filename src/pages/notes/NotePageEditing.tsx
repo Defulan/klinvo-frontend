@@ -253,6 +253,7 @@ function NotePageEditing() {
 			<label>
 				{editorBar}
 				<textarea
+					placeholder={t("notePage.contentPlaceholder")}
 					{...contentRest}
 					ref={(e) => {
 						registerRef(e);
