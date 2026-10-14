@@ -59,7 +59,8 @@ klinvo-frontend
 │  │   ├─ types/ - TypeScript типы
 │  │   ├─ api.ts - настройка REST API
 │  │   ├─ dayjs.ts - настройка библиотеки dayjs
-│  │   └─ errorDetails.ts - оформление сообщений об ошибках
+│  │   ├─ errorDetails.ts - оформление сообщений об ошибках
+│  │   └─ textWrapping.ts - выделение и обёртывание текста
 │  ├─ pages/ - Все страницы и связанные с ними компоненты
 │  │   ├─ account/
 │  │   ├─ language/
