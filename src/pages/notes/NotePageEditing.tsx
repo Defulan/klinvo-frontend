@@ -175,6 +175,9 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 			<button type="button" className="btn border-0 fs-5" onClick={() => onWrapKeyDown("_")}>
 				<i className="bi bi-type-italic"></i>
 			</button>
+			<button type="button" className="btn border-0 fs-5" onClick={() => onWrapKeyDown("~~")}>
+				<i className="bi bi-type-strikethrough"></i>
+			</button>
 		</div>
 	);
 
