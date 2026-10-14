@@ -145,11 +145,7 @@ function NotePageEditing() {
 
 		const wrapValue = wrapKeysAndValues[event.key];
 
-		if (!wrapValue) {
-			return;
-		}
-
-		if (!getSelected(textArea)) {
+		if (!wrapValue || !getSelected(textArea)) {
 			return;
 		}
 
