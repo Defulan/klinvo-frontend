@@ -132,6 +132,11 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 				event.preventDefault();
 				onWrapKeyDown("[", "[", "]");
 				break;
+
+			case "{":
+				event.preventDefault();
+				onWrapKeyDown("{", "{", "}");
+				break;
 		}
 	};
 
