@@ -102,37 +102,27 @@ function NotePageEditing() {
 		return textArea.value.substring(start, end);
 	};
 
-	const onWrapKeyDown = (key: string, before: string | null = null, after: string | null = null) => {
+	const wrapText = (
+		textArea: HTMLTextAreaElement,
+		key: string,
+		before: string | null = null,
+		after: string | null = null,
+	) => {
 		if (!before) before = key;
 		if (!after) after = before;
-
-		const textArea = textAreaRef.current;
-		if (!textArea) return;
 
 		const start = textArea.selectionStart;
 		const end = textArea.selectionEnd;
 		const selected = getSelected(textArea);
 
-		let replacement: string;
-		let cursorPositionStartAdd: number = 0;
-		let cursorPositionEndAdd: number;
-
-		if (!selected) {
-			replacement = key;
-
-			cursorPositionStartAdd = key.length;
-			cursorPositionEndAdd = key.length;
-		} else {
-			replacement = `${before}${selected}${after}`;
-
-			cursorPositionEndAdd = before.length + after.length;
-		}
+		const replacement = `${before}${selected}${after}`;
+		const cursorPositionEndAdd = before.length + after.length;
 
 		textArea.setRangeText(replacement, start, end, "preserve");
 
 		setTimeout(() => {
 			textArea.focus();
-			textArea.setSelectionRange(start + cursorPositionStartAdd, end + cursorPositionEndAdd);
+			textArea.setSelectionRange(start, end + cursorPositionEndAdd);
 		});
 	};
 
@@ -165,9 +155,9 @@ function NotePageEditing() {
 		event.preventDefault();
 
 		if (Array.isArray(wrapValue)) {
-			onWrapKeyDown(...wrapValue);
+			wrapText(textAreaRef.current, ...wrapValue);
 		} else {
-			onWrapKeyDown(wrapValue);
+			wrapText(textAreaRef.current, wrapValue);
 		}
 		setValue("content", textAreaRef.current.value, { shouldDirty: true, shouldValidate: true });
 	};
