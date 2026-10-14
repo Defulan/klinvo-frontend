@@ -76,11 +76,6 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 
 			textArea.setRangeText(replacement, start, end, "preserve");
 			setValue("content", textArea.value, { shouldDirty: true, shouldValidate: true });
-
-			setTimeout(() => {
-				textArea.focus();
-				textArea.setSelectionRange(start + 1, end + 1);
-			});
 		}
 	};
 
