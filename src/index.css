@@ -1,6 +1,11 @@
 textarea {
 	height: 150px;
 }
+.markdown-body pre,
+.markdown-body code {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
 
 .markdown-body ul.contains-task-list {
 	list-style: none;
