@@ -56,45 +56,33 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 
 	const { ref: registerRef, ...contentRest } = register("content");
 
+	const onSpecialKeyDown = (key: string, before: string, after: string) => {
+		const textArea = textAreaRef.current;
+		if (!textArea) return;
+
+		const start = textArea.selectionStart;
+		const end = textArea.selectionEnd;
+
+		let replacement: string;
+
+		if (start === end) {
+			replacement = key;
+		} else {
+			const selectedText = textArea.value.substring(start, end);
+			replacement = `${before}${selectedText}${after}`;
+		}
+
+		textArea.setRangeText(replacement, start, end, "preserve");
+		setValue("content", textArea.value, { shouldDirty: true, shouldValidate: true });
+	};
+
 	const handleOnKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
 		if (event.key === "*") {
 			event.preventDefault();
-			const textArea = textAreaRef.current;
-			if (!textArea) return;
-
-			const start = textArea.selectionStart;
-			const end = textArea.selectionEnd;
-
-			let replacement: string;
-
-			if (start === end) {
-				replacement = "*";
-			} else {
-				const selectedText = textArea.value.substring(start, end);
-				replacement = `*${selectedText}*`;
-			}
-
-			textArea.setRangeText(replacement, start, end, "preserve");
-			setValue("content", textArea.value, { shouldDirty: true, shouldValidate: true });
+			onSpecialKeyDown("*", "*", "*");
 		} else if (event.key === "(") {
 			event.preventDefault();
-			const textArea = textAreaRef.current;
-			if (!textArea) return;
-
-			const start = textArea.selectionStart;
-			const end = textArea.selectionEnd;
-
-			let replacement: string;
-
-			if (start === end) {
-				replacement = "(";
-			} else {
-				const selectedText = textArea.value.substring(start, end);
-				replacement = `(${selectedText})`;
-			}
-
-			textArea.setRangeText(replacement, start, end, "preserve");
-			setValue("content", textArea.value, { shouldDirty: true, shouldValidate: true });
+			onSpecialKeyDown("(", "(", ")");
 		}
 	};
 
