@@ -44,6 +44,7 @@ textarea {
 
 .note-content-edit {
 	height: 400px;
+	resize: none;
 }
 
 .error-form-text {
