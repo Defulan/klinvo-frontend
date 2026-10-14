@@ -62,7 +62,7 @@ function NoteItemAuthor({ note, onDelete }: NoteItemAuthorProps) {
 	const popover = (
 		<Popover id={`popover-${note.id}`}>
 			<Popover.Header as="h3">{note.title}</Popover.Header>
-			<Popover.Body>
+			<Popover.Body className="markdown-body">
 				<Markdown remarkPlugins={[remarkGfm]}>{note.content}</Markdown>
 			</Popover.Body>
 		</Popover>
