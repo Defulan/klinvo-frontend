@@ -210,10 +210,10 @@ function NotePageEditing() {
 			</div>
 			<div className="d-flex gap-1 pe-2">
 				<button className="btn btn-danger border-0 btn-sm" type="button" onClick={handleCancelEditing}>
-					{t("notePage.cancelChanges")}
+					{t("notePageEdit.cancelChanges")}
 				</button>
 				<button className="btn btn-dark border-0 btn-sm" type="submit">
-					{t("notePage.confirmChanges")}
+					{t("notePageEdit.confirmChanges")}
 				</button>
 			</div>
 		</div>
@@ -231,20 +231,20 @@ function NotePageEditing() {
 		<form onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column gap-3">
 			<div>
 				<label className="w-100">
-					<span>{t("notePage.titleLabel")}</span>
+					<span>{t("notePageEdit.titleLabel")}</span>
 					{errors.title && <div className="error-form-text"> {errors.title.message}</div>}
 					<input
 						className="form-control"
 						type="text"
 						{...register("title", {
-							required: t("notePage.titleRequired"),
+							required: t("notePageEdit.titleRequired"),
 							minLength: {
 								value: 1,
-								message: t("notePage.titleTooShort"),
+								message: t("notePageEdit.titleTooShort"),
 							},
 							maxLength: {
 								value: 255,
-								message: t("notePage.titleTooLong"),
+								message: t("notePageEdit.titleTooLong"),
 							},
 						})}
 					/>
@@ -253,7 +253,7 @@ function NotePageEditing() {
 			<label>
 				{editorBar}
 				<textarea
-					placeholder={t("notePage.contentPlaceholder")}
+					placeholder={t("notePageEdit.contentPlaceholder")}
 					{...contentRest}
 					ref={(e) => {
 						registerRef(e);

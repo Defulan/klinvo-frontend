@@ -83,13 +83,15 @@
 		"toLanguagePage": "Перейти"
 	},
 	"notePage": {
+		"createdAtItem": "Создана:",
+		"languageItem": "Язык заметки:",
+		"editButton": "Редактировать"
+	},
+	"notePageEdit": {
 		"titleLabel": "Название заметки",
 		"titleRequired": "Заголовок обязателен",
 		"titleTooShort": "Заголовок слишком короткий (1-255)",
 		"titleTooLong": "Заголовок слишком длинный (1-255)",
-		"createdAtItem": "Создана:",
-		"languageItem": "Язык заметки:",
-		"editButton": "Редактировать",
 		"confirmChanges": "Применить изменения",
 		"cancelChanges": "Отменить"
 	},
