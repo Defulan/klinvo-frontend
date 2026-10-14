@@ -167,6 +167,18 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 		</>
 	);
 
+	const editorBar = (
+		<div className="container bg-body-secondary">
+			<div className="row">
+				<div className="col">
+					<button type="button" className="btn fw-medium">
+						<i className="bi bi-type-bold"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	);
+
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column gap-2">
 			<div>
@@ -191,6 +203,7 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 				</label>
 			</div>
 			<label>
+				{editorBar}
 				<textarea
 					{...contentRest}
 					ref={(e) => {
