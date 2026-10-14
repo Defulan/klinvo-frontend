@@ -97,7 +97,7 @@ function NotePage() {
 					</li>
 				)}
 			</ul>
-			{watchingButtons}
+			{isAuthor && watchingButtons}
 			<hr />
 			<div className="markdown-body">
 				<Markdown remarkPlugins={[remarkGfm]}>{note.content}</Markdown>
