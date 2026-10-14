@@ -60,7 +60,14 @@ klinvo-frontend
 │  │   ├─ api.ts - REST API configuration
 │  │   ├─ dayjs.ts - set up dayjs library
 │  │   └─ errorDetails.ts - formatting error messages
-│  ├─ pages/ - React pages of the project
+│  ├─ pages/ - React pages of the project and related to them components
+│  │   ├─ account/
+│  │   ├─ language/
+│  │   ├─ notes/
+│  │   │
+│  │   ├─ Credits.tsx - attribution of authorship
+│  │   ├─ Home.tsx
+│  │   └─ NotFoundPage.tsx - undefined URL
 │  │
 │  ├─ App.tsx - layout of pages
 │  ├─ env.d.ts - TypeScript configuration for correct work of imported CSS
@@ -70,6 +77,7 @@ klinvo-frontend
 ├─ .env.example - example of the .env file
 ├─ .gitignore
 ├─ biome.json - Biome configuration
+├─ CHANGELOG.md - only in English
 ├─ index.html - HTML template
 ├─ LICENSE
 ├─ package-lock.json
@@ -91,9 +99,9 @@ Currently, the main goal is to bring the project to the MVP stage.
 - [x] Account settings page (user data editing)
 - [x] UI localization (English/Russian)
 - [x] Language page (description, notes section, navigation to dictionary)
-- [ ] Dictionary table (table design, categories, data editing)
-- [ ] Notes (creating, reading, formatting, changing)
 - [x] Design home page
+- [x] Notes ([More info...](https://github.com/Defulan/klinvo-frontend/issues/34))
+- [ ] Interactive dictionary table ([More info...](https://github.com/Defulan/klinvo-frontend/issues/35))
 
 ### Future Enhancements
 - [ ] Dark/light theme toggle

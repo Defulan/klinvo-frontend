@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import api from "../../lib/api";
 import type { Language } from "../../lib/types/language";
-import LanguageCard from "./LanguageCard";
+import LanguageCard from "./components/LanguageCard";
 import { useTranslation } from "react-i18next";
 import useTitle from "../../hooks/useTitle";
 
-function LanguagesPage() {
+function PublicLanguagesPage() {
 	const [languages, setLanguages] = useState<Language[] | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const { t } = useTranslation();
@@ -41,4 +41,4 @@ function LanguagesPage() {
 	);
 }
 
-export default LanguagesPage;
+export default PublicLanguagesPage;

@@ -82,6 +82,33 @@
 		"author": "Author",
 		"toLanguagePage": "Explore it"
 	},
+	"notePage": {
+		"createdAtItem": "Created at:",
+		"languageItem": "Note's language:",
+		"editButton": "Edit"
+	},
+	"notePageEdit": {
+		"titleLabel": "Note's title",
+		"titleRequired": "Title is required",
+		"titleTooShort": "Title is too short (1-255)",
+		"titleTooLong": "Title is too long (1-255)",
+		"contentPlaceholder": "Start writing something...",
+		"confirmChanges": "Confirm changes",
+		"cancelChanges": "Cancel"
+	},
+	"notesList": {
+		"title": "Notes",
+		"toCreate": "Create a note"
+	},
+	"noteItemAuthor": {
+		"onDeletion": "Are you sure?"
+	},
+	"noteItemCreate": {
+		"titleLabel": "Note title:",
+		"titleRequired": "Title is required",
+		"titleTooShort": "Title is too short (1-255)",
+		"titleTooLong": "Title is too long (1-255)"
+	},
 	"notFoundPage": {
 		"pageTitle": "404 — Page doesn't exist",
 		"title": "This page doesn't exist",

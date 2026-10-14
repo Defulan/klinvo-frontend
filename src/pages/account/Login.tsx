@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import api from "../../lib/api";
 import { getErrorDetails } from "../../lib/errorDetails";

@@ -14,14 +14,16 @@ import { ErrorBoundary } from "react-error-boundary";
 
 import Home from "./pages/Home";
 import NotFoundPage from "./pages/NotFoundPage";
+import NotePage from "./pages/notes/NotePage";
 const AccountPage = lazy(() => import("./pages/account/Account"));
 const AccountSettings = lazy(() => import("./pages/account/AccountSettings"));
 const Registration = lazy(() => import("./pages/account/Registration"));
 const Login = lazy(() => import("./pages/account/Login"));
 const Credits = lazy(() => import("./pages/Credits"));
 const CreateLanguagePage = lazy(() => import("./pages/language/CreateLanguage"));
-const LanguageView = lazy(() => import("./pages/language/LanguageView"));
-const LanguagesPage = lazy(() => import("./pages/language/LanguagesPage"));
+const ViewLanguagePage = lazy(() => import("./pages/language/ViewLanguage"));
+const PublicLanguagesPage = lazy(() => import("./pages/language/PublicLanguages"));
+const NotePageEditing = lazy(() => import("./pages/notes/NotePageEditing"));
 
 const router = createBrowserRouter([
 	{
@@ -37,8 +39,10 @@ const router = createBrowserRouter([
 			{ path: "login", element: <Login /> },
 			{ path: "credits", element: <Credits /> },
 			{ path: "language", element: <CreateLanguagePage /> },
-			{ path: "language/:languageId", element: <LanguageView /> },
-			{ path: "languages", element: <LanguagesPage /> },
+			{ path: "language/:languageId", element: <ViewLanguagePage /> },
+			{ path: "languages", element: <PublicLanguagesPage /> },
+			{ path: "notes/:noteId", element: <NotePage /> },
+			{ path: "notes/:noteId/edit", element: <NotePageEditing /> },
 
 			{ path: "*", element: <NotFoundPage /> },
 		],

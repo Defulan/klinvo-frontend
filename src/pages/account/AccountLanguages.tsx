@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../lib/api";
 import type { Language } from "../../lib/types/language";
-import LanguageCard from "../language/LanguageCard";
+import LanguageCard from "../language/components/LanguageCard";
 
 interface AccountLanguagesProps {
 	userId: number;

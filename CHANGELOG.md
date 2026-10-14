@@ -2,6 +2,28 @@ Versions of Frontend and Backend releases at the same time — that is,
 Frontend version implies compatible with the corresponding Backend version
 
 
+## unreleased
+> The next planned version is v0.4.0
+
+
+#### Added
+- Notes section in a language page
+  - Creating and deleting notes in a notes section (for language's author)
+  - Note popover
+- Note page (`/notes/<note_id>`)
+  - Info: title, content, created at, note's language
+  - Markdown formatter on a note content
+- Note edit page (`/notes/<note_id>/edit`)
+  - Auto-resizing based on content size
+  - Editor bar with **Bold**, _cursive_ and ~~striked~~ styles and cancel/submit buttons
+  - Adding styles/brackets by selecting text and pressing any of wrap keys
+
+#### Changed
+- All language pages files names now have "Language" at the end (`CreateLanguage`, `PublicLanguages`, `ViewLanguage`)
+- All language components moved to the new `language/components` directory
+
+
+
 ## v0.3.1
 
 #### Added

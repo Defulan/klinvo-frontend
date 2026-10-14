@@ -6,10 +6,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import dayjs from "../../lib/dayjs";
 import type { Language } from "../../lib/types/language";
 import type { User } from "../../lib/types/user";
-import LanguageEditComponent from "./LanguageEdit";
+import LanguageEditComponent from "./components/LanguageEdit";
 import useTitle from "../../hooks/useTitle";
+import NotesListComponent from "../notes/components/NotesList";
 
-function LanguageView() {
+function ViewLanguagePage() {
 	const { languageId } = useParams<{ languageId: string }>();
 	const { user, isContextLoading } = useAuth();
 	const { t } = useTranslation();
@@ -73,8 +74,9 @@ function LanguageView() {
 				</>
 			)}
 			<hr />
+			<NotesListComponent language={language} isAuthor={isAuthor} />
 		</>
 	);
 }
 
-export default LanguageView;
+export default ViewLanguagePage;

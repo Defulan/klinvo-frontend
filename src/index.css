@@ -2,6 +2,31 @@ textarea {
 	height: 150px;
 }
 
+.popover-overflow {
+	max-height: 400px;
+	overflow-y: auto;
+}
+
+.markdown-body pre,
+.markdown-body code {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.markdown-body ul.contains-task-list {
+	list-style: none;
+	padding-left: 0;
+}
+
+.markdown-body .task-list-item {
+	list-style: none;
+	margin-bottom: 0.25rem;
+}
+
+.markdown-body ul:not(.contains-task-list) {
+	list-style-type: disc;
+	padding-left: 1.5rem;
+}
 .navbar-color {
 	background-color: rgb(64, 64, 64);
 }
@@ -15,6 +40,13 @@ textarea {
 	min-height: 100vh;
 	display: grid;
 	grid-template-rows: auto 1fr auto;
+}
+
+.note-content-edit {
+	field-sizing: content;
+	min-height: 400px;
+	height: auto;
+	resize: none;
 }
 
 .error-form-text {
