@@ -168,16 +168,26 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 	);
 
 	const editorBar = (
-		<div className="d-flex bg-body-secondary border border-2">
-			<button type="button" className="btn border-0 fs-5" onClick={() => onWrapKeyDown("**")}>
-				<i className="bi bi-type-bold"></i>
-			</button>
-			<button type="button" className="btn border-0 fs-5" onClick={() => onWrapKeyDown("_")}>
-				<i className="bi bi-type-italic"></i>
-			</button>
-			<button type="button" className="btn border-0 fs-5" onClick={() => onWrapKeyDown("~~")}>
-				<i className="bi bi-type-strikethrough"></i>
-			</button>
+		<div className="d-flex bg-body-secondary align-items-center justify-content-between border border-2">
+			<div>
+				<button type="button" className="btn border-0 fs-5" onClick={() => onWrapKeyDown("**")}>
+					<i className="bi bi-type-bold"></i>
+				</button>
+				<button type="button" className="btn border-0 fs-5" onClick={() => onWrapKeyDown("_")}>
+					<i className="bi bi-type-italic"></i>
+				</button>
+				<button type="button" className="btn border-0 fs-5" onClick={() => onWrapKeyDown("~~")}>
+					<i className="bi bi-type-strikethrough"></i>
+				</button>
+			</div>
+			<div className="d-flex gap-1 pe-2">
+				<button className="btn btn-danger btn-sm" type="button" onClick={handleCancelEditing}>
+					{t("notePage.cancelChanges")}
+				</button>
+				<button className="btn btn-dark btn-sm" type="submit">
+					{t("notePage.confirmChanges")}
+				</button>
+			</div>
 		</div>
 	);
 
@@ -216,7 +226,6 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 					onKeyDown={handleOnKeyDown}
 				/>
 			</label>
-			<div className="d-flex gap-1">{editorButtons}</div>
 		</form>
 	);
 }
