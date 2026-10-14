@@ -129,21 +129,21 @@ function NotePageEditing() {
 		});
 	};
 
+	const wrapKeysAndValues: Record<string, string | [string, string, string]> = {
+		"(": ["(", "(", ")"],
+		"{": ["{", "{", "}"],
+		"<": ["<", "<", ">"],
+		"[": ["[", "[", "]"],
+		"*": "*",
+		_: "_",
+		"`": "`",
+		"'": "'",
+		'"': '"',
+		"~": "~",
+	};
+
 	const handleOnKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
 		if (!textAreaRef.current) return;
-
-		const wrapKeysAndValues: Record<string, string | [string, string, string]> = {
-			"(": ["(", "(", ")"],
-			"{": ["{", "{", "}"],
-			"<": ["<", "<", ">"],
-			"[": ["[", "[", "]"],
-			"*": "*",
-			_: "_",
-			"`": "`",
-			"'": "'",
-			'"': '"',
-			"~": "~",
-		};
 
 		const wrapValue = wrapKeysAndValues[event.key];
 
