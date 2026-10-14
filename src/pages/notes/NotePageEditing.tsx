@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import type { Language } from "../../lib/types/language";
 import EditorBar from "../../components/EditorBar";
+import { getSelected } from "../../lib/textWrapping";
 
 interface NoteEditForm {
 	title: string | null;
@@ -95,13 +96,6 @@ function NotePageEditing() {
 	};
 
 	const { ref: registerRef, ...contentRest } = register("content");
-
-	const getSelected = (textArea: HTMLTextAreaElement) => {
-		const start = textArea.selectionStart;
-		const end = textArea.selectionEnd;
-
-		return textArea.value.substring(start, end);
-	};
 
 	const wrapSelectedText = (
 		textArea: HTMLTextAreaElement,
