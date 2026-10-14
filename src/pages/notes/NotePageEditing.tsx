@@ -181,10 +181,10 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 				</button>
 			</div>
 			<div className="d-flex gap-1 pe-2">
-				<button className="btn btn-danger btn-sm" type="button" onClick={handleCancelEditing}>
+				<button className="btn btn-danger border-0 btn-sm" type="button" onClick={handleCancelEditing}>
 					{t("notePage.cancelChanges")}
 				</button>
-				<button className="btn btn-dark btn-sm" type="submit">
+				<button className="btn btn-dark border-0 btn-sm" type="submit">
 					{t("notePage.confirmChanges")}
 				</button>
 			</div>
