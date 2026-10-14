@@ -132,33 +132,6 @@ function NotePageEditing() {
 	const handleOnKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
 		if (!textAreaRef.current) return;
 
-		if (event.shiftKey) {
-			switch (event.code) {
-				case "BracketLeft":
-					if (event.key !== "{") return;
-
-					event.preventDefault();
-					onWrapKeyDown("{", "{", "}");
-					break;
-
-				case "Comma":
-					if (event.key !== "<") return;
-
-					event.preventDefault();
-					onWrapKeyDown("<", "<", ">");
-					break;
-			}
-		} else {
-			switch (event.code) {
-				case "BracketLeft":
-					if (event.key !== "[") return;
-
-					event.preventDefault();
-					onWrapKeyDown("[", "[", "]");
-					break;
-			}
-		}
-
 		switch (event.key) {
 			case "*":
 				event.preventDefault();
@@ -193,6 +166,21 @@ function NotePageEditing() {
 			case "(":
 				event.preventDefault();
 				onWrapKeyDown("(", "(", ")");
+				break;
+
+			case "[":
+				event.preventDefault();
+				onWrapKeyDown("[", "[", "]");
+				break;
+
+			case "<":
+				event.preventDefault();
+				onWrapKeyDown("<", "<", ">");
+				break;
+
+			case "{":
+				event.preventDefault();
+				onWrapKeyDown("{", "{", "}");
 				break;
 		}
 		setValue("content", textAreaRef.current.value, { shouldDirty: true, shouldValidate: true });
