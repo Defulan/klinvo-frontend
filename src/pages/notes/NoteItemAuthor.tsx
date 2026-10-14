@@ -6,6 +6,8 @@ import { useTimeout } from "usehooks-ts";
 import notePopover from "../../assets/notePopover.svg";
 import api from "../../lib/api";
 import { OverlayTrigger, Popover } from "react-bootstrap";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 interface NoteItemAuthorProps {
 	note: Note;
@@ -60,7 +62,9 @@ function NoteItemAuthor({ note, onDelete }: NoteItemAuthorProps) {
 	const popover = (
 		<Popover id={`popover-${note.id}`}>
 			<Popover.Header as="h3">{note.title}</Popover.Header>
-			<Popover.Body>{note.content}</Popover.Body>
+			<Popover.Body>
+				<Markdown remarkPlugins={[remarkGfm]}>{note.content}</Markdown>
+			</Popover.Body>
 		</Popover>
 	);
 
