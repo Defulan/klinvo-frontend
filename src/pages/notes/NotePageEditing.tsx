@@ -92,6 +92,32 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 	};
 
 	const handleOnKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+		if (event.shiftKey) {
+			switch (event.code) {
+				case "BracketLeft":
+					event.preventDefault();
+					onWrapKeyDown("{", "{", "}");
+					break;
+
+				case "Comma":
+					event.preventDefault();
+					onWrapKeyDown("<", "<", ">");
+					break;
+			}
+		} else {
+			switch (event.code) {
+				case "BracketLeft":
+					event.preventDefault();
+					onWrapKeyDown("[", "[", "]");
+					break;
+
+				case "Comma":
+					event.preventDefault();
+					onWrapKeyDown("<", "<", ">");
+					break;
+			}
+		}
+
 		switch (event.key) {
 			case "*":
 				event.preventDefault();
@@ -126,21 +152,6 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 			case "(":
 				event.preventDefault();
 				onWrapKeyDown("(", "(", ")");
-				break;
-
-			case "[":
-				event.preventDefault();
-				onWrapKeyDown("[", "[", "]");
-				break;
-
-			case "{":
-				event.preventDefault();
-				onWrapKeyDown("{", "{", "}");
-				break;
-
-			case "<":
-				event.preventDefault();
-				onWrapKeyDown("<", "<", ">");
 				break;
 		}
 	};
