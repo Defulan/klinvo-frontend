@@ -8,14 +8,17 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { Language } from "../../lib/types/language";
 import NotePageEditingComponent from "./NotePageEditing";
+import { useAuth } from "../../context/AuthContext";
 
 function NotePage() {
 	const { t } = useTranslation();
+	const { user, isContextLoading } = useAuth();
 	const { noteId } = useParams<{ noteId: string }>();
 	const [note, setNote] = useState<Note | null>(null);
 	const [language, setLanguage] = useState<Language | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const [isEditing, setIsEditing] = useState(false);
+	const [isAuthor, setIsAuthor] = useState(false);
 	const navigate = useNavigate();
 
 	const fetchNote = useCallback(async () => {
@@ -33,6 +36,14 @@ function NotePage() {
 	useEffect(() => {
 		fetchNote();
 	}, [fetchNote]);
+
+	useEffect(() => {
+		if (isContextLoading) return;
+
+		if (user && user.id === language?.authorId) {
+			setIsAuthor(true);
+		}
+	}, [isContextLoading, user, language]);
 
 	useEffect(() => {
 		const fetchLanguage = async () => {
@@ -63,7 +74,7 @@ function NotePage() {
 		fetchNote();
 	};
 
-	if (isLoading || !note) {
+	if (isContextLoading || isLoading || !note) {
 		return;
 	}
 
