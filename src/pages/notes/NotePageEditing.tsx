@@ -230,7 +230,7 @@ function NotePageEditing() {
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column gap-2">
 			<div>
-				<label>
+				<label className="w-100">
 					<span>{t("notePage.titleLabel")}</span>
 					{errors.title && <div className="error-form-text"> {errors.title.message}</div>}
 					<input
