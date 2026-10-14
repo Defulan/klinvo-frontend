@@ -171,7 +171,7 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 		<div className="container bg-body-secondary">
 			<div className="row">
 				<div className="col">
-					<button type="button" className="btn fw-medium">
+					<button type="button" className="btn fw-medium" onClick={() => onWrapKeyDown("**")}>
 						<i className="bi bi-type-bold"></i>
 					</button>
 				</div>
