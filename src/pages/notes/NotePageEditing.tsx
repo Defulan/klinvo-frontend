@@ -56,7 +56,10 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 
 	const { ref: registerRef, ...contentRest } = register("content");
 
-	const onSpecialKeyDown = (key: string, before: string, after: string) => {
+	const onSpecialKeyDown = (key: string, before: string | null = null, after: string | null = null) => {
+		if (!before) before = key;
+		if (!after) after = before;
+
 		const textArea = textAreaRef.current;
 		if (!textArea) return;
 
@@ -79,7 +82,7 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 	const handleOnKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
 		if (event.key === "*") {
 			event.preventDefault();
-			onSpecialKeyDown("*", "*", "*");
+			onSpecialKeyDown("*");
 		} else if (event.key === "(") {
 			event.preventDefault();
 			onSpecialKeyDown("(", "(", ")");
