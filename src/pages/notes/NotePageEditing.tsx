@@ -147,16 +147,18 @@ function NotePageEditing() {
 
 		const wrapValue = wrapKeysAndValues[event.key];
 
-		if (wrapValue) {
-			event.preventDefault();
-
-			if (Array.isArray(wrapValue)) {
-				onWrapKeyDown(...wrapValue);
-			} else {
-				onWrapKeyDown(wrapValue);
-			}
-			setValue("content", textAreaRef.current.value, { shouldDirty: true, shouldValidate: true });
+		if (!wrapValue) {
+			return;
 		}
+
+		event.preventDefault();
+
+		if (Array.isArray(wrapValue)) {
+			onWrapKeyDown(...wrapValue);
+		} else {
+			onWrapKeyDown(wrapValue);
+		}
+		setValue("content", textAreaRef.current.value, { shouldDirty: true, shouldValidate: true });
 	};
 
 	const editorBar = (
