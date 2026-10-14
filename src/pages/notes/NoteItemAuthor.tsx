@@ -68,7 +68,7 @@ function NoteItemAuthor({ note, onDelete }: NoteItemAuthorProps) {
 		</Popover>
 	);
 
-	const popupButton = (
+	const popoverButton = (
 		<OverlayTrigger trigger="click" placement="left" overlay={popover} rootClose>
 			<button type="button" className="btn p-0 border-0">
 				<img alt="" src={notePopover} width={28} height={28} className="d-inline-block mx-1" />
@@ -78,7 +78,7 @@ function NoteItemAuthor({ note, onDelete }: NoteItemAuthorProps) {
 
 	return (
 		<li className="list-group-item list-group-item-action d-flex align-items-center justify-content-between px-2 gap-1">
-			{popupButton}
+			{popoverButton}
 			<Link to={`/notes/${note.id}`} className="fw-medium text-decoration-none text-break flex-grow-1">
 				{note.title}
 			</Link>
