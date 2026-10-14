@@ -122,7 +122,6 @@ function NotePageEditing() {
 		}
 
 		textArea.setRangeText(replacement, start, end, "preserve");
-		setValue("content", textArea.value, { shouldDirty: true, shouldValidate: true });
 
 		setTimeout(() => {
 			textArea.focus();
@@ -131,6 +130,8 @@ function NotePageEditing() {
 	};
 
 	const handleOnKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+		if (!textAreaRef.current) return;
+
 		if (event.shiftKey) {
 			switch (event.code) {
 				case "BracketLeft":
@@ -194,6 +195,7 @@ function NotePageEditing() {
 				onWrapKeyDown("(", "(", ")");
 				break;
 		}
+		setValue("content", textAreaRef.current.value, { shouldDirty: true, shouldValidate: true });
 	};
 
 	const editorBar = (
