@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { Language } from "../../lib/types/language";
-import NotePageEditingComponent from "./NotePageEditing";
 import { useAuth } from "../../context/AuthContext";
 
 function NotePage() {
@@ -17,7 +16,6 @@ function NotePage() {
 	const [note, setNote] = useState<Note | null>(null);
 	const [language, setLanguage] = useState<Language | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
-	const [isEditing, setIsEditing] = useState(false);
 	const [isAuthor, setIsAuthor] = useState(false);
 	const navigate = useNavigate();
 
@@ -63,23 +61,14 @@ function NotePage() {
 
 	const watchingButtons = (
 		<>
-			<button className="btn btn-dark btn-sm" type="button" onClick={() => setIsEditing(true)}>
+			<button className="btn btn-dark btn-sm" type="button" onClick={() => navigate(`/notes/${noteId}/edit`)}>
 				{t("notePage.editButton")}
 			</button>
 		</>
 	);
 
-	const onChanges = () => {
-		setIsEditing(false);
-		fetchNote();
-	};
-
 	if (isContextLoading || isLoading || !note) {
 		return;
-	}
-
-	if (isEditing) {
-		return <NotePageEditingComponent note={note} onChanges={onChanges} />;
 	}
 
 	return (

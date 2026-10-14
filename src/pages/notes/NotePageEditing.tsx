@@ -1,21 +1,23 @@
 import type React from "react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import type { Note } from "../../lib/types/note";
 import api from "../../lib/api";
 import { useTranslation } from "react-i18next";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import type { Language } from "../../lib/types/language";
 
 interface NoteEditForm {
 	title: string | null;
 	content: string | null;
 }
 
-interface NotePageEditingProps {
-	note: Note;
-	onChanges: () => void;
-}
-
-function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
+function NotePageEditing() {
+	const { noteId } = useParams<{ noteId: string }>();
+	const [note, setNote] = useState<Note | null>(null);
+	const [language, setLanguage] = useState<Language | null>(null);
+	const { user, isContextLoading } = useAuth();
 	const { t } = useTranslation();
 	const {
 		register,
@@ -25,6 +27,52 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 		formState: { errors },
 	} = useForm<NoteEditForm>();
 	const textAreaRef = useRef<HTMLTextAreaElement>(null);
+	const [isAuthor, setIsAuthor] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		const fetchNote = async () => {
+			try {
+				const response = await api.get<Note>(`/notes/${noteId}`);
+				setNote(response.data);
+			} catch (error) {
+				console.error(error);
+				navigate("/404");
+			}
+		};
+
+		fetchNote();
+	}, [noteId, navigate]);
+
+	useEffect(() => {
+		const fetchLanguage = async () => {
+			if (note) {
+				try {
+					const response = await api.get<Language>(`/languages/${note.languageId}`);
+					setLanguage(response.data);
+				} catch (error) {
+					console.error(error);
+				}
+			}
+		};
+		if (note) {
+			fetchLanguage();
+			reset({
+				title: note.title,
+				content: note.content,
+			});
+		}
+	}, [note, reset]);
+
+	useEffect(() => {
+		if (isContextLoading || !language) return;
+
+		if (user && user.id === language.authorId) {
+			setIsAuthor(true);
+		}
+		setIsLoading(false);
+	}, [isContextLoading, user, language]);
 
 	const onSubmit: SubmitHandler<NoteEditForm> = async (data) => {
 		try {
@@ -34,24 +82,15 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 				title: response.data.title,
 				content: response.data.content,
 			});
-			onChanges();
+			navigate(`/notes/${response.data.id}`);
 		} catch (error) {
 			console.error(error);
 		}
 	};
 
-	useEffect(() => {
-		if (note) {
-			reset({
-				title: note.title,
-				content: note.content,
-			});
-		}
-	}, [reset, note]);
-
 	const handleCancelEditing = () => {
 		reset();
-		onChanges();
+		navigate(`/notes/${noteId}`);
 	};
 
 	const { ref: registerRef, ...contentRest } = register("content");
@@ -180,6 +219,14 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 		</div>
 	);
 
+	if (isContextLoading || isLoading) {
+		return;
+	}
+
+	if (!isAuthor) {
+		navigate(`/notes/${noteId}`);
+	}
+
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column gap-2">
 			<div>
@@ -219,4 +266,4 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 	);
 }
 
-export default NotePageEditingComponent;
+export default NotePageEditing;

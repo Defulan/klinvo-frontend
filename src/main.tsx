@@ -23,6 +23,7 @@ const Credits = lazy(() => import("./pages/Credits"));
 const CreateLanguagePage = lazy(() => import("./pages/language/CreateLanguage"));
 const ViewLanguagePage = lazy(() => import("./pages/language/ViewLanguage"));
 const PublicLanguagesPage = lazy(() => import("./pages/language/PublicLanguages"));
+const NotePageEditing = lazy(() => import("./pages/notes/NotePageEditing"));
 
 const router = createBrowserRouter([
 	{
@@ -41,6 +42,7 @@ const router = createBrowserRouter([
 			{ path: "language/:languageId", element: <ViewLanguagePage /> },
 			{ path: "languages", element: <PublicLanguagesPage /> },
 			{ path: "notes/:noteId", element: <NotePage /> },
+			{ path: "notes/:noteId/edit", element: <NotePageEditing /> },
 
 			{ path: "*", element: <NotFoundPage /> },
 		],
