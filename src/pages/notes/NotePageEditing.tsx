@@ -141,11 +141,11 @@ function NotePageEditing() {
 
 	const handleOnKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
 		const textArea = textAreaRef.current;
-		if (!textArea) return;
+		if (!textArea || !getSelected(textArea)) return;
 
 		const wrapValue = wrapKeysAndValues[event.key];
 
-		if (!wrapValue || !getSelected(textArea)) {
+		if (!wrapValue) {
 			return;
 		}
 
