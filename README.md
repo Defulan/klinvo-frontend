@@ -99,9 +99,9 @@ Currently, the main goal is to bring the project to the MVP stage.
 - [x] Account settings page (user data editing)
 - [x] UI localization (English/Russian)
 - [x] Language page (description, notes section, navigation to dictionary)
-- [ ] Dictionary table (table design, categories, data editing)
-- [ ] Notes (creating, reading, formatting, changing)
 - [x] Design home page
+- [x] Notes ([More info...](https://github.com/Defulan/klinvo-frontend/issues/34))
+- [ ] Interactive dictionary table ([More info...](https://github.com/Defulan/klinvo-frontend/issues/35))
 
 ### Future Enhancements
 - [ ] Dark/light theme toggle
