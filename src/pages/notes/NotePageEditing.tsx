@@ -169,10 +169,10 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 
 	const editorBar = (
 		<div className="d-flex bg-body-secondary">
-			<button type="button" className="btn border-0" onClick={() => onWrapKeyDown("**")}>
+			<button type="button" className="btn border-0 fs-5" onClick={() => onWrapKeyDown("**")}>
 				<i className="bi bi-type-bold"></i>
 			</button>
-			<button type="button" className="btn border-0" onClick={() => onWrapKeyDown("_")}>
+			<button type="button" className="btn border-0 fs-5" onClick={() => onWrapKeyDown("_")}>
 				<i className="bi bi-type-italic"></i>
 			</button>
 		</div>
