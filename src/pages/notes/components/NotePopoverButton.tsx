@@ -9,9 +9,16 @@ interface NotePopoverButtonProps {
 }
 
 function NotePopoverButton({ note }: NotePopoverButtonProps) {
+	const noteTitle = () => {
+		if (note.title.length > 50) {
+			return `${note.title.slice(0, 50)}…`;
+		}
+		return note.title;
+	};
+
 	const popover = (
 		<Popover id={`popover-${note.id}`}>
-			<Popover.Header as="h3">{note.title}</Popover.Header>
+			<Popover.Header as="h3">{noteTitle()}</Popover.Header>
 			<Popover.Body className="markdown-body popover-overflow">
 				<Markdown remarkPlugins={[remarkGfm]}>{note.content}</Markdown>
 			</Popover.Body>
