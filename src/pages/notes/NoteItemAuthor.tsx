@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useTimeout } from "usehooks-ts";
 import notePopover from "../../assets/notePopover.svg";
 import api from "../../lib/api";
+import { OverlayTrigger, Popover } from "react-bootstrap";
 
 interface NoteItemAuthorProps {
 	note: Note;
@@ -56,10 +57,19 @@ function NoteItemAuthor({ note, onDelete }: NoteItemAuthorProps) {
 		</button>
 	);
 
+	const popover = (
+		<Popover id={`popover-${note.id}`}>
+			<Popover.Header as="h3">{note.title}</Popover.Header>
+			<Popover.Body>{note.content}</Popover.Body>
+		</Popover>
+	);
+
 	const popupButton = (
-		<button type="button" className="btn p-0 border-0">
-			<img alt="" src={notePopover} width={28} height={28} className="d-inline-block mx-1" />
-		</button>
+		<OverlayTrigger trigger="click" placement="left" overlay={popover} rootClose>
+			<button type="button" className="btn p-0 border-0">
+				<img alt="" src={notePopover} width={28} height={28} className="d-inline-block mx-1" />
+			</button>
+		</OverlayTrigger>
 	);
 
 	return (
