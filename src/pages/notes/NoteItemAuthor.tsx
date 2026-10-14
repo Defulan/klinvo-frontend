@@ -3,6 +3,7 @@ import type { Note } from "../../lib/types/note";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useTimeout } from "usehooks-ts";
+import notePopover from "../../assets/notePopover.svg";
 import api from "../../lib/api";
 
 interface NoteItemAuthorProps {
@@ -55,8 +56,15 @@ function NoteItemAuthor({ note, onDelete }: NoteItemAuthorProps) {
 		</button>
 	);
 
+	const popupButton = (
+		<button type="button" className="btn p-0 border-0">
+			<img alt="" src={notePopover} width={28} height={28} className="d-inline-block mx-1" />
+		</button>
+	);
+
 	return (
-		<li className="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
+		<li className="list-group-item list-group-item-action d-flex align-items-center justify-content-between px-2 gap-1">
+			{popupButton}
 			<Link to={`/notes/${note.id}`} className="fw-medium text-decoration-none text-break flex-grow-1">
 				{note.title}
 			</Link>
