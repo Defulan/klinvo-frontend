@@ -134,11 +134,15 @@ function NotePageEditing() {
 		if (event.shiftKey) {
 			switch (event.code) {
 				case "BracketLeft":
+					if (event.key !== "{") return;
+
 					event.preventDefault();
 					onWrapKeyDown("{", "{", "}");
 					break;
 
 				case "Comma":
+					if (event.key !== "<") return;
+
 					event.preventDefault();
 					onWrapKeyDown("<", "<", ">");
 					break;
@@ -146,13 +150,10 @@ function NotePageEditing() {
 		} else {
 			switch (event.code) {
 				case "BracketLeft":
+					if (event.key !== "[") return;
+
 					event.preventDefault();
 					onWrapKeyDown("[", "[", "]");
-					break;
-
-				case "Comma":
-					event.preventDefault();
-					onWrapKeyDown("<", "<", ">");
 					break;
 			}
 		}
