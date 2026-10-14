@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import type { Note } from "../../lib/types/note";
+import type { Note } from "../../../lib/types/note";
 import NotePopoverButton from "./NotePopoverButton";
 
 interface NoteItemProps {

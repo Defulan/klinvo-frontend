@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import type { Note } from "../../lib/types/note";
+import type { Note } from "../../../lib/types/note";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useTimeout } from "usehooks-ts";
-import api from "../../lib/api";
+import api from "../../../lib/api";
 import NotePopoverButton from "./NotePopoverButton";
 
 interface NoteItemAuthorProps {

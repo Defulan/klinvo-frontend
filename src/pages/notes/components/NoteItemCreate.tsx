@@ -1,6 +1,6 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import api from "../../lib/api";
+import api from "../../../lib/api";
 
 interface NoteCreateForm {
 	title: string;

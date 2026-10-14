@@ -1,6 +1,6 @@
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import notePopover from "../../assets/notePopover.svg";
-import type { Note } from "../../lib/types/note";
+import type { Note } from "../../../lib/types/note";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
