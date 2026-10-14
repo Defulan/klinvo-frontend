@@ -43,7 +43,9 @@ textarea {
 }
 
 .note-content-edit {
-	height: 400px;
+	field-sizing: content;
+	min-height: 400px;
+	height: auto;
 	resize: none;
 }
 
