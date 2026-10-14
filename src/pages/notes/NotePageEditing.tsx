@@ -65,19 +65,17 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 			const start = textArea.selectionStart;
 			const end = textArea.selectionEnd;
 
-			const currentText = textArea.value || "";
-			const selectedText = currentText.substring(start, end);
-			const beforeText = currentText.substring(0, start);
-			const afterText = currentText.substring(end);
-
-			let newText: string;
+			let replacement: string;
 
 			if (start === end) {
-				newText = `${beforeText}*${afterText}`;
+				replacement = "*";
 			} else {
-				newText = `${beforeText}*${selectedText}*${afterText}`;
+				const selectedText = textArea.value.substring(start, end);
+				replacement = `*${selectedText}*`;
 			}
-			setValue("content", newText, { shouldDirty: true, shouldValidate: true });
+
+			textArea.setRangeText(replacement, start, end, "preserve");
+			setValue("content", textArea.value, { shouldDirty: true, shouldValidate: true });
 
 			setTimeout(() => {
 				textArea.focus();
