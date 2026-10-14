@@ -60,7 +60,14 @@ klinvo-frontend
 │  │   ├─ api.ts - настройка REST API
 │  │   ├─ dayjs.ts - настройка библиотеки dayjs
 │  │   └─ errorDetails.ts - оформление сообщений об ошибках
-│  ├─ pages/ - все React-страницы
+│  ├─ pages/ - Все страницы и связанные с ними компоненты
+│  │   ├─ account/
+│  │   ├─ language/
+│  │   ├─ notes/
+│  │   │
+│  │   ├─ Credits.tsx - указание авторства
+│  │   ├─ Home.tsx
+│  │   └─ NotFoundPage.tsx - неизвестный URL
 │  │
 │  ├─ App.tsx - шаблон/обёртка React-страницы
 │  ├─ env.d.ts - TypeScript настройка для корректной работы импортированного CSS
@@ -70,6 +77,7 @@ klinvo-frontend
 ├─ .env.example - пример .env файла
 ├─ .gitignore
 ├─ biome.json - настройка Biome
+├─ CHANGELOG.md - только на английском
 ├─ index.html - HTML шаблон
 ├─ LICENSE
 ├─ package-lock.json
