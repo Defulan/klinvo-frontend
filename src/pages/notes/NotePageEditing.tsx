@@ -168,7 +168,7 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 	);
 
 	const editorBar = (
-		<div className="d-flex bg-body-secondary">
+		<div className="d-flex bg-body-secondary border border-2">
 			<button type="button" className="btn border-0 fs-5" onClick={() => onWrapKeyDown("**")}>
 				<i className="bi bi-type-bold"></i>
 			</button>
