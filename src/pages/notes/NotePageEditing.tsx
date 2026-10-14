@@ -56,7 +56,7 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 
 	const { ref: registerRef, ...contentRest } = register("content");
 
-	const onSpecialKeyDown = (key: string, before: string | null = null, after: string | null = null) => {
+	const onWrapKeyDown = (key: string, before: string | null = null, after: string | null = null) => {
 		if (!before) before = key;
 		if (!after) after = before;
 
@@ -95,17 +95,17 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 		switch (event.key) {
 			case "*":
 				event.preventDefault();
-				onSpecialKeyDown("*");
+				onWrapKeyDown("*");
 				break;
 
 			case "_":
 				event.preventDefault();
-				onSpecialKeyDown("_");
+				onWrapKeyDown("_");
 				break;
 
 			case "(":
 				event.preventDefault();
-				onSpecialKeyDown("(", "(", ")");
+				onWrapKeyDown("(", "(", ")");
 				break;
 		}
 	};
