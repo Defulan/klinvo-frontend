@@ -158,6 +158,10 @@ function NotePageEditing() {
 			return;
 		}
 
+		if (!getSelected(textAreaRef.current)) {
+			return;
+		}
+
 		event.preventDefault();
 
 		if (Array.isArray(wrapValue)) {
