@@ -103,7 +103,7 @@ function NotePageEditing() {
 		return textArea.value.substring(start, end);
 	};
 
-	const wrapText = (
+	const wrapSelectedText = (
 		textArea: HTMLTextAreaElement,
 		key: string,
 		before: string | null = null,
@@ -153,9 +153,9 @@ function NotePageEditing() {
 		event.preventDefault();
 
 		if (Array.isArray(wrapValue)) {
-			wrapText(textArea, ...wrapValue);
+			wrapSelectedText(textArea, ...wrapValue);
 		} else {
-			wrapText(textArea, wrapValue);
+			wrapSelectedText(textArea, wrapValue);
 		}
 		setValue("content", textArea.value, { shouldDirty: true, shouldValidate: true });
 	};
@@ -165,7 +165,7 @@ function NotePageEditing() {
 			return;
 		}
 
-		wrapText(textAreaRef.current, wrapWith);
+		wrapSelectedText(textAreaRef.current, wrapWith);
 		setValue("content", textAreaRef.current.value, { shouldDirty: true, shouldValidate: true });
 	};
 
