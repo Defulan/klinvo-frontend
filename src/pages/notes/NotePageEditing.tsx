@@ -140,7 +140,8 @@ function NotePageEditing() {
 	};
 
 	const handleOnKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-		if (!textAreaRef.current) return;
+		const textArea = textAreaRef.current;
+		if (!textArea) return;
 
 		const wrapValue = wrapKeysAndValues[event.key];
 
@@ -148,18 +149,18 @@ function NotePageEditing() {
 			return;
 		}
 
-		if (!getSelected(textAreaRef.current)) {
+		if (!getSelected(textArea)) {
 			return;
 		}
 
 		event.preventDefault();
 
 		if (Array.isArray(wrapValue)) {
-			wrapText(textAreaRef.current, ...wrapValue);
+			wrapText(textArea, ...wrapValue);
 		} else {
-			wrapText(textAreaRef.current, wrapValue);
+			wrapText(textArea, wrapValue);
 		}
-		setValue("content", textAreaRef.current.value, { shouldDirty: true, shouldValidate: true });
+		setValue("content", textArea.value, { shouldDirty: true, shouldValidate: true });
 	};
 
 	const onWrapButtonClick = (wrapWith: string) => {
