@@ -92,12 +92,15 @@ function NotePageEditingComponent({ note, onChanges }: NotePageEditingProps) {
 	};
 
 	const handleOnKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-		if (event.key === "*") {
-			event.preventDefault();
-			onSpecialKeyDown("*");
-		} else if (event.key === "(") {
-			event.preventDefault();
-			onSpecialKeyDown("(", "(", ")");
+		switch (event.key) {
+			case "*":
+				event.preventDefault();
+				onSpecialKeyDown("*");
+				break;
+			case "(":
+				event.preventDefault();
+				onSpecialKeyDown("(", "(", ")");
+				break;
 		}
 	};
 
