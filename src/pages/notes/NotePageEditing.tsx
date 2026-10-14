@@ -95,6 +95,13 @@ function NotePageEditing() {
 
 	const { ref: registerRef, ...contentRest } = register("content");
 
+	const getSelected = (textArea: HTMLTextAreaElement) => {
+		const start = textArea.selectionStart;
+		const end = textArea.selectionEnd;
+
+		return textArea.value.substring(start, end);
+	};
+
 	const onWrapKeyDown = (key: string, before: string | null = null, after: string | null = null) => {
 		if (!before) before = key;
 		if (!after) after = before;
@@ -104,19 +111,19 @@ function NotePageEditing() {
 
 		const start = textArea.selectionStart;
 		const end = textArea.selectionEnd;
+		const selected = getSelected(textArea);
 
 		let replacement: string;
 		let cursorPositionStartAdd: number = 0;
 		let cursorPositionEndAdd: number;
 
-		if (start === end) {
+		if (!selected) {
 			replacement = key;
 
 			cursorPositionStartAdd = key.length;
 			cursorPositionEndAdd = key.length;
 		} else {
-			const selectedText = textArea.value.substring(start, end);
-			replacement = `${before}${selectedText}${after}`;
+			replacement = `${before}${selected}${after}`;
 
 			cursorPositionEndAdd = before.length + after.length;
 		}
