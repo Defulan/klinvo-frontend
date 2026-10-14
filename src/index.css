@@ -1,6 +1,12 @@
 textarea {
 	height: 150px;
 }
+
+.popover-overflow {
+	max-height: 400px;
+	overflow-y: auto;
+}
+
 .markdown-body pre,
 .markdown-body code {
 	white-space: pre-wrap;
