@@ -70,14 +70,16 @@ function AccountPage() {
 						<EditableField value={accountUser.name} fieldName="name" onConfirmChanges={onNameChangeConfirm} />
 					</h1>
 
-					<button className="btn btn-dark fs-5" type="button" onClick={() => navigate("/account/settings")}>
-						<i className="bi bi-gear"></i>
-					</button>
+					<div>
+						<button type="button" className="btn btn-outline-primary fs-5" onClick={() => navigate("/language")}>
+							{t("account.toCreateLanguage")}
+						</button>
+						<button className="btn btn-dark fs-5" type="button" onClick={() => navigate("/account/settings")}>
+							<i className="bi bi-gear"></i>
+						</button>
+					</div>
 				</div>
 				{accountUser.bio && <p>{accountUser.bio}</p>}
-				<button type="button" className="btn btn-outline-primary" onClick={() => navigate("/language")}>
-					{t("account.toCreateLanguage")}
-				</button>
 				<hr />
 				<AccountLanguagesComponent userId={accountUser.id} />
 			</>
