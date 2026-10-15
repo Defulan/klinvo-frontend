@@ -20,13 +20,7 @@ function NotePageEditing() {
 	const [language, setLanguage] = useState<Language | null>(null);
 	const { user, isContextLoading } = useAuth();
 	const { t } = useTranslation();
-	const {
-		register,
-		handleSubmit,
-		reset,
-		setValue,
-		formState: { errors },
-	} = useForm<NoteEditForm>();
+	const { register, handleSubmit, reset, setValue } = useForm<NoteEditForm>();
 	const textAreaRef = useRef<HTMLTextAreaElement>(null);
 	const [isAuthor, setIsAuthor] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
