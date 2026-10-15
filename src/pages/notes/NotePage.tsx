@@ -8,7 +8,7 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { Language } from "../../lib/types/language";
 import { useAuth } from "../../context/AuthContext";
-import EditableField, { EditableFieldForm } from "../../components/EditableField";
+import EditableField, { type EditableFieldForm } from "../../components/EditableField";
 
 function NotePage() {
 	const { t } = useTranslation();
