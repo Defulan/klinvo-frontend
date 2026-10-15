@@ -73,8 +73,8 @@ function AccountPage() {
 					<h1>{accountUser.name}</h1>
 				)}
 				{isAccountOwner && (
-					<button className="btn btn-outline-dark btn-sm" type="button" onClick={() => navigate("/account/settings")}>
-						<i className="bi bi-gear"></i> {t("account.settings")}
+					<button className="btn btn-dark fs-5" type="button" onClick={() => navigate("/account/settings")}>
+						<i className="bi bi-gear"></i>
 					</button>
 				)}
 			</div>
