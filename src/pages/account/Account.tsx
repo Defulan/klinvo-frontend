@@ -24,8 +24,6 @@ function AccountPage() {
 
 	useTitle(user?.name ? loadedTitle : unloadedTitle);
 
-	useTitle(t("account.pageTitle", { name: accountUser?.name || "Account" }));
-
 	useEffect(() => {
 		if (!userId) {
 			if (isContextLoading) return;
