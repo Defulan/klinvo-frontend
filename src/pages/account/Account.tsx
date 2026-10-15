@@ -7,6 +7,8 @@ import api from "../../lib/api";
 import type { User } from "../../lib/types/user";
 import useTitle from "../../hooks/useTitle";
 import EditableField, { type EditableFieldForm } from "../../components/EditableField";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 function AccountPage() {
 	const { userId } = useParams<{ userId?: string }>();
@@ -83,7 +85,11 @@ function AccountPage() {
 						</button>
 					</div>
 				</div>
-				{accountUser.bio && <p>{accountUser.bio}</p>}
+				{accountUser.bio && (
+					<p>
+						<Markdown remarkPlugins={[remarkGfm]}>{accountUser.bio}</Markdown>
+					</p>
+				)}
 				<hr />
 				<AccountLanguagesComponent userId={accountUser.id} />
 			</>
