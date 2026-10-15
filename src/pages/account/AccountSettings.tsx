@@ -80,14 +80,14 @@ function AccountSettings() {
 					{t("accountSettings.id")}: {user.id}
 				</span>
 				<div className="d-flex align-items-end gap-2">
+					<button className="btn btn-danger btn-sm" type="button" onClick={logout}>
+						<i className="bi bi-box-arrow-right"></i> {t("accountSettings.logout")}
+					</button>
 					<button
 						className="btn btn-outline-dark d-flex gap-1 btn-sm"
 						type="button"
 						onClick={() => navigate("/account")}>
 						<i className="bi bi-arrow-return-right"></i> <span>{t("accountSettings.account")}</span>
-					</button>
-					<button className="btn btn-danger btn-sm" type="button" onClick={logout}>
-						<i className="bi bi-box-arrow-right"></i> {t("accountSettings.logout")}
 					</button>
 				</div>
 			</div>
