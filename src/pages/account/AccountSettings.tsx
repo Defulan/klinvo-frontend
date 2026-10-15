@@ -87,8 +87,8 @@ function AccountSettings() {
 					</button>
 				</div>
 			</div>
-			<div className="error-text">{errorText}</div>
 
+			{errorText && <div className="error-text">{errorText}</div>}
 			{editInfoText && <div className="edit-info">{editInfoText}</div>}
 
 			<form onSubmit={handleSubmit(onSubmit)}>
