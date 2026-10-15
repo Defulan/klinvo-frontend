@@ -21,12 +21,17 @@ Frontend version implies compatible with the corresponding Backend version
   - Adding styles/brackets by selecting text and pressing any of wrap keys
   - Available only on an edit note page
 - Editing on a same field for username, language name and note title
+- Added Markdown formatter for user bio/description
 
 #### Changed
 - All language pages files names now have "Language" at the end (`CreateLanguage`, `PublicLanguages`, `ViewLanguage`)
 - All language components moved to the new `language/components` directory
 - Language privacy on/off now a button
-- Editing username now available only on an user page
+- Account UI changed
+  - Editing username now available only on an user page
+  - URL path `/account-settings` replaced with `/account/settings`
+  - Buttons placement and design on account and account settings pages
+  - User description now editing with Klinvo's content editor
 
 #### Removed
 - Language edit section & component — was splitted on same-field editing language name and privacy button

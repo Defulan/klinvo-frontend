@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import AccountLanguagesComponent from "./AccountLanguages";
 import api from "../../lib/api";
 import type { User } from "../../lib/types/user";
 import useTitle from "../../hooks/useTitle";
 import EditableField, { type EditableFieldForm } from "../../components/EditableField";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 function AccountPage() {
 	const { userId } = useParams<{ userId?: string }>();
@@ -21,8 +23,6 @@ function AccountPage() {
 	const unloadedTitle = t("account.unloadedPageTitle");
 
 	useTitle(user?.name ? loadedTitle : unloadedTitle);
-
-	useTitle(t("account.pageTitle", { name: accountUser?.name || "Account" }));
 
 	useEffect(() => {
 		if (!userId) {
@@ -62,27 +62,47 @@ function AccountPage() {
 		}
 	};
 
-	return (
-		<>
-			<div className="d-flex align-items-center gap-2">
-				{isAccountOwner ? (
+	if (isAccountOwner) {
+		return (
+			<>
+				<div className="d-flex align-items-center justify-content-between gap-2">
 					<h1>
 						<EditableField value={accountUser.name} fieldName="name" onConfirmChanges={onNameChangeConfirm} />
 					</h1>
-				) : (
-					<h1>{accountUser.name}</h1>
+
+					<div className="d-flex gap-2">
+						<button
+							type="button"
+							className="btn btn-outline-primary d-flex gap-2"
+							onClick={() => navigate("/language")}>
+							{t("account.toCreateLanguage")}
+							<i className="bi bi-plus-lg"></i>
+						</button>
+						<button className="btn btn-dark" type="button" onClick={() => navigate("/account/settings")}>
+							<i className="bi bi-gear"></i>
+						</button>
+					</div>
+				</div>
+				{accountUser.bio && (
+					<p>
+						<Markdown remarkPlugins={[remarkGfm]}>{accountUser.bio}</Markdown>
+					</p>
 				)}
-				{isAccountOwner && (
-					<button className="btn btn-outline-dark btn-sm" type="button" onClick={() => navigate("/account-settings")}>
-						<i className="bi bi-gear"></i> {t("account.settings")}
-					</button>
-				)}
+				<hr />
+				<AccountLanguagesComponent userId={accountUser.id} />
+			</>
+		);
+	}
+
+	return (
+		<>
+			<div className="d-flex align-items-center justify-content-between gap-2">
+				<h1>{accountUser.name}</h1>
 			</div>
-			{accountUser.bio && <p>{accountUser.bio}</p>}
-			{isAccountOwner && (
-				<Link to="/language" className="text-decoration-none fw-medium">
-					{t("account.toCreateLanguage")}
-				</Link>
+			{accountUser.bio && (
+				<p>
+					<Markdown remarkPlugins={[remarkGfm]}>{accountUser.bio}</Markdown>
+				</p>
 			)}
 			<hr />
 			<AccountLanguagesComponent userId={accountUser.id} />

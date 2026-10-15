@@ -8,22 +8,16 @@
 	"account": {
 		"pageTitle": "Аккаунт {{name}}",
 		"unloadedPageTitle": "Аккаунт",
-		"settings": "Настройки",
-		"toCreateLanguage": "Создать язык"
+		"toCreateLanguage": "Новый язык"
 	},
 	"accountSettings": {
 		"pageTitle": "Настройки {{name}}",
 		"unloadedPageTitle": "Настройки пользователя",
 		"id": "ID пользователя",
-		"account": "Аккаунт",
 		"logout": "Выйти",
-		"confirm": "Подтвердить изменения",
-		"cancel": "Отменить",
-		"edit": "Редактировать",
-		"editMode": "Режим редактирования",
-		"username": "Имя пользователя",
-		"bio": "Описание",
-		"bioPlaceholder": "Здесь можете оставить описание, которое будет видно на странице вашего аккаунта"
+		"bioPlaceholder": "Здесь можете оставить описание, которое будет видно на странице вашего аккаунта",
+		"changesCanceled": "Изменения описания были отменены",
+		"changesAccepted": "Описание обновлено"
 	},
 	"login": {
 		"pageTitle": "Вход",

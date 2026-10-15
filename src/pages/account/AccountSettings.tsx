@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import useTitle from "../../hooks/useTitle";
 import type { User } from "../../lib/types/user";
+import ContentEditor from "../../components/ContentEditor";
 
 interface UserEditForm {
 	bio: string | null;
@@ -17,9 +18,9 @@ function AccountSettings() {
 	const { user, isContextLoading, fetchAuth } = useAuth();
 
 	const [isLoading, setIsLoading] = useState(true);
-	const [isEditing, setIsEditing] = useState(false);
 
 	const [errorText, setErrorText] = useState("");
+	const [editInfoText, setEditInfoText] = useState<string | null>(null);
 	const { register, handleSubmit, reset } = useForm<UserEditForm>();
 
 	const navigate = useNavigate();
@@ -50,7 +51,7 @@ function AccountSettings() {
 			reset({
 				bio: response.data.bio,
 			});
-			setIsEditing(false);
+			setEditInfoText(t("accountSettings.changesAccepted"));
 		} catch (error) {
 			setErrorText(t(getErrorDetails(error)));
 		}
@@ -58,7 +59,7 @@ function AccountSettings() {
 
 	const handleCancel = () => {
 		reset();
-		setIsEditing(false);
+		setEditInfoText(t("accountSettings.changesCanceled"));
 	};
 
 	const logout = async (event: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
@@ -67,58 +68,32 @@ function AccountSettings() {
 		window.location.href = "/";
 	};
 
-	const editorButtons = (
-		<>
-			<button className="btn btn-dark btn-sm" type="submit">
-				{t("accountSettings.confirm")}
-			</button>
-			<button className="btn btn-danger btn-sm" type="button" onClick={handleCancel}>
-				{t("accountSettings.cancel")}
-			</button>
-		</>
-	);
-	const watchingButtons = (
-		<>
-			<button className="btn btn-dark btn-sm" type="button" onClick={() => setIsEditing(true)}>
-				{t("accountSettings.edit")}
-			</button>
-		</>
-	);
-
 	if (isLoading || !user) {
 		return;
 	}
 
 	return (
-		<div>
-			<div className="error-text">{errorText}</div>
-			<div className="fs-4 d-flex align-items-end gap-2">
+		<div className="d-flex flex-column gap-3">
+			<div className="fs-3 d-flex align-items-end justify-content-between gap-2">
 				<span>
 					{t("accountSettings.id")}: {user.id}
 				</span>
-				<button className="btn btn-outline-dark btn-sm" type="button" onClick={() => navigate("/account")}>
-					<i className="bi bi-person"></i> {t("accountSettings.account")}
-				</button>
-				<button className="btn btn-danger btn-sm" type="button" onClick={logout}>
-					<i className="bi bi-box-arrow-right"></i> {t("accountSettings.logout")}
-				</button>
-			</div>
-			{isEditing && <div className="text-primary text-opacity-75">{t("accountSettings.editMode")}</div>}
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<div>
-					<label htmlFor="bio">{t("accountSettings.bio")}</label>
-					<textarea
-						id="bio"
-						className="form-control"
-						placeholder={t("accountSettings.bioPlaceholder")}
-						readOnly={!isEditing}
-						{...register("bio")}
-					/>
+				<div className="d-flex align-items-end gap-2">
+					<button className="btn btn-outline-danger" type="button" onClick={logout}>
+						<i className="bi bi-box-arrow-right"></i> {t("accountSettings.logout")}
+					</button>
+					<button className="btn btn-dark d-flex gap-1" type="button" onClick={() => navigate("/account")}>
+						<i className="bi bi-arrow-return-right"></i>
+					</button>
 				</div>
+			</div>
 
-				<div className="d-flex gap-1 mt-2">{isEditing && editorButtons}</div>
+			{errorText && <div className="error-text">{errorText}</div>}
+			{editInfoText && <div className="edit-info">{editInfoText}</div>}
+
+			<form onSubmit={handleSubmit(onSubmit)}>
+				<ContentEditor handleCancel={handleCancel} registerProps={register("bio")} />
 			</form>
-			<div className="d-flex gap-1">{!isEditing && watchingButtons}</div>
 		</div>
 	);
 }
