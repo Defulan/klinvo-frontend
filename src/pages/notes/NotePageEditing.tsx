@@ -11,7 +11,6 @@ import EditorBar from "../../components/EditorBar";
 import { getSelected, getWrapValue, wrapSelectedText } from "../../lib/textWrapping";
 
 interface NoteEditForm {
-	title: string | null;
 	content: string | null;
 }
 
@@ -61,7 +60,6 @@ function NotePageEditing() {
 		if (note) {
 			fetchLanguage();
 			reset({
-				title: note.title,
 				content: note.content,
 			});
 		}
@@ -81,7 +79,6 @@ function NotePageEditing() {
 			const response = await api.patch<Note>(`/notes/${note?.id}`, data);
 
 			reset({
-				title: response.data.title,
 				content: response.data.content,
 			});
 			navigate(`/notes/${response.data.id}`);
@@ -138,27 +135,6 @@ function NotePageEditing() {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column gap-3">
-			<div>
-				<label className="w-100">
-					<span>{t("notePageEdit.titleLabel")}</span>
-					{errors.title && <div className="error-form-text"> {errors.title.message}</div>}
-					<input
-						className="form-control"
-						type="text"
-						{...register("title", {
-							required: t("notePageEdit.titleRequired"),
-							minLength: {
-								value: 1,
-								message: t("notePageEdit.titleTooShort"),
-							},
-							maxLength: {
-								value: 255,
-								message: t("notePageEdit.titleTooLong"),
-							},
-						})}
-					/>
-				</label>
-			</div>
 			<label>
 				<EditorBar onWrapButtonClick={onWrapButtonClick} onEditingCancel={handleCancelEditing} />
 				<textarea
