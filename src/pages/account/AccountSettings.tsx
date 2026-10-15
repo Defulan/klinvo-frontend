@@ -20,6 +20,7 @@ function AccountSettings() {
 	const [isLoading, setIsLoading] = useState(true);
 
 	const [errorText, setErrorText] = useState("");
+	const [editInfoText, setEditInfoText] = useState<string | null>(null);
 	const { register, handleSubmit, reset } = useForm<UserEditForm>();
 
 	const navigate = useNavigate();
@@ -50,6 +51,7 @@ function AccountSettings() {
 			reset({
 				bio: response.data.bio,
 			});
+			setEditInfoText(t("accountSettings.changesAccepted"));
 		} catch (error) {
 			setErrorText(t(getErrorDetails(error)));
 		}
@@ -57,6 +59,7 @@ function AccountSettings() {
 
 	const handleCancel = () => {
 		reset();
+		setEditInfoText(t("accountSettings.changesCanceled"));
 	};
 
 	const logout = async (event: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
@@ -83,6 +86,9 @@ function AccountSettings() {
 					<i className="bi bi-box-arrow-right"></i> {t("accountSettings.logout")}
 				</button>
 			</div>
+
+			{editInfoText && <div className="edit-info">{editInfoText}</div>}
+
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<ContentEditor handleCancel={handleCancel} registerProps={register("bio")} />
 			</form>
