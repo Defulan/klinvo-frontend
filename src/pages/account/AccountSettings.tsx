@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import useTitle from "../../hooks/useTitle";
 import type { User } from "../../lib/types/user";
+import ContentEditor from "../../components/ContentEditor";
 
 interface UserEditForm {
 	bio: string | null;
@@ -64,17 +65,6 @@ function AccountSettings() {
 		window.location.href = "/";
 	};
 
-	const editorButtons = (
-		<>
-			<button className="btn btn-dark btn-sm" type="submit">
-				{t("accountSettings.confirm")}
-			</button>
-			<button className="btn btn-danger btn-sm" type="button" onClick={handleCancel}>
-				{t("accountSettings.cancel")}
-			</button>
-		</>
-	);
-
 	if (isLoading || !user) {
 		return;
 	}
@@ -94,17 +84,7 @@ function AccountSettings() {
 				</button>
 			</div>
 			<form onSubmit={handleSubmit(onSubmit)}>
-				<div>
-					<label htmlFor="bio">{t("accountSettings.bio")}</label>
-					<textarea
-						id="bio"
-						className="form-control"
-						placeholder={t("accountSettings.bioPlaceholder")}
-						{...register("bio")}
-					/>
-				</div>
-
-				<div className="d-flex gap-1 mt-2">{editorButtons}</div>
+				<ContentEditor handleCancel={handleCancel} registerProps={register("bio")} />
 			</form>
 		</div>
 	);
