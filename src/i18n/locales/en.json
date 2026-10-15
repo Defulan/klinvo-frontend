@@ -14,15 +14,10 @@
 		"pageTitle": "Settings of {{name}}",
 		"unloadedPageTitle": "Settings page",
 		"id": "User ID",
-		"account": "Account",
 		"logout": "Sign out",
-		"confirm": "Confirm changes",
-		"cancel": "Cancel",
-		"edit": "Edit",
-		"editMode": "Edit mode",
-		"username": "Username",
-		"bio": "Description",
-		"bioPlaceholder": "You can write something about yourself to display on your account page"
+		"bioPlaceholder": "You can write something about yourself to display on your account page",
+		"changesCanceled": "Changes for description was canceled",
+		"changesAccepted": "Your description is changed"
 	},
 	"login": {
 		"pageTitle": "Signing in",
