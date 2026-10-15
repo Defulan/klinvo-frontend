@@ -62,28 +62,34 @@ function AccountPage() {
 		}
 	};
 
-	return (
-		<>
-			<div className="d-flex align-items-center justify-content-between gap-2">
-				{isAccountOwner ? (
+	if (isAccountOwner) {
+		return (
+			<>
+				<div className="d-flex align-items-center justify-content-between gap-2">
 					<h1>
 						<EditableField value={accountUser.name} fieldName="name" onConfirmChanges={onNameChangeConfirm} />
 					</h1>
-				) : (
-					<h1>{accountUser.name}</h1>
-				)}
-				{isAccountOwner && (
+
 					<button className="btn btn-dark fs-5" type="button" onClick={() => navigate("/account/settings")}>
 						<i className="bi bi-gear"></i>
 					</button>
-				)}
-			</div>
-			{accountUser.bio && <p>{accountUser.bio}</p>}
-			{isAccountOwner && (
+				</div>
+				{accountUser.bio && <p>{accountUser.bio}</p>}
 				<Link to="/language" className="text-decoration-none fw-medium">
 					{t("account.toCreateLanguage")}
 				</Link>
-			)}
+				<hr />
+				<AccountLanguagesComponent userId={accountUser.id} />
+			</>
+		);
+	}
+
+	return (
+		<>
+			<div className="d-flex align-items-center justify-content-between gap-2">
+				<h1>{accountUser.name}</h1>
+			</div>
+			{accountUser.bio && <p>{accountUser.bio}</p>}
 			<hr />
 			<AccountLanguagesComponent userId={accountUser.id} />
 		</>
