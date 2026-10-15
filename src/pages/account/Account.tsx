@@ -73,6 +73,7 @@ function AccountPage() {
 					<div>
 						<button type="button" className="btn btn-outline-primary fs-5" onClick={() => navigate("/language")}>
 							{t("account.toCreateLanguage")}
+							<i className="bi bi-plus-lg"></i>
 						</button>
 						<button className="btn btn-dark fs-5" type="button" onClick={() => navigate("/account/settings")}>
 							<i className="bi bi-gear"></i>
