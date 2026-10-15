@@ -9,7 +9,7 @@
 		"pageTitle": "{{name}}'s account",
 		"unloadedPageTitle": "User account",
 		"settings": "Settings",
-		"toCreateLanguage": "Create a language"
+		"toCreateLanguage": "New language"
 	},
 	"accountSettings": {
 		"pageTitle": "Settings of {{name}}",

@@ -9,7 +9,7 @@
 		"pageTitle": "Аккаунт {{name}}",
 		"unloadedPageTitle": "Аккаунт",
 		"settings": "Настройки",
-		"toCreateLanguage": "Создать язык"
+		"toCreateLanguage": "Новый язык"
 	},
 	"accountSettings": {
 		"pageTitle": "Настройки {{name}}",
