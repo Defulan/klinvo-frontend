@@ -74,7 +74,6 @@ function AccountSettings() {
 
 	return (
 		<div className="d-flex flex-column gap-3">
-			<div className="error-text">{errorText}</div>
 			<div className="fs-4 d-flex align-items-end justify-content-between gap-2">
 				<span>
 					{t("accountSettings.id")}: {user.id}
@@ -88,6 +87,7 @@ function AccountSettings() {
 					</button>
 				</div>
 			</div>
+			<div className="error-text">{errorText}</div>
 
 			{editInfoText && <div className="edit-info">{editInfoText}</div>}
 
