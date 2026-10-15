@@ -67,13 +67,13 @@ function ViewLanguagePage() {
 
 	return (
 		<>
-			{isAuthor ? (
-				<h1>
+			<h1>
+				{isAuthor ? (
 					<EditableField value={language.name} fieldName="name" onConfirmChanges={onNameConfirmChanges} />
-				</h1>
-			) : (
-				<h1>{language.name}</h1>
-			)}
+				) : (
+					language.name
+				)}
+			</h1>
 			<ul>
 				<li>
 					{t("languageView.createdBy")} {author.name}
