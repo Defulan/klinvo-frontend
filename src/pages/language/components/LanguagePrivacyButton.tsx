@@ -21,7 +21,7 @@ function LanguagePrivacyButton({ language, fetchLanguage }: LanguagePrivacyButto
 
 	const privateIcon = <i className="bi bi-lock-fill"></i>;
 
-	const publicIcon = <i className="bi bi-unlock-fill"></i>;
+	const publicIcon = <i className="bi bi-unlock"></i>;
 
 	return (
 		<button type="button" className="btn border-0 fs-5" onClick={onClick}>
