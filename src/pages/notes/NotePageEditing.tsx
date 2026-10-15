@@ -1,14 +1,11 @@
-import type React from "react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import type { Note } from "../../lib/types/note";
 import api from "../../lib/api";
-import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import type { Language } from "../../lib/types/language";
-import EditorBar from "../../components/EditorBar";
-import { getSelected, getWrapValue, wrapSelectedText } from "../../lib/textWrapping";
+import ContentEditor from "../../components/ContentEditor";
 
 interface NoteEditForm {
 	content: string | null;
@@ -19,9 +16,7 @@ function NotePageEditing() {
 	const [note, setNote] = useState<Note | null>(null);
 	const [language, setLanguage] = useState<Language | null>(null);
 	const { user, isContextLoading } = useAuth();
-	const { t } = useTranslation();
-	const { register, handleSubmit, reset, setValue } = useForm<NoteEditForm>();
-	const textAreaRef = useRef<HTMLTextAreaElement>(null);
+	const { register, handleSubmit, reset } = useForm<NoteEditForm>();
 	const [isAuthor, setIsAuthor] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
 	const navigate = useNavigate();
@@ -86,39 +81,6 @@ function NotePageEditing() {
 		navigate(`/notes/${noteId}`);
 	};
 
-	const { ref: registerRef, ...contentRest } = register("content");
-
-	const handleOnKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-		const textArea = textAreaRef.current;
-		if (!textArea || !getSelected(textArea)) {
-			return;
-		}
-
-		const wrapValue = getWrapValue(event.key);
-
-		if (!wrapValue) {
-			return;
-		}
-
-		event.preventDefault();
-
-		if (Array.isArray(wrapValue)) {
-			wrapSelectedText(textArea, ...wrapValue);
-		} else {
-			wrapSelectedText(textArea, wrapValue);
-		}
-		setValue("content", textArea.value, { shouldDirty: true, shouldValidate: true });
-	};
-
-	const onWrapButtonClick = (wrapWith: string) => {
-		if (!getSelected || !textAreaRef.current) {
-			return;
-		}
-
-		wrapSelectedText(textAreaRef.current, wrapWith);
-		setValue("content", textAreaRef.current.value, { shouldDirty: true, shouldValidate: true });
-	};
-
 	if (isContextLoading || isLoading) {
 		return;
 	}
@@ -129,19 +91,7 @@ function NotePageEditing() {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column gap-3">
-			<label>
-				<EditorBar onWrapButtonClick={onWrapButtonClick} onEditingCancel={handleCancelEditing} />
-				<textarea
-					placeholder={t("notePageEdit.contentPlaceholder")}
-					{...contentRest}
-					ref={(e) => {
-						registerRef(e);
-						textAreaRef.current = e;
-					}}
-					className="form-control note-content-edit"
-					onKeyDown={handleOnKeyDown}
-				/>
-			</label>
+			<ContentEditor handleCancel={handleCancelEditing} registerProps={register("content")} />
 		</form>
 	);
 }
