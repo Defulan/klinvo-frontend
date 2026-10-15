@@ -1,14 +1,10 @@
-import type React from "react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import type { Note } from "../../lib/types/note";
 import api from "../../lib/api";
-import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import type { Language } from "../../lib/types/language";
-import EditorBar from "../../components/EditorBar";
-import { getSelected, getWrapValue, wrapSelectedText } from "../../lib/textWrapping";
 import ContentEditor from "../../components/ContentEditor";
 
 interface NoteEditForm {
@@ -20,9 +16,7 @@ function NotePageEditing() {
 	const [note, setNote] = useState<Note | null>(null);
 	const [language, setLanguage] = useState<Language | null>(null);
 	const { user, isContextLoading } = useAuth();
-	const { t } = useTranslation();
-	const { register, handleSubmit, reset, setValue } = useForm<NoteEditForm>();
-	const textAreaRef = useRef<HTMLTextAreaElement>(null);
+	const { register, handleSubmit, reset } = useForm<NoteEditForm>();
 	const [isAuthor, setIsAuthor] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
 	const navigate = useNavigate();
