@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 
-type EditableFieldForm = Record<string, string>;
+export type EditableFieldForm = Record<string, string>;
 
 interface EditableFieldProps {
 	value: string;
