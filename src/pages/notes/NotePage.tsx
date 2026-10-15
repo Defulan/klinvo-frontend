@@ -8,6 +8,7 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { Language } from "../../lib/types/language";
 import { useAuth } from "../../context/AuthContext";
+import EditableField, { EditableFieldForm } from "../../components/EditableField";
 
 function NotePage() {
 	const { t } = useTranslation();
@@ -67,13 +68,28 @@ function NotePage() {
 		</>
 	);
 
+	const onTitleConfirmChanges = async (data: EditableFieldForm) => {
+		try {
+			await api.patch<Note>(`/notes/${note?.id}`, data);
+			await fetchNote();
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	if (isContextLoading || isLoading || !note) {
 		return;
 	}
 
 	return (
 		<>
-			<h1 className="text-break">{note.title}</h1>
+			<h1 className="text-break">
+				{isAuthor ? (
+					<EditableField value={note.title} fieldName="title" onConfirmChanges={onTitleConfirmChanges} />
+				) : (
+					note.title
+				)}
+			</h1>
 			<ul>
 				<li>
 					{t("notePage.createdAtItem")} {dayjs(note.createdAt).format("lll")}
