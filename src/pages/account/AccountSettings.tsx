@@ -70,7 +70,7 @@ function AccountSettings() {
 	}
 
 	return (
-		<div>
+		<div className="d-flex flex-column gap-3">
 			<div className="error-text">{errorText}</div>
 			<div className="fs-4 d-flex align-items-end gap-2">
 				<span>
