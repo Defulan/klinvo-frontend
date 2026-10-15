@@ -75,16 +75,18 @@ function AccountSettings() {
 	return (
 		<div className="d-flex flex-column gap-3">
 			<div className="error-text">{errorText}</div>
-			<div className="fs-4 d-flex align-items-end gap-2">
+			<div className="fs-4 d-flex align-items-end justify-content-between gap-2">
 				<span>
 					{t("accountSettings.id")}: {user.id}
 				</span>
-				<button className="btn btn-outline-dark btn-sm" type="button" onClick={() => navigate("/account")}>
-					<i className="bi bi-person"></i> {t("accountSettings.account")}
-				</button>
-				<button className="btn btn-danger btn-sm" type="button" onClick={logout}>
-					<i className="bi bi-box-arrow-right"></i> {t("accountSettings.logout")}
-				</button>
+				<div className="d-flex align-items-end gap-2">
+					<button className="btn btn-outline-dark btn-sm" type="button" onClick={() => navigate("/account")}>
+						<i className="bi bi-person"></i> {t("accountSettings.account")}
+					</button>
+					<button className="btn btn-danger btn-sm" type="button" onClick={logout}>
+						<i className="bi bi-box-arrow-right"></i> {t("accountSettings.logout")}
+					</button>
+				</div>
 			</div>
 
 			{editInfoText && <div className="edit-info">{editInfoText}</div>}
