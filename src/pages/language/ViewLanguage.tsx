@@ -9,6 +9,7 @@ import type { User } from "../../lib/types/user";
 import LanguageEditComponent from "./components/LanguageEdit";
 import useTitle from "../../hooks/useTitle";
 import NotesListComponent from "../notes/components/NotesList";
+import EditableField, { type EditableFieldForm } from "../../components/EditableField";
 
 function ViewLanguagePage() {
 	const { languageId } = useParams<{ languageId: string }>();
@@ -55,9 +56,24 @@ function ViewLanguagePage() {
 		return;
 	}
 
+	const onNameConfirmChanges = async (data: EditableFieldForm) => {
+		try {
+			await api.patch<Language>(`/languages/${language.id}`, data);
+			await fetchLanguageData();
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	return (
 		<>
-			<h1>{language.name}</h1>
+			{isAuthor ? (
+				<h1>
+					<EditableField value={language.name} fieldName="name" onConfirmChanges={onNameConfirmChanges} />
+				</h1>
+			) : (
+				<h1>{language.name}</h1>
+			)}
 			<ul>
 				<li>
 					{t("languageView.createdBy")} {author.name}
