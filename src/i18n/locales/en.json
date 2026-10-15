@@ -8,7 +8,6 @@
 	"account": {
 		"pageTitle": "{{name}}'s account",
 		"unloadedPageTitle": "User account",
-		"settings": "Settings",
 		"toCreateLanguage": "New language"
 	},
 	"accountSettings": {
