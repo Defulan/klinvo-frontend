@@ -17,10 +17,16 @@ Frontend version implies compatible with the corresponding Backend version
   - Auto-resizing based on content size
   - Editor bar with **Bold**, _cursive_ and ~~striked~~ styles and cancel/submit buttons
   - Adding styles/brackets by selecting text and pressing any of wrap keys
+- Editing on a same field for username, language name and note title
 
 #### Changed
 - All language pages files names now have "Language" at the end (`CreateLanguage`, `PublicLanguages`, `ViewLanguage`)
 - All language components moved to the new `language/components` directory
+- Language privacy on/off now a button
+- Editing username now available only on an user page
+
+#### Removed
+- Language edit section & component — was splitted on same-field editing language name and privacy button
 
 
 

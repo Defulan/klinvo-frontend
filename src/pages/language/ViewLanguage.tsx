@@ -6,9 +6,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import dayjs from "../../lib/dayjs";
 import type { Language } from "../../lib/types/language";
 import type { User } from "../../lib/types/user";
-import LanguageEditComponent from "./components/LanguageEdit";
 import useTitle from "../../hooks/useTitle";
 import NotesListComponent from "../notes/components/NotesList";
+import EditableField, { type EditableFieldForm } from "../../components/EditableField";
+import LanguagePrivacyButton from "./components/LanguagePrivacyButton";
 
 function ViewLanguagePage() {
 	const { languageId } = useParams<{ languageId: string }>();
@@ -55,9 +56,27 @@ function ViewLanguagePage() {
 		return;
 	}
 
+	const onConfirmChanges = async (data: EditableFieldForm) => {
+		try {
+			await api.patch<Language>(`/languages/${language.id}`, data);
+			await fetchLanguageData();
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	return (
 		<>
-			<h1>{language.name}</h1>
+			<h1 className="d-flex align-items-end">
+				{isAuthor ? (
+					<>
+						<EditableField value={language.name} fieldName="name" onConfirmChanges={onConfirmChanges} />
+						<LanguagePrivacyButton language={language} fetchLanguage={fetchLanguageData} />
+					</>
+				) : (
+					language.name
+				)}
+			</h1>
 			<ul>
 				<li>
 					{t("languageView.createdBy")} {author.name}
@@ -67,12 +86,6 @@ function ViewLanguagePage() {
 				</li>
 				{language.isPrivate && <li>{t("languageView.itsPrivate")}</li>}
 			</ul>
-			{isAuthor && (
-				<>
-					<hr />
-					<LanguageEditComponent language={language} onSuccess={fetchLanguageData} />
-				</>
-			)}
 			<hr />
 			<NotesListComponent language={language} isAuthor={isAuthor} />
 		</>

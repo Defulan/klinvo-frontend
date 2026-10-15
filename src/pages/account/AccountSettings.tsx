@@ -9,7 +9,6 @@ import useTitle from "../../hooks/useTitle";
 import type { User } from "../../lib/types/user";
 
 interface UserEditForm {
-	name: string | null;
 	bio: string | null;
 }
 
@@ -21,12 +20,7 @@ function AccountSettings() {
 	const [isEditing, setIsEditing] = useState(false);
 
 	const [errorText, setErrorText] = useState("");
-	const {
-		register,
-		handleSubmit,
-		reset,
-		formState: { errors },
-	} = useForm<UserEditForm>();
+	const { register, handleSubmit, reset } = useForm<UserEditForm>();
 
 	const navigate = useNavigate();
 
@@ -40,7 +34,6 @@ function AccountSettings() {
 
 		if (user) {
 			reset({
-				name: user.name,
 				bio: user.bio,
 			});
 			setIsLoading(false);
@@ -55,7 +48,6 @@ function AccountSettings() {
 			await fetchAuth();
 
 			reset({
-				name: response.data.name,
 				bio: response.data.bio,
 			});
 			setIsEditing(false);
@@ -113,14 +105,6 @@ function AccountSettings() {
 			</div>
 			{isEditing && <div className="text-primary text-opacity-75">{t("accountSettings.editMode")}</div>}
 			<form onSubmit={handleSubmit(onSubmit)}>
-				{errors.name && <div className="error-form-text"> {errors.name.message}</div>}
-				<div>
-					<label>
-						{t("accountSettings.username")}
-						<input className="form-control" readOnly={!isEditing} type="text" {...register("name")} />
-					</label>
-				</div>
-
 				<div>
 					<label htmlFor="bio">{t("accountSettings.bio")}</label>
 					<textarea
