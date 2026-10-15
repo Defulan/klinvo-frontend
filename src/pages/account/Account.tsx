@@ -75,9 +75,9 @@ function AccountPage() {
 					</button>
 				</div>
 				{accountUser.bio && <p>{accountUser.bio}</p>}
-				<Link to="/language" className="text-decoration-none fw-medium">
+				<button type="button" className="btn btn-outline-primary" onClick={() => navigate("/language")}>
 					{t("account.toCreateLanguage")}
-				</Link>
+				</button>
 				<hr />
 				<AccountLanguagesComponent userId={accountUser.id} />
 			</>
