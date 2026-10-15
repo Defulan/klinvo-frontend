@@ -14,9 +14,12 @@ Frontend version implies compatible with the corresponding Backend version
   - Info: title, content, created at, note's language
   - Markdown formatter on a note content
 - Note edit page (`/notes/<note_id>/edit`)
-  - Auto-resizing based on content size
+- Content editor
+  - Markdown styles
   - Editor bar with **Bold**, _cursive_ and ~~striked~~ styles and cancel/submit buttons
+  - Auto-resizable text area based on content size
   - Adding styles/brackets by selecting text and pressing any of wrap keys
+  - Available only on an edit note page
 - Editing on a same field for username, language name and note title
 
 #### Changed
