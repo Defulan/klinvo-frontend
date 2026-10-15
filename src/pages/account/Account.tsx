@@ -99,7 +99,11 @@ function AccountPage() {
 			<div className="d-flex align-items-center justify-content-between gap-2">
 				<h1>{accountUser.name}</h1>
 			</div>
-			{accountUser.bio && <p>{accountUser.bio}</p>}
+			{accountUser.bio && (
+				<p>
+					<Markdown remarkPlugins={[remarkGfm]}>{accountUser.bio}</Markdown>
+				</p>
+			)}
 			<hr />
 			<AccountLanguagesComponent userId={accountUser.id} />
 		</>
