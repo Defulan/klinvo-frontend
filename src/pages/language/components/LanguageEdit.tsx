@@ -11,7 +11,6 @@ interface LanguageEditProps {
 }
 
 interface LanguageEditForm {
-	name: string | null;
 	isPrivate: boolean | null;
 }
 
@@ -27,7 +26,6 @@ function LanguageEditComponent({ language, onSuccess }: LanguageEditProps) {
 
 	useEffect(() => {
 		reset({
-			name: language.name,
 			isPrivate: language.isPrivate,
 		});
 	}, [language, reset]);
@@ -47,18 +45,6 @@ function LanguageEditComponent({ language, onSuccess }: LanguageEditProps) {
 			<div className="fs-5">{t("languageEdit.title")}</div>
 			<div className="error-text">{errorText}</div>
 			<form onSubmit={handleSubmit(onSubmit)}>
-				<div>
-					<label>
-						{t("languageEdit.nameLabel")}
-						{errors.name && <div className="error-form-text"> {errors.name.message}</div>}
-						<input
-							type="text"
-							{...register("name", {
-								required: t("languageEdit.nameRequired"),
-							})}
-						/>
-					</label>
-				</div>
 				<div>
 					{errors.isPrivate && <div className="error-form-text"> {errors.isPrivate.message}</div>}
 					<label>
