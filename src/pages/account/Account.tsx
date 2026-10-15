@@ -70,8 +70,11 @@ function AccountPage() {
 						<EditableField value={accountUser.name} fieldName="name" onConfirmChanges={onNameChangeConfirm} />
 					</h1>
 
-					<div>
-						<button type="button" className="btn btn-outline-primary fs-5" onClick={() => navigate("/language")}>
+					<div className="d-flex gap-2">
+						<button
+							type="button"
+							className="btn btn-outline-primary fs-5 d-flex gap-2"
+							onClick={() => navigate("/language")}>
 							{t("account.toCreateLanguage")}
 							<i className="bi bi-plus-lg"></i>
 						</button>
