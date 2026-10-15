@@ -74,7 +74,7 @@ function AccountSettings() {
 
 	return (
 		<div className="d-flex flex-column gap-3">
-			<div className="fs-4 d-flex align-items-end justify-content-between gap-2">
+			<div className="fs-3 d-flex align-items-end justify-content-between gap-2">
 				<span>
 					{t("accountSettings.id")}: {user.id}
 				</span>
