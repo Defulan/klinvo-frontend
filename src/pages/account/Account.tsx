@@ -6,11 +6,12 @@ import AccountLanguagesComponent from "./AccountLanguages";
 import api from "../../lib/api";
 import type { User } from "../../lib/types/user";
 import useTitle from "../../hooks/useTitle";
+import EditableField, { type EditableFieldForm } from "../../components/EditableField";
 
 function AccountPage() {
 	const { userId } = useParams<{ userId?: string }>();
 	const { t } = useTranslation();
-	const { user, isContextLoading } = useAuth();
+	const { user, isContextLoading, fetchAuth } = useAuth();
 	const navigate = useNavigate();
 	const [isLoading, setIsLoading] = useState(true);
 	const [accountUser, setAccountUser] = useState<User | null>(null);
@@ -52,10 +53,25 @@ function AccountPage() {
 		return;
 	}
 
+	const onNameChangeConfirm = async (data: EditableFieldForm) => {
+		try {
+			await api.patch<User>(`/users/`, data);
+			await fetchAuth();
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	return (
 		<>
 			<div className="d-flex align-items-center gap-2">
-				<h1>{accountUser.name}</h1>
+				{isAccountOwner ? (
+					<h1>
+						<EditableField value={accountUser.name} fieldName="name" onConfirmChanges={onNameChangeConfirm} />
+					</h1>
+				) : (
+					<h1>{accountUser.name}</h1>
+				)}
 				{isAccountOwner && (
 					<button className="btn btn-outline-dark btn-sm" type="button" onClick={() => navigate("/account-settings")}>
 						<i className="bi bi-gear"></i> {t("account.settings")}
