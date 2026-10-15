@@ -17,7 +17,6 @@ function AccountSettings() {
 	const { user, isContextLoading, fetchAuth } = useAuth();
 
 	const [isLoading, setIsLoading] = useState(true);
-	const [isEditing, setIsEditing] = useState(false);
 
 	const [errorText, setErrorText] = useState("");
 	const { register, handleSubmit, reset } = useForm<UserEditForm>();
@@ -50,7 +49,6 @@ function AccountSettings() {
 			reset({
 				bio: response.data.bio,
 			});
-			setIsEditing(false);
 		} catch (error) {
 			setErrorText(t(getErrorDetails(error)));
 		}
@@ -58,7 +56,6 @@ function AccountSettings() {
 
 	const handleCancel = () => {
 		reset();
-		setIsEditing(false);
 	};
 
 	const logout = async (event: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
@@ -74,13 +71,6 @@ function AccountSettings() {
 			</button>
 			<button className="btn btn-danger btn-sm" type="button" onClick={handleCancel}>
 				{t("accountSettings.cancel")}
-			</button>
-		</>
-	);
-	const watchingButtons = (
-		<>
-			<button className="btn btn-dark btn-sm" type="button" onClick={() => setIsEditing(true)}>
-				{t("accountSettings.edit")}
 			</button>
 		</>
 	);
@@ -103,7 +93,6 @@ function AccountSettings() {
 					<i className="bi bi-box-arrow-right"></i> {t("accountSettings.logout")}
 				</button>
 			</div>
-			{isEditing && <div className="text-primary text-opacity-75">{t("accountSettings.editMode")}</div>}
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div>
 					<label htmlFor="bio">{t("accountSettings.bio")}</label>
@@ -111,14 +100,12 @@ function AccountSettings() {
 						id="bio"
 						className="form-control"
 						placeholder={t("accountSettings.bioPlaceholder")}
-						readOnly={!isEditing}
 						{...register("bio")}
 					/>
 				</div>
 
-				<div className="d-flex gap-1 mt-2">{isEditing && editorButtons}</div>
+				<div className="d-flex gap-1 mt-2">{editorButtons}</div>
 			</form>
-			<div className="d-flex gap-1">{!isEditing && watchingButtons}</div>
 		</div>
 	);
 }
