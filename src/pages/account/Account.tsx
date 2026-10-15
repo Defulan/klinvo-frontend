@@ -64,7 +64,7 @@ function AccountPage() {
 
 	return (
 		<>
-			<div className="d-flex align-items-center gap-2">
+			<div className="d-flex align-items-center justify-content-between gap-2">
 				{isAccountOwner ? (
 					<h1>
 						<EditableField value={accountUser.name} fieldName="name" onConfirmChanges={onNameChangeConfirm} />
