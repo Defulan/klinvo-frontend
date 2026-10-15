@@ -11,12 +11,7 @@ interface EditableFieldProps {
 
 function EditableField({ value, fieldName, onConfirmChanges }: EditableFieldProps) {
 	const [isEditing, setIsEditing] = useState(false);
-	const {
-		register,
-		handleSubmit,
-		reset,
-		formState: { errors },
-	} = useForm<EditableFieldForm>();
+	const { register, handleSubmit, reset } = useForm<EditableFieldForm>();
 
 	const onSubmit: SubmitHandler<EditableFieldForm> = async (data) => {
 		onConfirmChanges(data);
