@@ -6,7 +6,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import dayjs from "../../lib/dayjs";
 import type { Language } from "../../lib/types/language";
 import type { User } from "../../lib/types/user";
-import LanguageEditComponent from "./components/LanguageEdit";
 import useTitle from "../../hooks/useTitle";
 import NotesListComponent from "../notes/components/NotesList";
 import EditableField, { type EditableFieldForm } from "../../components/EditableField";
@@ -87,12 +86,6 @@ function ViewLanguagePage() {
 				</li>
 				{language.isPrivate && <li>{t("languageView.itsPrivate")}</li>}
 			</ul>
-			{isAuthor && (
-				<>
-					<hr />
-					<LanguageEditComponent language={language} onSuccess={fetchLanguageData} />
-				</>
-			)}
 			<hr />
 			<NotesListComponent language={language} isAuthor={isAuthor} />
 		</>
