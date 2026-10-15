@@ -10,6 +10,7 @@ import LanguageEditComponent from "./components/LanguageEdit";
 import useTitle from "../../hooks/useTitle";
 import NotesListComponent from "../notes/components/NotesList";
 import EditableField, { type EditableFieldForm } from "../../components/EditableField";
+import LanguagePrivacyButton from "./components/LanguagePrivacyButton";
 
 function ViewLanguagePage() {
 	const { languageId } = useParams<{ languageId: string }>();
@@ -56,7 +57,7 @@ function ViewLanguagePage() {
 		return;
 	}
 
-	const onNameConfirmChanges = async (data: EditableFieldForm) => {
+	const onConfirmChanges = async (data: EditableFieldForm) => {
 		try {
 			await api.patch<Language>(`/languages/${language.id}`, data);
 			await fetchLanguageData();
@@ -67,9 +68,12 @@ function ViewLanguagePage() {
 
 	return (
 		<>
-			<h1>
+			<h1 className="d-flex align-items-end">
 				{isAuthor ? (
-					<EditableField value={language.name} fieldName="name" onConfirmChanges={onNameConfirmChanges} />
+					<>
+						<EditableField value={language.name} fieldName="name" onConfirmChanges={onConfirmChanges} />
+						<LanguagePrivacyButton language={language} fetchLanguage={fetchLanguageData} />
+					</>
 				) : (
 					language.name
 				)}
