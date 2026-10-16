@@ -12,6 +12,7 @@
 		"check": "biome check --write ."
 	},
 	"dependencies": {
+		"@tanstack/react-query": "^5.104.3",
 		"axios": "^1.20.0",
 		"bootstrap": "^5.3.8",
 		"bootstrap-icons": "^1.13.1",
