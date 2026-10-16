@@ -26,7 +26,22 @@ function NotePopoverButton({ note }: NotePopoverButtonProps) {
 	);
 
 	return (
-		<OverlayTrigger trigger="click" placement="left" overlay={popover} rootClose>
+		<OverlayTrigger
+			trigger="click"
+			placement="left"
+			overlay={popover}
+			flip={true}
+			popperConfig={{
+				modifiers: [
+					{
+						name: "preventOverflow",
+						options: {
+							boundary: "viewport",
+						},
+					},
+				],
+			}}
+			rootClose>
 			<button type="button" className="btn p-0 border-0">
 				<img alt="" src={notePopover} width={28} height={28} className="d-inline-block mx-1" />
 			</button>
