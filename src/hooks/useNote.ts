@@ -25,9 +25,10 @@ export const useUpdateNote = () => {
 	const queryClient = useQueryClient();
 
 	return useMutation({
-		mutationFn: async (updatedData: Partial<Note> & { noteId: number }) => {
+		mutationFn: async (updatedData: Partial<Note> & { noteId: number }): Promise<Note> => {
 			const { noteId, ...fieldToUpdate } = updatedData;
-			return await api.patch(`/notes/${noteId}`, fieldToUpdate);
+			const response = await api.patch(`/notes/${noteId}`, fieldToUpdate);
+			return response.data;
 		},
 
 		onSuccess: (_, variables) => {

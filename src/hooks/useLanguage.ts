@@ -27,7 +27,8 @@ export const useUpdateLanguage = () => {
 	return useMutation({
 		mutationFn: async (updatedData: Partial<Language> & { languageId: number }) => {
 			const { languageId, ...fieldToUpdate } = updatedData;
-			return await api.patch(`/languages/${languageId}`, fieldToUpdate);
+			const response = await api.patch(`/languages/${languageId}`, fieldToUpdate);
+			return response.data;
 		},
 
 		onSuccess: (_, variables) => {

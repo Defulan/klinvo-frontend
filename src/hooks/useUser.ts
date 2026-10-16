@@ -27,7 +27,8 @@ export const useUpdateUser = () => {
 	return useMutation({
 		mutationFn: async (updatedData: Partial<User> & { userId: number }) => {
 			const { userId, ...fieldToUpdate } = updatedData;
-			return await api.patch(`/users/${userId}`, fieldToUpdate);
+			const response = await api.patch(`/users/${userId}`, fieldToUpdate);
+			return response.data;
 		},
 
 		onSuccess: (_, variables) => {
