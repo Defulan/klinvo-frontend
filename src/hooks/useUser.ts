@@ -2,7 +2,7 @@ import api from "../lib/api";
 import type { User } from "../lib/types/user";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-export const fetchUser = async (userId: number): Promise<User | undefined> => {
+export const fetchUser = async (userId: number): Promise<User> => {
 	const response = await api.get(`/users/${userId}`);
 	return response.data;
 };

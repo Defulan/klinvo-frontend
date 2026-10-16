@@ -2,7 +2,7 @@ import api from "../lib/api";
 import type { Language } from "../lib/types/language";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-export const fetchLanguage = async (languageId: number): Promise<Language | undefined> => {
+export const fetchLanguage = async (languageId: number): Promise<Language> => {
 	const response = await api.get(`/languages/${languageId}`);
 	return response.data;
 };

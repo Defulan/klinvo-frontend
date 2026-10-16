@@ -2,7 +2,7 @@ import api from "../lib/api";
 import type { Note } from "../lib/types/note";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-export const fetchNote = async (noteId: number): Promise<Note | undefined> => {
+export const fetchNote = async (noteId: number): Promise<Note> => {
 	const response = await api.get(`/notes/${noteId}`);
 	return response.data;
 };
