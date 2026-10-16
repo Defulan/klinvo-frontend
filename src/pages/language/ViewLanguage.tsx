@@ -1,68 +1,96 @@
 import { useAuth } from "../../context/AuthContext";
 import { useTranslation } from "react-i18next";
-import api from "../../lib/api";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import dayjs from "../../lib/dayjs";
-import type { Language } from "../../lib/types/language";
-import type { User } from "../../lib/types/user";
 import useTitle from "../../hooks/useTitle";
 import NotesListComponent from "../notes/components/NotesList";
 import EditableField, { type EditableFieldForm } from "../../components/EditableField";
 import LanguagePrivacyButton from "./components/LanguagePrivacyButton";
+import { useLanguage, useUpdateLanguage } from "../../hooks/useLanguage";
+import { useUser } from "../../hooks/useUser";
 
 function ViewLanguagePage() {
 	const { languageId } = useParams<{ languageId: string }>();
 	const { user, isContextLoading } = useAuth();
 	const { t } = useTranslation();
 	const navigate = useNavigate();
-	const [language, setLanguage] = useState<Language | null>(null);
-	const [author, setAuthor] = useState<User | null>(null);
-	const [isLoading, setIsLoading] = useState(true);
 	const [isAuthor, setIsAuthor] = useState(false);
+
+	const {
+		data: language,
+		isLoading: isLanguageLoading,
+		isError: isLanguageError,
+		error: languageError,
+	} = useLanguage(Number(languageId));
+	const languageMutationPatch = useUpdateLanguage();
+
+	const {
+		data: author,
+		isLoading: isAuthorLoading,
+		isError: isAuthorError,
+		error: authorError,
+	} = useUser(language?.authorId ?? -1);
 
 	useTitle(t("languageView.pageTitle", { name: language?.name || "Klinvo" }));
 
-	const fetchLanguageData = useCallback(async () => {
-		try {
-			const languageResponse = await api.get<Language>(`/languages/${languageId}`);
-			const authorResponse = await api.get<User>(`/users/${languageResponse.data.authorId}`);
-
-			const languageData = languageResponse.data;
-
-			if (languageData.authorId === user?.id) {
-				setIsAuthor(true);
-			} else if (languageData.isPrivate) {
-				navigate("/404");
-				return;
-			}
-
-			setLanguage(languageResponse.data);
-			setAuthor(authorResponse.data);
-		} catch {
-			navigate("/404");
-		} finally {
-			setIsLoading(false);
-		}
-	}, [languageId, user, navigate]);
-
 	useEffect(() => {
-		if (isContextLoading) return;
+		if (isLanguageLoading || isContextLoading || isAuthorLoading) {
+			return;
+		}
 
-		fetchLanguageData();
-	}, [isContextLoading, fetchLanguageData]);
+		if (isLanguageError) {
+			console.error(languageError);
+			navigate("/404");
+		}
 
-	if (isLoading || !language || !author) {
+		if (isAuthorError) {
+			console.error(authorError);
+			navigate("/404");
+		}
+
+		if (!language || !author) {
+			navigate("/404");
+			return;
+		}
+
+		if (language.authorId === user?.id) {
+			setIsAuthor(true);
+		} else if (language.isPrivate) {
+			navigate("/404");
+			return;
+		}
+	}, [
+		isLanguageLoading,
+		isAuthorLoading,
+		isContextLoading,
+		author,
+		navigate,
+		isLanguageError,
+		isAuthorError,
+		languageError,
+		authorError,
+		user,
+		language,
+	]);
+
+	if (isLanguageLoading || isContextLoading || isAuthorLoading) {
+		return;
+	}
+
+	if (!language || !author) {
 		return;
 	}
 
 	const onConfirmChanges = async (data: EditableFieldForm) => {
-		try {
-			await api.patch<Language>(`/languages/${language.id}`, data);
-			await fetchLanguageData();
-		} catch (error) {
-			console.error(error);
-		}
+		languageMutationPatch.mutate(
+			{ languageId: language.id, ...data },
+			{
+				onError: (error) => {
+					console.error(error);
+				},
+			},
+		);
 	};
 
 	return (
@@ -71,7 +99,7 @@ function ViewLanguagePage() {
 				{isAuthor ? (
 					<>
 						<EditableField value={language.name} fieldName="name" onConfirmChanges={onConfirmChanges} />
-						<LanguagePrivacyButton language={language} fetchLanguage={fetchLanguageData} />
+						<LanguagePrivacyButton language={language} />
 					</>
 				) : (
 					language.name
