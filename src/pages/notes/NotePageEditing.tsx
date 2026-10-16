@@ -84,10 +84,6 @@ function NotePageEditing() {
 		navigate(`/notes/${noteId}`);
 	};
 
-	if (isContextLoading || isLoading) {
-		return;
-	}
-
 	if (!isAuthor) {
 		navigate(`/notes/${noteId}`);
 	}
