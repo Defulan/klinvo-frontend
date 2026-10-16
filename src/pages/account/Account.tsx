@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -9,15 +9,26 @@ import useTitle from "../../hooks/useTitle";
 import EditableField, { type EditableFieldForm } from "../../components/EditableField";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { useUpdateUser, useUser } from "../../hooks/useUser";
 
 function AccountPage() {
 	const { userId } = useParams<{ userId?: string }>();
 	const { t } = useTranslation();
 	const { user, isContextLoading, fetchAuth } = useAuth();
 	const navigate = useNavigate();
-	const [isLoading, setIsLoading] = useState(true);
-	const [accountUser, setAccountUser] = useState<User | null>(null);
-	const [isAccountOwner, setIsAccountOwner] = useState(false);
+
+	const accountUserId = userId ? Number(userId) : user?.id;
+
+	const {
+		data: accountUser,
+		isLoading: isAccountLoading,
+		isError: isAccountError,
+		error: accountError,
+	} = useUser(Number(accountUserId));
+	const userMutationPatch = useUpdateUser();
+
+	const isLoading = isContextLoading || isAccountLoading;
+	const isAccountOwner = Boolean(accountUserId && user && accountUserId === user.id);
 
 	const loadedTitle = t("account.pageTitle", { name: user?.name });
 	const unloadedTitle = t("account.unloadedPageTitle");
@@ -25,41 +36,35 @@ function AccountPage() {
 	useTitle(user?.name ? loadedTitle : unloadedTitle);
 
 	useEffect(() => {
-		if (!userId) {
-			if (isContextLoading) return;
-
-			if (!user) navigate("/login");
-			setAccountUser(user);
-			setIsAccountOwner(true);
-			setIsLoading(false);
-		} else {
-			const fetchUser = async () => {
-				try {
-					const response = await api.get<User>(`/users/${userId}`);
-					setAccountUser(response.data);
-					setIsAccountOwner(response.data.id === user?.id);
-				} catch (error) {
-					console.error(error);
-					navigate("/account");
-				} finally {
-					setIsLoading(false);
-				}
-			};
-			fetchUser();
+		if (isLoading) {
+			return;
 		}
-	}, [isContextLoading, user, userId, navigate]);
 
-	if (isContextLoading || isLoading || !accountUser) {
+		if (isAccountError) {
+			console.error(accountError);
+			navigate("/404");
+			return;
+		}
+
+		if (!user) {
+			navigate("/login");
+			return;
+		}
+	}, [isLoading, isAccountError, accountError, user, navigate]);
+
+	if (isLoading || !accountUser) {
 		return;
 	}
 
 	const onNameChangeConfirm = async (data: EditableFieldForm) => {
-		try {
-			await api.patch<User>(`/users/`, data);
-			await fetchAuth();
-		} catch (error) {
-			console.error(error);
-		}
+		userMutationPatch.mutate(
+			{ userId: accountUser.id, ...data },
+			{
+				onError: (error) => {
+					console.error(error);
+				},
+			},
+		);
 	};
 
 	if (isAccountOwner) {
