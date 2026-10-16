@@ -49,11 +49,7 @@ function ViewLanguagePage() {
 		}
 	}, [isLoading, navigate, isLanguageError, isAuthorError, languageError, authorError]);
 
-	if (isLoading) {
-		return;
-	}
-
-	if (!language || !author) {
+	if (isLoading || !language || !author) {
 		return;
 	}
 
