@@ -55,6 +55,10 @@ function NotePageEditing() {
 		return;
 	}
 
+	if (!isAuthor) {
+		navigate(`/notes/${noteId}`);
+	}
+
 	const onSubmit: SubmitHandler<NoteEditForm> = async (data) => {
 		noteMutationPatch.mutate(
 			{ noteId: note.id, ...data },
@@ -83,10 +87,6 @@ function NotePageEditing() {
 		reset();
 		navigate(`/notes/${noteId}`);
 	};
-
-	if (!isAuthor) {
-		navigate(`/notes/${noteId}`);
-	}
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column gap-3">
