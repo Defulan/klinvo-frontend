@@ -1,3 +1,4 @@
+import { isAxiosError } from "axios";
 import api from "../lib/api";
 import type { Note } from "../lib/types/note";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -11,6 +12,12 @@ export const useNote = (noteId: number) => {
 	return useQuery({
 		queryKey: ["note", noteId],
 		queryFn: () => fetchNote(noteId),
+		retry: (failureCount, error: unknown) => {
+			if (isAxiosError(error) && error.response?.status === 404) {
+				return false;
+			}
+			return failureCount < 3;
+		},
 	});
 };
 
