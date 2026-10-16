@@ -54,6 +54,11 @@ klinvo-frontend
 │  ├─ components/
 │  ├─ context/
 │  │   └─ AuthContext.tsx - получение данных пользователя из cookie
+│  ├─ hooks/
+│  │   ├─ useLanguage.ts - PATCH & единичный GET для языка
+│  │   ├─ useNote.ts - PATCH & единичный GET для заметки
+│  │   ├─ useTitle.ts - поставить заголовок странице
+│  │   └─ useUser.ts - PATCH & единичный GET для пользователя
 │  ├─ i18n/ - Локализация (en, ru)
 │  ├─ lib/ - настройки проекта и функции
 │  │   ├─ types/ - TypeScript типы
