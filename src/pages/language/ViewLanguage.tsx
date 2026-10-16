@@ -1,6 +1,6 @@
 import { useAuth } from "../../context/AuthContext";
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import dayjs from "../../lib/dayjs";
 import useTitle from "../../hooks/useTitle";
@@ -15,7 +15,6 @@ function ViewLanguagePage() {
 	const { user, isContextLoading } = useAuth();
 	const { t } = useTranslation();
 	const navigate = useNavigate();
-	const [isAuthor, setIsAuthor] = useState(false);
 
 	const {
 		data: language,
@@ -31,6 +30,8 @@ function ViewLanguagePage() {
 		isError: isAuthorError,
 		error: authorError,
 	} = useUser(language?.authorId ?? -1);
+
+	const isAuthor = Boolean(language && user && language?.authorId === user?.id);
 
 	useTitle(t("languageView.pageTitle", { name: language?.name || "Klinvo" }));
 
@@ -54,9 +55,7 @@ function ViewLanguagePage() {
 			return;
 		}
 
-		if (language.authorId === user?.id) {
-			setIsAuthor(true);
-		} else if (language.isPrivate) {
+		if (!isAuthor && language.isPrivate) {
 			navigate("/404");
 			return;
 		}
@@ -70,8 +69,8 @@ function ViewLanguagePage() {
 		isAuthorError,
 		languageError,
 		authorError,
-		user,
 		language,
+		isAuthor,
 	]);
 
 	if (isLanguageLoading || isContextLoading || isAuthorLoading) {
