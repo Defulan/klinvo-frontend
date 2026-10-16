@@ -3,8 +3,6 @@ import { useAuth } from "../../context/AuthContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import AccountLanguagesComponent from "./AccountLanguages";
-import api from "../../lib/api";
-import type { User } from "../../lib/types/user";
 import useTitle from "../../hooks/useTitle";
 import EditableField, { type EditableFieldForm } from "../../components/EditableField";
 import Markdown from "react-markdown";
@@ -14,7 +12,7 @@ import { useUpdateUser, useUser } from "../../hooks/useUser";
 function AccountPage() {
 	const { userId } = useParams<{ userId?: string }>();
 	const { t } = useTranslation();
-	const { user, isContextLoading, fetchAuth } = useAuth();
+	const { user, isContextLoading } = useAuth();
 	const navigate = useNavigate();
 
 	const accountUserId = userId ? Number(userId) : user?.id;
@@ -58,7 +56,7 @@ function AccountPage() {
 
 	const onNameChangeConfirm = async (data: EditableFieldForm) => {
 		userMutationPatch.mutate(
-			{ userId: accountUser.id, ...data },
+			{ ...data },
 			{
 				onError: (error) => {
 					console.error(error);
