@@ -22,6 +22,8 @@ Frontend version implies compatible with the corresponding Backend version
   - Available only on an edit note page
 - Editing on a same field for username, language name and note title
 - Added Markdown formatter for user bio/description
+- API hooks for getting single user, language, note by ID
+- API hooks for patching user, language, note
 
 #### Changed
 - All language pages files names now have "Language" at the end (`CreateLanguage`, `PublicLanguages`, `ViewLanguage`)

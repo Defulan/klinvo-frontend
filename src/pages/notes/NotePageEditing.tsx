@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import type { Note } from "../../lib/types/note";
 import api from "../../lib/api";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import type { Language } from "../../lib/types/language";
 import ContentEditor from "../../components/ContentEditor";
+import { useNote, useUpdateNote } from "../../hooks/useNote";
+import { useLanguage } from "../../hooks/useLanguage";
 
 interface NoteEditForm {
 	content: string | null;
@@ -13,57 +14,63 @@ interface NoteEditForm {
 
 function NotePageEditing() {
 	const { noteId } = useParams<{ noteId: string }>();
-	const [note, setNote] = useState<Note | null>(null);
-	const [language, setLanguage] = useState<Language | null>(null);
 	const { user, isContextLoading } = useAuth();
 	const { register, handleSubmit, reset } = useForm<NoteEditForm>();
-	const [isAuthor, setIsAuthor] = useState(false);
-	const [isLoading, setIsLoading] = useState(true);
 	const navigate = useNavigate();
 
-	useEffect(() => {
-		const fetchNote = async () => {
-			try {
-				const response = await api.get<Note>(`/notes/${noteId}`);
-				setNote(response.data);
-			} catch (error) {
-				console.error(error);
-				navigate("/404");
-			}
-		};
+	const { data: note, isLoading: isNoteLoading, isError: isNoteError, error: noteError } = useNote(Number(noteId));
+	const noteMutationPatch = useUpdateNote();
 
-		fetchNote();
-	}, [noteId, navigate]);
+	const {
+		data: language,
+		isLoading: isLanguageLoading,
+		isError: isLanguageError,
+		error: languageError,
+	} = useLanguage(note?.languageId ?? -1);
+
+	const isLoading = isContextLoading || isNoteLoading || isLanguageLoading;
+	const isAuthor = Boolean(language && user && language?.authorId === user?.id);
 
 	useEffect(() => {
-		const fetchLanguage = async () => {
-			if (note) {
-				try {
-					const response = await api.get<Language>(`/languages/${note.languageId}`);
-					setLanguage(response.data);
-				} catch (error) {
-					console.error(error);
-				}
-			}
-		};
+		if (isLoading) {
+			return;
+		}
+
+		if (isNoteError || isLanguageError) {
+			if (isNoteError) console.error(noteError);
+			if (isLanguageError) console.error(languageError);
+			navigate("/404");
+		}
+	}, [isLoading, isNoteError, isLanguageError, noteError, languageError, navigate]);
+
+	useEffect(() => {
 		if (note) {
-			fetchLanguage();
 			reset({
 				content: note.content,
 			});
 		}
 	}, [note, reset]);
 
-	useEffect(() => {
-		if (isContextLoading || !language) return;
+	if (isLoading || !note || !language) {
+		return;
+	}
 
-		if (user && user.id === language.authorId) {
-			setIsAuthor(true);
-		}
-		setIsLoading(false);
-	}, [isContextLoading, user, language]);
+	if (!isAuthor) {
+		navigate(`/notes/${noteId}`);
+	}
 
 	const onSubmit: SubmitHandler<NoteEditForm> = async (data) => {
+		noteMutationPatch.mutate(
+			{ noteId: note.id, ...data },
+			{
+				onSuccess: (data: Note) => {
+					reset({ content: data.content });
+				},
+				onError: (error) => {
+					console.error(error);
+				},
+			},
+		);
 		try {
 			const response = await api.patch<Note>(`/notes/${note?.id}`, data);
 
@@ -80,14 +87,6 @@ function NotePageEditing() {
 		reset();
 		navigate(`/notes/${noteId}`);
 	};
-
-	if (isContextLoading || isLoading) {
-		return;
-	}
-
-	if (!isAuthor) {
-		navigate(`/notes/${noteId}`);
-	}
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column gap-3">

@@ -1,64 +1,48 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import api from "../../lib/api";
-import type { Note } from "../../lib/types/note";
 import dayjs from "../../lib/dayjs";
 import { useTranslation } from "react-i18next";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import type { Language } from "../../lib/types/language";
 import { useAuth } from "../../context/AuthContext";
 import EditableField, { type EditableFieldForm } from "../../components/EditableField";
+import { useNote, useUpdateNote } from "../../hooks/useNote";
+import { useLanguage } from "../../hooks/useLanguage";
 
 function NotePage() {
 	const { t } = useTranslation();
 	const { user, isContextLoading } = useAuth();
 	const { noteId } = useParams<{ noteId: string }>();
-	const [note, setNote] = useState<Note | null>(null);
-	const [language, setLanguage] = useState<Language | null>(null);
-	const [isLoading, setIsLoading] = useState(true);
-	const [isAuthor, setIsAuthor] = useState(false);
 	const navigate = useNavigate();
 
-	const fetchNote = useCallback(async () => {
-		try {
-			const response = await api.get<Note>(`/notes/${noteId}`);
-			setNote(response.data);
-		} catch (error) {
-			console.error(error);
+	const { data: note, isLoading: isNoteLoading, isError: isNoteError, error: noteError } = useNote(Number(noteId));
+	const noteMutationPatch = useUpdateNote();
+
+	const {
+		data: language,
+		isLoading: isLanguageLoading,
+		isError: isLanguageError,
+		error: languageError,
+	} = useLanguage(note?.languageId ?? -1);
+
+	const isLoading = isContextLoading || isNoteLoading || isLanguageLoading;
+	const isAuthor = Boolean(language && user && language?.authorId === user?.id);
+
+	useEffect(() => {
+		if (isLoading) {
+			return;
+		}
+
+		if (isNoteError || isLanguageError) {
+			if (isNoteError) console.error(noteError);
+			if (isLanguageError) console.error(languageError);
 			navigate("/404");
-		} finally {
-			setIsLoading(false);
 		}
-	}, [noteId, navigate]);
+	}, [isLoading, isNoteError, isLanguageError, noteError, languageError, navigate]);
 
-	useEffect(() => {
-		fetchNote();
-	}, [fetchNote]);
-
-	useEffect(() => {
-		if (isContextLoading) return;
-
-		if (user && user.id === language?.authorId) {
-			setIsAuthor(true);
-		}
-	}, [isContextLoading, user, language]);
-
-	useEffect(() => {
-		const fetchLanguage = async () => {
-			if (note) {
-				try {
-					const response = await api.get<Language>(`/languages/${note.languageId}`);
-					setLanguage(response.data);
-				} catch (error) {
-					console.error(error);
-				}
-			}
-		};
-		if (note) {
-			fetchLanguage();
-		}
-	}, [note]);
+	if (isLoading || !note || !language) {
+		return;
+	}
 
 	const watchingButtons = (
 		<>
@@ -69,17 +53,15 @@ function NotePage() {
 	);
 
 	const onTitleConfirmChanges = async (data: EditableFieldForm) => {
-		try {
-			await api.patch<Note>(`/notes/${note?.id}`, data);
-			await fetchNote();
-		} catch (error) {
-			console.error(error);
-		}
+		noteMutationPatch.mutate(
+			{ noteId: note.id, ...data },
+			{
+				onError: (error) => {
+					console.error(error);
+				},
+			},
+		);
 	};
-
-	if (isContextLoading || isLoading || !note) {
-		return;
-	}
 
 	return (
 		<>

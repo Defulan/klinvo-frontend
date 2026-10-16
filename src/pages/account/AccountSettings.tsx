@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import useTitle from "../../hooks/useTitle";
 import type { User } from "../../lib/types/user";
 import ContentEditor from "../../components/ContentEditor";
+import { useUpdateUser } from "../../hooks/useUser";
 
 interface UserEditForm {
 	bio: string | null;
@@ -22,6 +23,8 @@ function AccountSettings() {
 	const [errorText, setErrorText] = useState("");
 	const [editInfoText, setEditInfoText] = useState<string | null>(null);
 	const { register, handleSubmit, reset } = useForm<UserEditForm>();
+
+	const userMutationPatch = useUpdateUser();
 
 	const navigate = useNavigate();
 
@@ -44,17 +47,22 @@ function AccountSettings() {
 	}, [isContextLoading, user, reset]);
 
 	const onSubmit: SubmitHandler<UserEditForm> = async (data) => {
-		try {
-			const response = await api.patch<User>("/users/", data);
-			await fetchAuth();
-
-			reset({
-				bio: response.data.bio,
-			});
-			setEditInfoText(t("accountSettings.changesAccepted"));
-		} catch (error) {
-			setErrorText(t(getErrorDetails(error)));
-		}
+		userMutationPatch.mutate(
+			{ ...data },
+			{
+				onSuccess: (data: User) => {
+					reset({
+						bio: data.bio,
+					});
+					fetchAuth();
+					setEditInfoText(t("accountSettings.changesAccepted"));
+				},
+				onError: (error) => {
+					console.error(error);
+					setErrorText(t(getErrorDetails(error)));
+				},
+			},
+		);
 	};
 
 	const handleCancel = () => {

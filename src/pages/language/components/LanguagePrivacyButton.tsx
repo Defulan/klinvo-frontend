@@ -1,22 +1,22 @@
-import api from "../../../lib/api";
+import { useUpdateLanguage } from "../../../hooks/useLanguage";
 import type { Language } from "../../../lib/types/language";
 
 interface LanguagePrivacyButtonProps {
 	language: Language;
-	fetchLanguage: () => Promise<void>;
 }
 
-function LanguagePrivacyButton({ language, fetchLanguage }: LanguagePrivacyButtonProps) {
-	const onClick = async () => {
-		try {
-			await api.patch<Language>(`/languages/${language.id}`, {
-				isPrivate: !language.isPrivate,
-			});
+function LanguagePrivacyButton({ language }: LanguagePrivacyButtonProps) {
+	const languageMutationPatch = useUpdateLanguage();
 
-			await fetchLanguage();
-		} catch (error) {
-			console.error(error);
-		}
+	const onClick = async () => {
+		languageMutationPatch.mutate(
+			{ languageId: language.id, isPrivate: !language.isPrivate },
+			{
+				onError: (error) => {
+					console.error(error);
+				},
+			},
+		);
 	};
 
 	const privateIcon = <i className="bi bi-lock-fill"></i>;

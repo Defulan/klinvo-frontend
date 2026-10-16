@@ -15,6 +15,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import Home from "./pages/Home";
 import NotFoundPage from "./pages/NotFoundPage";
 import NotePage from "./pages/notes/NotePage";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const AccountPage = lazy(() => import("./pages/account/Account"));
 const AccountSettings = lazy(() => import("./pages/account/AccountSettings"));
 const Registration = lazy(() => import("./pages/account/Registration"));
@@ -49,6 +50,8 @@ const router = createBrowserRouter([
 	},
 ]);
 
+const queryClient = new QueryClient();
+
 const rootElement = document.getElementById("root");
 
 if (!rootElement) {
@@ -57,10 +60,12 @@ if (!rootElement) {
 
 createRoot(rootElement).render(
 	<StrictMode>
-		<ErrorBoundary FallbackComponent={ErrorFallback}>
-			<AuthContextProvider>
-				<RouterProvider router={router} />
-			</AuthContextProvider>
-		</ErrorBoundary>
+		<QueryClientProvider client={queryClient}>
+			<ErrorBoundary FallbackComponent={ErrorFallback}>
+				<AuthContextProvider>
+					<RouterProvider router={router} />
+				</AuthContextProvider>
+			</ErrorBoundary>
+		</QueryClientProvider>
 	</StrictMode>,
 );
