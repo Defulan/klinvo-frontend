@@ -2,9 +2,7 @@ Versions of Frontend and Backend releases at the same time — that is,
 Frontend version implies compatible with the corresponding Backend version
 
 
-## unreleased
-> The next planned version is v0.4.0
-
+## v0.4.0
 
 #### Added
 - Notes section in a language page
@@ -38,6 +36,17 @@ Frontend version implies compatible with the corresponding Backend version
 
 #### Removed
 - Language edit section & component — was splitted on same-field editing language name and privacy button
+
+#### Roadmap of this version
+- [x] Error handling & fallback UI
+- [x] Authentification (registration, log in/log out)
+- [x] Account page (username, bio, navigation to settings, conlangs section)
+- [x] Account settings page (user data editing)
+- [x] UI localization (English/Russian)
+- [x] Language page (description, notes section, navigation to dictionary)
+- [x] Design home page
+- [x] Notes ([More info...](https://github.com/Defulan/klinvo-frontend/issues/34))
+- [ ] Interactive dictionary table ([More info...](https://github.com/Defulan/klinvo-frontend/issues/35))
 
 
 
