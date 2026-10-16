@@ -32,11 +32,12 @@ function ViewLanguagePage() {
 	} = useUser(language?.authorId ?? -1);
 
 	const isAuthor = Boolean(language && user && language?.authorId === user?.id);
+	const isLoading = isLanguageLoading || isContextLoading || isAuthorLoading;
 
 	useTitle(t("languageView.pageTitle", { name: language?.name || "Klinvo" }));
 
 	useEffect(() => {
-		if (isLanguageLoading || isContextLoading || isAuthorLoading) {
+		if (isLoading) {
 			return;
 		}
 
@@ -59,21 +60,9 @@ function ViewLanguagePage() {
 			navigate("/404");
 			return;
 		}
-	}, [
-		isLanguageLoading,
-		isAuthorLoading,
-		isContextLoading,
-		author,
-		navigate,
-		isLanguageError,
-		isAuthorError,
-		languageError,
-		authorError,
-		language,
-		isAuthor,
-	]);
+	}, [isLoading, author, navigate, isLanguageError, isAuthorError, languageError, authorError, language, isAuthor]);
 
-	if (isLanguageLoading || isContextLoading || isAuthorLoading) {
+	if (isLoading) {
 		return;
 	}
 
