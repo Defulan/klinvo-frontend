@@ -41,22 +41,14 @@ function ViewLanguagePage() {
 			return;
 		}
 
-		if (isLanguageError) {
-			console.error(languageError);
-			navigate("/404");
-		}
-
-		if (isAuthorError) {
-			console.error(authorError);
-			navigate("/404");
-		}
-
-		if (!language || !author) {
+		if (isLanguageError || isAuthorError) {
+			if (isLanguageError) console.error(languageError);
+			if (isAuthorError) console.error(authorError);
 			navigate("/404");
 			return;
 		}
 
-		if (!isAuthor && language.isPrivate) {
+		if (!language || !author || (!isAuthor && language.isPrivate)) {
 			navigate("/404");
 			return;
 		}
