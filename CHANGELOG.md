@@ -24,6 +24,7 @@ Frontend version implies compatible with the corresponding Backend version
 - Added Markdown formatter for user bio/description
 - API hooks for getting single user, language, note by ID
 - API hooks for patching user, language, note
+- Selection of time locale (`dayjs`) based on UI language
 
 #### Changed
 - All language pages files names now have "Language" at the end (`CreateLanguage`, `PublicLanguages`, `ViewLanguage`)
