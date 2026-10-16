@@ -47,18 +47,18 @@ function ViewLanguagePage() {
 			navigate("/404");
 			return;
 		}
-
-		if (!language || !author || (!isAuthor && language.isPrivate)) {
-			navigate("/404");
-			return;
-		}
-	}, [isLoading, author, navigate, isLanguageError, isAuthorError, languageError, authorError, language, isAuthor]);
+	}, [isLoading, navigate, isLanguageError, isAuthorError, languageError, authorError]);
 
 	if (isLoading) {
 		return;
 	}
 
 	if (!language || !author) {
+		return;
+	}
+
+	if (!isAuthor && language.isPrivate) {
+		navigate("/404");
 		return;
 	}
 
