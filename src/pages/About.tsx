@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import klinvoIcon from "../assets/nounLanguage.svg";
+import klinvoWhiteIcon from "../assets/nounLanguageWhite.svg";
 import notePopover from "../assets/notePopover.svg";
 import useTitle from "../hooks/useTitle";
 
@@ -45,6 +46,26 @@ function Credits() {
 			<div className="d-flex flex-column">
 				<p className="credits-p">
 					<img alt="" src={klinvoIcon} width={32} height={32} className="d-inline-block align-text-top" />
+					<span>
+						Language by Liez Art from{" "}
+						<a
+							href="https://thenounproject.com/browse/icons/term/language/"
+							target="_blank"
+							rel="noopener noreferrer"
+							title="Language Icons">
+							Noun Project
+						</a>
+						(CC BY 3.0)
+					</span>
+				</p>
+				<p className="credits-p">
+					<img
+						alt=""
+						src={klinvoWhiteIcon}
+						width={32}
+						height={32}
+						className="d-inline-block align-text-top bg-dark rounded-4"
+					/>
 					<span>
 						Language by Liez Art from{" "}
 						<a
