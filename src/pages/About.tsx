@@ -42,35 +42,36 @@ function Credits() {
 			</section>
 
 			<main>{t("about.creditsHeader")}</main>
-			<p className="credits-p">
-				<img alt="" src={klinvoIcon} width={32} height={32} className="d-inline-block align-text-top" />
-				<span>
-					Language by Liez Art from{" "}
-					<a
-						href="https://thenounproject.com/browse/icons/term/language/"
-						target="_blank"
-						rel="noopener noreferrer"
-						title="Language Icons">
-						Noun Project
-					</a>
-					(CC BY 3.0)
-				</span>
-			</p>
-			<br />
-			<p className="credits-p">
-				<img alt="" src={notePopover} width={32} height={32} className="d-inline-block align-text-top" />
-				<span>
-					popup by Gregor Cresnar from
-					<a
-						href="https://thenounproject.com/browse/icons/term/popup/"
-						target="_blank"
-						rel="noopener noreferrer"
-						title="popup Icons">
-						Noun Project
-					</a>{" "}
-					(CC BY 3.0)
-				</span>
-			</p>
+			<div className="d-flex flex-column">
+				<p className="credits-p">
+					<img alt="" src={klinvoIcon} width={32} height={32} className="d-inline-block align-text-top" />
+					<span>
+						Language by Liez Art from{" "}
+						<a
+							href="https://thenounproject.com/browse/icons/term/language/"
+							target="_blank"
+							rel="noopener noreferrer"
+							title="Language Icons">
+							Noun Project
+						</a>
+						(CC BY 3.0)
+					</span>
+				</p>
+				<p className="credits-p">
+					<img alt="" src={notePopover} width={32} height={32} className="d-inline-block align-text-top" />
+					<span>
+						popup by Gregor Cresnar from
+						<a
+							href="https://thenounproject.com/browse/icons/term/popup/"
+							target="_blank"
+							rel="noopener noreferrer"
+							title="popup Icons">
+							Noun Project
+						</a>{" "}
+						(CC BY 3.0)
+					</span>
+				</p>
+			</div>
 		</>
 	);
 }
