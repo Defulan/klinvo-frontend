@@ -6,11 +6,11 @@ import useTitle from "../hooks/useTitle";
 function Credits() {
 	const { t } = useTranslation();
 
-	useTitle(t("credits.pageTitle"));
+	useTitle(t("about.pageTitle"));
 
 	return (
 		<>
-			<main>{t("credits.info")}</main>
+			<main>{t("about.creditsHeader")}</main>
 			<p className="credits-p">
 				<img alt="" src={klinvoIcon} width={32} height={32} className="d-inline-block align-text-top" />
 				<span>

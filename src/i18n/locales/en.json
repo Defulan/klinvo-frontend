@@ -44,9 +44,9 @@
 		"submit": "Sign up",
 		"toLogin": "Already have an account? (Sign in)"
 	},
-	"credits": {
-		"pageTitle": "Credits",
-		"info": "Attribution for materials used on the site"
+	"about": {
+		"pageTitle": "About Klinvo",
+		"creditsHeader": "Attribution for materials used on the site"
 	},
 	"createLanguage": {
 		"pageTitle": "Create a language",
