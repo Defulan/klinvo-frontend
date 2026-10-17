@@ -20,7 +20,7 @@ const AccountPage = lazy(() => import("./pages/account/Account"));
 const AccountSettings = lazy(() => import("./pages/account/AccountSettings"));
 const Registration = lazy(() => import("./pages/account/Registration"));
 const Login = lazy(() => import("./pages/account/Login"));
-const Credits = lazy(() => import("./pages/Credits"));
+const Credits = lazy(() => import("./pages/About"));
 const CreateLanguagePage = lazy(() => import("./pages/language/CreateLanguage"));
 const ViewLanguagePage = lazy(() => import("./pages/language/ViewLanguage"));
 const PublicLanguagesPage = lazy(() => import("./pages/language/PublicLanguages"));
