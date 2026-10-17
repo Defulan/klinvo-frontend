@@ -45,7 +45,7 @@ function ContentEditor({ handleCancel, registerProps }: ConcentEditorProps) {
 	const { ref: registerRef, ...restRegister } = registerProps;
 
 	return (
-		<div>
+		<div className="mb-5">
 			<EditorBar onWrapButtonClick={onWrapButtonClick} onEditingCancel={handleCancel} />
 			<textarea
 				placeholder={t("notePageEdit.contentPlaceholder")}
