@@ -9,6 +9,8 @@ Klinvo is a minimalist web tool for constructing artificial languages (conlangs)
 * **Backend repository:** [klinvo-backend ↗](https://github.com/Defulan/klinvo-backend)
 * **[Changelog](CHANGELOG.md)**
 
+> Note: if you are located in Russia, you may experience connection issues with the live demo of Klinvo due to regional network restrictions of the Vercel platform.
+
 
 ## How to Start
 * **Requirements:** Node.js v18+ or v20+ (project was written and tested on Node.js v24)
