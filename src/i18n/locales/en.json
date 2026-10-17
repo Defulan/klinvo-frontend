@@ -46,7 +46,12 @@
 	},
 	"about": {
 		"pageTitle": "About Klinvo",
-		"creditsHeader": "Attribution for materials used on the site"
+		"intro": "Klinvo is a web application for construction artificial languages. It was decided to pursue this goal by providing various tools with which a user decides for themselves how to use them.",
+		"githubSection": "The entire application is open-source, meaning you can view all of its source code",
+		"githubFrontend": "Website code (Frontend)",
+		"githubBackend": "Server code (Backend)",
+		"githubAuthor": "Author's GitHub",
+		"creditsHeader": "Attribution for materials used on the platform"
 	},
 	"createLanguage": {
 		"pageTitle": "Create a language",
