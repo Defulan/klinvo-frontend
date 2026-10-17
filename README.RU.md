@@ -71,7 +71,7 @@ klinvo-frontend
 │  │   ├─ language/
 │  │   ├─ notes/
 │  │   │
-│  │   ├─ Credits.tsx - указание авторства
+│  │   ├─ About.tsx - о проекте, ссылки, указание авторства
 │  │   ├─ Home.tsx
 │  │   └─ NotFoundPage.tsx - неизвестный URL
 │  │
