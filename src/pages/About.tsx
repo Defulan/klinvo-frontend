@@ -10,6 +10,8 @@ function Credits() {
 
 	return (
 		<>
+			<section>{t("about.intro")}</section>
+
 			<main>{t("about.creditsHeader")}</main>
 			<p className="credits-p">
 				<img alt="" src={klinvoIcon} width={32} height={32} className="d-inline-block align-text-top" />
