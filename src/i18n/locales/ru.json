@@ -126,7 +126,7 @@
 		"reset": "Перезайти на страницу"
 	},
 	"footer": {
-		"credits": "Использованные материалы",
+		"about": "О платформе",
 		"copyright": "Klinvo. {{year}}"
 	},
 	"navbar": {

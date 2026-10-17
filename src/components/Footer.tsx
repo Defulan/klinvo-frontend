@@ -8,7 +8,7 @@ function Footer() {
 		<footer className="footer">
 			<div>
 				<Link className="credits-link" to="/about">
-					{t("footer.credits")}
+					{t("footer.about")}
 				</Link>
 			</div>
 			<div className="footer-klinvo">{t("footer.copyright", { year: "2026" })}</div>

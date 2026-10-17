@@ -126,7 +126,7 @@
 		"reset": "Refresh the page"
 	},
 	"footer": {
-		"credits": "Credits",
+		"about": "About the platform",
 		"copyright": "Klinvo. {{year}}"
 	},
 	"navbar": {
