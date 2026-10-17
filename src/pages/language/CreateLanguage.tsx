@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { getErrorDetails } from "../../lib/errorDetails";
 import { useNavigate } from "react-router-dom";
 import useTitle from "../../hooks/useTitle";
+import type { Language } from "../../lib/types/language";
 
 interface LanguageCreate {
 	name: string;
@@ -34,7 +35,8 @@ function CreateLanguagePage() {
 
 	const onSubmit: SubmitHandler<LanguageCreate> = async (data) => {
 		try {
-			await api.post("/languages/", data);
+			const response = await api.post<Language>("/languages/", data);
+			navigate(`/language/${response.data.id}`);
 		} catch (error) {
 			console.log(error);
 			setErrorText(getErrorDetails(error));

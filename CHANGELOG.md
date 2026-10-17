@@ -2,6 +2,12 @@ Versions of Frontend and Backend releases at the same time — that is,
 Frontend version implies compatible with the corresponding Backend version
 
 
+## unversioned
+
+#### Changed
+- Added redirection to the new language after creating it
+
+
 ## v0.4.0
 
 #### Added
