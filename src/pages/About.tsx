@@ -12,6 +12,35 @@ function Credits() {
 		<>
 			<section>{t("about.intro")}</section>
 
+			<section>
+				<div>{t("about.githubSection")}</div>
+				<ul>
+					<li>
+						<a
+							href="https://github.com/Defulan/klinvo-frontend"
+							target="_blank"
+							rel="noopener noreferrer"
+							title="Frontend GitHub link">
+							{t("about.githubFrontend")}
+						</a>
+					</li>
+					<li>
+						<a
+							href="https://github.com/Defulan/klinvo-backend"
+							target="_blank"
+							rel="noopener noreferrer"
+							title="Backend GitHub link">
+							{t("about.githubBackend")}
+						</a>
+					</li>
+					<li>
+						<a href="https://github.com/Defulan" target="_blank" rel="noopener noreferrer" title="Author's GitHub">
+							{t("about.githubAuthor")}
+						</a>
+					</li>
+				</ul>
+			</section>
+
 			<main>{t("about.creditsHeader")}</main>
 			<p className="credits-p">
 				<img alt="" src={klinvoIcon} width={32} height={32} className="d-inline-block align-text-top" />
