@@ -9,7 +9,7 @@ function Credits() {
 	useTitle(t("about.pageTitle"));
 
 	return (
-		<>
+		<div className="d-flex flex-column gap-3">
 			<section>{t("about.intro")}</section>
 
 			<section>
@@ -72,7 +72,7 @@ function Credits() {
 					</span>
 				</p>
 			</div>
-		</>
+		</div>
 	);
 }
 
