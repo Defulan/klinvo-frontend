@@ -7,8 +7,8 @@ function Footer() {
 	return (
 		<footer className="footer">
 			<div>
-				<Link className="credits-link" to="/credits">
-					{t("footer.credits")}
+				<Link className="credits-link" to="/about">
+					{t("footer.about")}
 				</Link>
 			</div>
 			<div className="footer-klinvo">{t("footer.copyright", { year: "2026" })}</div>

@@ -20,7 +20,7 @@ const AccountPage = lazy(() => import("./pages/account/Account"));
 const AccountSettings = lazy(() => import("./pages/account/AccountSettings"));
 const Registration = lazy(() => import("./pages/account/Registration"));
 const Login = lazy(() => import("./pages/account/Login"));
-const Credits = lazy(() => import("./pages/Credits"));
+const About = lazy(() => import("./pages/About"));
 const CreateLanguagePage = lazy(() => import("./pages/language/CreateLanguage"));
 const ViewLanguagePage = lazy(() => import("./pages/language/ViewLanguage"));
 const PublicLanguagesPage = lazy(() => import("./pages/language/PublicLanguages"));
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
 			{ path: "account/settings", element: <AccountSettings /> },
 			{ path: "registration", element: <Registration /> },
 			{ path: "login", element: <Login /> },
-			{ path: "credits", element: <Credits /> },
+			{ path: "about", element: <About /> },
 			{ path: "language", element: <CreateLanguagePage /> },
 			{ path: "language/:languageId", element: <ViewLanguagePage /> },
 			{ path: "languages", element: <PublicLanguagesPage /> },
