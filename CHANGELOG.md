@@ -6,6 +6,7 @@ Frontend version implies compatible with the corresponding Backend version
 
 #### Changed
 - Added redirection to the new language after creating it
+- Content editor now have space before footer/end of page
 
 
 ## v0.4.0
