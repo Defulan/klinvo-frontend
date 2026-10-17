@@ -7,7 +7,7 @@ function Footer() {
 	return (
 		<footer className="footer">
 			<div>
-				<Link className="credits-link" to="/credits">
+				<Link className="credits-link" to="/about">
 					{t("footer.credits")}
 				</Link>
 			</div>
